@@ -16,6 +16,8 @@ public class MainMenuController {
 	
 	@FXML
 	ListView<String> _list; //list holding all the lists of equations
+	private Stage _window;
+	private Scene _levelScene;
 	
 	/**
 	 * loadManage will take an fxmlfile and create a scene with it
@@ -46,8 +48,15 @@ public class MainMenuController {
 		}
 	}
 	
-	public void playClick(ActionEvent event) {
-		
+	public void playClick(ActionEvent event) throws IOException {
+		Parent menu;
+		menu = FXMLLoader.load(getClass().getResource("Level.fxml"));
+		_levelScene = new Scene(menu);
+		_window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+		_window.setScene(_levelScene);
+		_window.setTitle("Level");
+		_window.show();
 	}
 	
 	public void practiseClick(ActionEvent event) {

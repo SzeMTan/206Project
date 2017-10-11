@@ -37,7 +37,7 @@ public class ScoreController{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Level.fxml"));
 			Parent number = loader.load();
 			scoreScene = new Scene(number);
-			LevelController c = loader.getController();
+			StartController c = loader.getController();
 			c.setLevel(_levelSelected);
 			
 			window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -49,7 +49,7 @@ public class ScoreController{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Level.fxml"));
 		Parent number = loader.load();
 		levelScene = new Scene(number);
-		LevelController c = loader.getController();
+		StartController c = loader.getController();
 		c.setLevel(LevelSelection.HARD);
 		
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();

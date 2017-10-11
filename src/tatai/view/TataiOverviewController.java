@@ -30,9 +30,9 @@ public class TataiOverviewController {
 	public void easyButtonClicked(ActionEvent event) throws IOException{
 		
 		FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Level.fxml"));
+        loader.setLocation(Main.class.getResource("view/Start.fxml"));
         Parent easyStart = loader.load();
-        loader.<LevelController>getController().setLevel(LevelSelection.EASY);
+        loader.<StartController>getController().setLevel(LevelSelection.EASY);
         
 		
 		easyStartScene = new Scene(easyStart);
@@ -43,9 +43,9 @@ public class TataiOverviewController {
 	
 	public void hardButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Level.fxml"));
+        loader.setLocation(Main.class.getResource("view/Start.fxml"));
         Parent hardStart = loader.load();
-        loader.<LevelController>getController().setLevel(LevelSelection.HARD);
+        loader.<StartController>getController().setLevel(LevelSelection.HARD);
         
 		hardStartScene = new Scene(hardStart);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
