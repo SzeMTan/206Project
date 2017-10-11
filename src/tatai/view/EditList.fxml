@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.collections.FXCollections ?>
+<?import java.lang.*?>
+
+<AnchorPane stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.EditListController">
+	<children>
+		<TabPane prefHeight="200.0" prefWidth="200.0"
+			tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+			AnchorPane.topAnchor="0.0">
+			<tabs>
+				<Tab text="Name">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
+							<children>
+								<TextArea layoutX="85.0" layoutY="173.0" prefHeight="38.0"
+									prefWidth="330.0"
+									style="-fx-background-radius: 20px; -fx-border-radius: 20px;" />
+								<Label layoutX="215.0" layoutY="102.0" text="Name of list">
+									<font>
+										<Font name="Batang" size="12.0" />
+									</font>
+								</Label>
+								<Button layoutX="406.0" layoutY="367.0" mnemonicParsing="false"
+									style="-fx-pref-width: 80; -fx-pref-height: 40; -fx-font-size: 14;"
+									text="Next" />
+								<Button layoutX="14.0" layoutY="367.0" mnemonicParsing="false"
+									style="-fx-pref-width: 80; -fx-pref-height: 40; -fx-font-size: 14;"
+									text="help" />
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="Level">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
+							<children>
+								<Label layoutX="195.0" layoutY="32.0" text="Comments about list" />
+								<Button layoutX="406.0" layoutY="363.0" mnemonicParsing="false"
+									style="-fx-pref-width: 80; -fx-pref-height: 40; -fx-font-size: 14;"
+									text="Next" />
+								<Button id="help-button" layoutX="14.0" layoutY="367.0"
+									mnemonicParsing="false"
+									style="-fx-pref-width: 80; -fx-pref-height: 40; -fx-font-size: 14;"
+									text="help" />
+								<TextArea layoutX="150.0" layoutY="111.0" prefHeight="200.0"
+									prefWidth="200.0" style="-fx-background-radius: 20px;" />
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="Equations">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
+							<children>
+								<ListView fx:id="_equationList" layoutX="150.0"
+									layoutY="62.0" prefHeight="222.0" prefWidth="200.0" />
+								<Label layoutX="208.0" layoutY="32.0" text="Equations in list" />
+								<Button layoutX="406.0" layoutY="367.0" mnemonicParsing="false"
+									style="-fx-pref-width: 80; -fx-pref-height: 40; -fx-font-size: 14;"
+									text="Done!" />
+								<Button layoutX="14.0" layoutY="367.0" mnemonicParsing="false"
+									style="-fx-pref-width: 80; -fx-pref-height: 40; -fx-font-size: 14;"
+									text="help" />
+								<HBox layoutX="70.0" layoutY="301.0" prefHeight="37.0"
+									prefWidth="360.0">
+									<children>
+										<StackPane prefHeight="150.0" prefWidth="80.0">
+											<children>
+												<ComboBox fx:id="_numberOne" prefHeight="37.0"
+													prefWidth="68.0" />
+											</children>
+										</StackPane>
+										<StackPane layoutX="50.0" layoutY="10.0" prefHeight="150.0"
+											prefWidth="80.0">
+											<children>
+												<ComboBox fx:id="_operation" prefHeight="37.0" prefWidth="68.0" value="+">
+													<items>
+														<FXCollections fx:factory="observableArrayList">
+															<String fx:value="+" />
+															<String fx:value="-" />
+															<String fx:value="\u00F7" />
+														</FXCollections>
+													</items>
+												</ComboBox>
+											</children>
+										</StackPane>
+										<StackPane layoutX="130.0" layoutY="10.0"
+											prefHeight="150.0" prefWidth="80.0">
+											<children>
+												<ComboBox fx:id="_numberTwo" prefHeight="37.0"
+													prefWidth="68.0" />
+											</children>
+										</StackPane>
+										<StackPane prefHeight="150.0" prefWidth="40.0">
+											<children>
+												<Label text="=" />
+											</children>
+										</StackPane>
+										<StackPane prefHeight="150.0" prefWidth="80.0">
+											<children>
+												<TextArea fx:id="_answer" editable="false"
+													prefHeight="37.0" prefWidth="52.0" />
+											</children>
+										</StackPane>
+									</children>
+								</HBox>
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+			</tabs>
+		</TabPane>
+	</children>
+</AnchorPane>

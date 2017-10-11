@@ -1,0 +1,33 @@
+.root{
+	-fx-pref-width: 500;
+	-fx-pref-height: 450;
+	-fx-background-color: #afeeee;
+}
+
+.button{
+	-fx-background-radius: 20px;
+	-fx-pref-width:  125;
+	-fx-font-size:  20px;
+	-fx-pref-height:  70;
+	-fx-font-weight: bolder;
+	/*-fx-effect:  dropshadow(three-pass-box,#8b0000,5,0,0,1);*/
+}
+
+.list-view{
+	-fx-background-radius: 20px;
+}
+
+.toggle-button{
+	-fx-background-radius: 20px;
+	-fx-pref-width:  125;
+	-fx-font-size:  20px;
+	-fx-pref-height:  70;
+	-fx-font-weight: bolder;
+	/*-fx-effect:  dropshadow(three-pass-box,#8b0000,5,0,0,1);*/
+}
+
+#help-button{
+	-fx-pref-width: 80px;
+	-fx-pref-height: 40px;
+	-fx-font-size: 14px;
+}
