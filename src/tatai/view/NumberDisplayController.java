@@ -87,7 +87,7 @@ public class NumberDisplayController implements Initializable {
 	}
 	
 	//Loads the controller for the main menu 
-	public void backButtonClicked(ActionEvent event) throws IOException{
+	public void menuButtonClicked(ActionEvent event) throws IOException{
 		killProcesses();
 
 		Parent menu;

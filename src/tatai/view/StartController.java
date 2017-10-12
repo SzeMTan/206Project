@@ -61,8 +61,8 @@ public class StartController {
 
 	}
 	
-	public void backButtonClicked(ActionEvent event) throws IOException{
-		Parent menu = FXMLLoader.load(getClass().getResource("TataiOverview.fxml"));
+	public void menuButtonClicked(ActionEvent event) throws IOException{
+		Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		menuScene = new Scene(menu);
 		
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();

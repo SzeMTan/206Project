@@ -73,7 +73,7 @@ public class Number implements Quiz{
 			if(_operand < 3) {
 				_number = ThreadLocalRandom.current().nextInt(_minNumber, _maxNumber);//comment out this line when testing
 				//_number = 99; //Line used for testing
-				_numberTwo = ThreadLocalRandom.current().nextInt(_minNumber, _number);
+				_numberTwo = ThreadLocalRandom.current().nextInt(_minNumber, _number+1);
 			}
 			//Generates numbers from 1-10 for multiplication and division purposes
 			else if (_operand == 3){

@@ -9,7 +9,7 @@
 	-fx-pref-width:  125;
 	-fx-font-size:  20px;
 	-fx-pref-height:  70;
-	-fx-font-weight: bolder;
+	-fx-font-family: "Berlin Sans FB";
 	/*-fx-effect:  dropshadow(three-pass-box,#8b0000,5,0,0,1);*/
 }
 
@@ -30,4 +30,12 @@
 	-fx-pref-width: 80px;
 	-fx-pref-height: 40px;
 	-fx-font-size: 14px;
+}
+
+#start-button{
+	-fx-background-radius: 20px;
+	-fx-pref-width:  200;
+	-fx-font-size:  40px;
+	-fx-pref-height:  100;
+	/*-fx-effect:  dropshadow(three-pass-box,#8b0000,5,0,0,1);*/
 }
