@@ -26,7 +26,7 @@
 	/*-fx-effect:  dropshadow(three-pass-box,#8b0000,5,0,0,1);*/
 }
 
-#help-button{
+#small-button{
 	-fx-pref-width: 80px;
 	-fx-pref-height: 40px;
 	-fx-font-size: 14px;

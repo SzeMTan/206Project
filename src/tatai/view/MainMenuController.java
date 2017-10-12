@@ -43,7 +43,6 @@ public class MainMenuController {
 			Scene listScene = loadManage("./view/Lists.fxml");
 			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			window.setScene(listScene);
-			window.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
