@@ -33,7 +33,7 @@ public class Number {
 
 	public Number(LevelSelection level){
 		_levelSelected = level;
-		generateNew();
+		generateEquation();
 	}
 	
 	/**
@@ -59,13 +59,33 @@ public class Number {
 		_levelSelected = level;
 		_minNumber = minNumber;
 		_maxNumber = maxNumber;
-		generateNew();
+		generateEquation();
 	}
-
+	
+	public Number(int minNumber, int maxNumber) throws NumberOutOfBoundsException{
+		if (minNumber < MIN || maxNumber > MAX){
+			throw new NumberOutOfBoundsException("cannot generate numbers in that range");
+		}
+		_minNumber = minNumber;
+		_maxNumber = maxNumber;
+		generateNumber();
+	}
+	
 	/**
 	 * Generates new random number for _number to take
 	 */
-	public void generateNew(){
+	
+	public void generateNumber(){
+		_maoriNumber = "";
+		_number = ThreadLocalRandom.current().nextInt(_minNumber, _maxNumber);//comment out this line when testing
+		//_number = 99; //Line used for testing
+		convertToMaori();
+	}
+
+	/**
+	 * Generates new random equation for _equation to take
+	 */
+	public void generateEquation(){
 		_maoriNumber = "";
 		int _level;
 		//int _operand;

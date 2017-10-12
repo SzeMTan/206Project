@@ -3,6 +3,7 @@ package tatai.view;
 import java.io.IOException;
 
 import tatai.Main;
+import tatai.model.LevelSelection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,7 @@ public class MainMenuController {
 	@FXML
 	ListView<String> _list; //list holding all the lists of equations
 	private Stage _window;
-	private Scene _levelScene;
+	private Scene _scene;
 	
 	/**
 	 * loadManage will take an fxmlfile and create a scene with it
@@ -51,17 +52,27 @@ public class MainMenuController {
 	public void playClick(ActionEvent event) throws IOException {
 		Parent menu;
 		menu = FXMLLoader.load(getClass().getResource("Level.fxml"));
-		_levelScene = new Scene(menu);
+		_scene = new Scene(menu);
 		_window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-		_window.setScene(_levelScene);
+		_window.setScene(_scene);
 		_window.setTitle("Level");
 		_window.show();
 	}
 	
-	public void practiseClick(ActionEvent event) {
-		
+	public void practiseClick(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/Start.fxml"));
+        Parent mediumStart = loader.load();
+        loader.<StartController>getController().setLevel(LevelSelection.PRACTISE);
+        
+		_scene = new Scene(mediumStart);
+		_window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		_window.setScene(_scene);
+		_window.setTitle("Level: Medium");
+		_window.show();
 	}
+		
 	
 	public void statisticsClick(ActionEvent event) {
 		
