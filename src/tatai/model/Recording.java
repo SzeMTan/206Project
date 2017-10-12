@@ -11,12 +11,12 @@ public class Recording {
 	//Bash commands
 	private final String FILE = "foo.wav"; //name of recording file
 	private final String RECORD = "arecord " + FILE; //record 
-	private final String RECOGNITION = "HVite -H /home/se206/Documents/HTK/MaoriNumbers/HMMs/hmm15/macros -H "
-			+ "/home/se206/Documents/HTK/MaoriNumbers/HMMs/hmm15/hmmdefs -C /home/se206/Documents/HTK/MaoriNumbers/user/configLR  "
-			+ "-w /home/se206/Documents/HTK/MaoriNumbers/user/wordNetworkNum -o SWT -l '*' -i /home/se206/Documents/HTK/MaoriNumbers/"
-			+ "recout.mlf -p 0.0 -s 5.0  /home/se206/Documents/HTK/MaoriNumbers/user/dictionaryD /home/se206/Documents/HTK/MaoriNumbers"
+	private final String RECOGNITION = "HVite -H ./HTK/MaoriNumbers/HMMs/hmm15/macros -H "
+			+ "./HTK/MaoriNumbers/HMMs/hmm15/hmmdefs -C ./HTK/MaoriNumbers/user/configLR  "
+			+ "-w ./HTK/MaoriNumbers/user/wordNetworkNum -o SWT -l '*' -i ./HTK/MaoriNumbers/"
+			+ "recout.mlf -p 0.0 -s 5.0  ./HTK/MaoriNumbers/user/dictionaryD ./HTK/MaoriNumbers"
 			+ "/user/tiedList " + FILE; //interpret. May have to adjust file paths depending on location of files.
-	private final String WORD = "awk '/sil/{flag = flag + 1}; flag % 2 == 1 && ! /sil/' /home/se206/Documents/HTK/"
+	private final String WORD = "awk '/sil/{flag = flag + 1}; flag % 2 == 1 && ! /sil/' ./HTK/"
 			+ "MaoriNumbers/recout.mlf"; //get interpretation of recording
 	private final String PLAY = "aplay " + FILE; //play recording
 
