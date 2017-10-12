@@ -85,6 +85,7 @@ public class LevelController {
 		_scene = new Scene(menu);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(_scene);
+		window.setTitle("Tatai");
 		window.show();
 	}
 	
