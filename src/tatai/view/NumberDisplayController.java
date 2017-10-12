@@ -35,7 +35,6 @@ public class NumberDisplayController implements Initializable {
 	private Button _playBtn;
 	@FXML
 	private Button _okBtn;
-	private Scene menuScene;
 	private Stage window;
 	@FXML 
 	private AnchorPane _backgroundPane;
@@ -241,13 +240,32 @@ public class NumberDisplayController implements Initializable {
 	
 	public void recordPressed() {
 		System.out.println("press");
-		_recording.beginRecord();
+		
+		Task task = new Task<Void>() {
+
+			@Override
+			protected Void call() throws Exception {
+				_recording.beginRecord();
+				return null;
+			}
+			@Override
+			public void done() {
+				Platform.runLater(() -> {
+					
+				});
+			}
+		};
+		Thread recordThread = new Thread(task);
+		recordThread.setDaemon(true);
+		recordThread.start();
+		
 	}
 	
 	public void recordReleased() {
 		System.out.println("release");
 		_recording.finishRecord();
-		_recording.recognizeRecording();
+		
+		System.out.println(_recording.getWord());
 		
 		if (_num.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
 			//generate new question
