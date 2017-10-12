@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  */
 
-public class Number implements Quiz{
+public class Number {
 
 	// set range of values _number can take
 	private int _minNumber = 1;
@@ -34,6 +34,15 @@ public class Number implements Quiz{
 	public Number(LevelSelection level){
 		_levelSelected = level;
 		generateNew();
+	}
+	
+	/**
+	 * constructor to be used when you know what number you want
+	 * @param number
+	 */
+	public Number(int number){
+		_number = number;
+		convertToMaori();
 	}
 
 	/**
@@ -71,9 +80,9 @@ public class Number implements Quiz{
 			int _operand = ThreadLocalRandom.current().nextInt(1, _level);
 			//Generates numbers from 1-99 to addition and subtraction problems
 			if(_operand < 3) {
-				_number = ThreadLocalRandom.current().nextInt(_minNumber, _maxNumber);//comment out this line when testing
+				_number = ThreadLocalRandom.current().nextInt(_minNumber, _maxNumber + 1);//comment out this line when testing
 				//_number = 99; //Line used for testing
-				_numberTwo = ThreadLocalRandom.current().nextInt(_minNumber, _number+1);
+				_numberTwo = ThreadLocalRandom.current().nextInt(_minNumber, _number + 1);
 			}
 			//Generates numbers from 1-10 for multiplication and division purposes
 			else if (_operand == 3){
@@ -128,7 +137,7 @@ public class Number implements Quiz{
 	/**
 	 * Generates corresponding Maori pronounciation of _number.
 	 */
-	private void convertToMaori(){
+	public void convertToMaori(){
 		int temp = _number;
 		int digit = temp % 10;
 		int placeHolder = 0;
