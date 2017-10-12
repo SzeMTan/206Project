@@ -240,10 +240,12 @@ public class NumberDisplayController implements Initializable {
 	}
 	
 	public void recordPressed() {
+		System.out.println("press");
 		_recording.beginRecord();
 	}
 	
 	public void recordReleased() {
+		System.out.println("release");
 		_recording.finishRecord();
 		_recording.recognizeRecording();
 		
