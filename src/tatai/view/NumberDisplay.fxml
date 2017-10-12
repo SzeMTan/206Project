@@ -47,7 +47,7 @@
             <Font name="Berlin Sans FB" size="14.0" />
          </font>
       </Label>
-      <Button id="start-button" fx:id="_recordBtn" alignment="CENTER" mnemonicParsing="false" onAction="#recordClicked" prefHeight="76.0" prefWidth="170.0" text="Record" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0">
+      <Button id="start-button" fx:id="_recordBtn" alignment="CENTER" mnemonicParsing="false" onMousePressed="#recordPressed" onMouseReleased="#recordReleased" prefHeight="76.0" prefWidth="170.0" text="Record" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0">
          <font>
             <Font name="Berlin Sans FB" size="30.0" />
          </font>

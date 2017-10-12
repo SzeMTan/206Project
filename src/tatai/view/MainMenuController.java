@@ -72,7 +72,7 @@ public class MainMenuController {
 		_window.show();
 	}
 		
-	public void ScoresClick(ActionEvent event) throws IOException {
+	public void scoresClick(ActionEvent event) throws IOException {
 	FXMLLoader loader = new FXMLLoader();
     loader.setLocation(Main.class.getResource("view/Statistics.fxml"));
     Parent stats = loader.load();

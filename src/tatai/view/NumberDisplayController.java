@@ -37,7 +37,6 @@ public class NumberDisplayController implements Initializable {
 	private Button _backBtn;
 	@FXML
 	private Button _okBtn;
-	private Scene menuScene;
 	private Stage window;
 	@FXML 
 	private AnchorPane _backgroundPane;
