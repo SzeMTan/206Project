@@ -72,20 +72,19 @@ public class MainMenuController {
 		_window.show();
 	}
 		
-	
-	public void statisticsClick(ActionEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Statistics.fxml"));
-        Parent stats = loader.load();
-        
-		_scene = new Scene(stats);
-		_window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		_window.setScene(_scene);
-		_window.setTitle("Practise");
-		_window.show();
+	public void ScoresClick(ActionEvent event) throws IOException {
+	FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(Main.class.getResource("view/Statistics.fxml"));
+    Parent stats = loader.load();
+    
+	_scene = new Scene(stats);
+	_window = (Stage)((Node)event.getSource()).getScene().getWindow();
+	_window.setScene(_scene);
+	_window.setTitle("Practise");
+	_window.show();
 	}
 	
-	public void helpClick(ActionEvent event) {
+	public void helpClick() {
 		
 	}
 }
