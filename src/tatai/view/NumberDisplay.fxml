@@ -37,12 +37,12 @@
             </HBox>
          </children>
       </VBox>
-      <Button id="small-button" fx:id="_backBtn" alignment="CENTER" contentDisplay="CENTER" minWidth="0.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
       <Label fx:id="_scoreLbl" alignment="CENTER" prefHeight="20.0" prefWidth="127.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />
          </font>
       </Label>
+      <Button id="small-button" fx:id="_backBtn" alignment="CENTER" contentDisplay="CENTER" minWidth="0.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
       <Label fx:id="_questionLbl" alignment="CENTER" layoutX="350.0" layoutY="10.0" prefHeight="20.0" prefWidth="150" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />
@@ -53,6 +53,6 @@
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Button>
-      <Button id="small-button" fx:id="_backBtn1" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+      <Button id="small-button" fx:id="_backBtn1" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
    </children>
 </AnchorPane>

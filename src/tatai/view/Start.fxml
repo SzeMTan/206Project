@@ -24,6 +24,6 @@
          </children>
       </VBox>
       <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" minWidth="0.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
-      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="25.0" minWidth="0.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="25.0" minWidth="0.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
    </children>
 </AnchorPane>
