@@ -31,7 +31,7 @@ public class ListController {
 		return scene;
 	}
 
-	public void editClick(ActionEvent event) {
+	public void viewClick(ActionEvent event) {
 		try {
 			Scene editListScene = loadManage("./view/EditList.fxml");
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -42,10 +42,32 @@ public class ListController {
 	}
 	
 	public void newClick(ActionEvent event) {
-		
+		try {
+			Scene editListScene = loadManage("./view/EditList.fxml");
+			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			stage.setScene(editListScene);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void deleteClick(ActionEvent event) {
+		if (_list.getSelectionModel().getSelectedIndex() != -1) {
+			_list.getItems().remove(_list.getSelectionModel().getSelectedIndex());
+		}
+	}
+	
+	public void helpclick() {
 		
+	}
+	
+	public void homeClick(ActionEvent event) {
+		try {
+			Scene mainMenuScene = loadManage("./view/MainMenu.fxml");
+			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			stage.setScene(mainMenuScene);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

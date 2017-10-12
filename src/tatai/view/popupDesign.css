@@ -1,0 +1,11 @@
+.root{
+	-fx-pref-width: 250;
+	-fx-pref-height: 200;
+	-fx-background-color: #afeeee;
+}
+
+.button{
+	-fx-pref-width: 40;
+	-fx-pref-height: 20;
+	-fx-background-radius: 5px;
+}

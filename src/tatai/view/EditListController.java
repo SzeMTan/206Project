@@ -17,6 +17,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tatai.Main;
 
@@ -41,6 +42,8 @@ public class EditListController {
 	@FXML private TextField _numberTwo;
 	@FXML private ComboBox<String> _operation;
 	@FXML private TextField _answer;
+
+	private Boolean _madeChanges = false; //keep track of whether user has made any changes to list
 
 	@FXML
 	public void initialize() {
@@ -69,10 +72,30 @@ public class EditListController {
 		_operation.getItems().add("\u00F7");
 		_operation.getItems().add("\u00D7");
 
+		//if name has been entered, update _madeChanges to indicate the user has made some changes
+		_name.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				if (! oldValue.equals(newValue)) {
+					_madeChanges = true;
+				}
+			}	
+		});
+
+		//if comments have been entered, update _madeChanges to indicate the user has made some changes
+		_comments.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				if (! oldValue.equals(newValue)) {
+					_madeChanges = true;
+				}
+			}
+		});
+
 	}
 
 	/**
-	 * loadManage will take an fxmlfile and create a scene with it
+	 * loadManage will take an fxml file and create a scene with it
 	 * @param fxmlFile
 	 * @return
 	 * @throws IOException
@@ -96,15 +119,40 @@ public class EditListController {
 	}
 
 	//when the cancel button is clicked
-	public void cancelClick(ActionEvent event) {
-		//open up a are you sure popup
-		//if yes is clicked
-		try {
+	public void backClick(ActionEvent event) throws IOException {
+
+		if (_madeChanges) {
+			//open up a popup window asking for confirmation
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("./view/BackConfirmation.fxml"));
+			Parent parent = loader.load();
+			Scene confirmationScene = new Scene(parent);
+
+			Stage popupWindow = new Stage();
+			popupWindow.initModality(Modality.APPLICATION_MODAL);
+			popupWindow.setScene(confirmationScene);
+
+			//if yes button is clicked, close the popup window and go back to list scene
+			loader.<BackConfirmationController>getController().getYesButton().setOnAction(e -> {
+				try {
+					Scene listScene = loadManage("./view/Lists.fxml");
+					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+					window.setScene(listScene);
+					popupWindow.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}			
+			});
+
+			//if no button is clicked, just close the popup window
+			loader.<BackConfirmationController>getController().getNoButton().setOnAction(e -> {
+				popupWindow.close();		
+			});
+			popupWindow.show();
+		} else {
 			Scene listScene = loadManage("./view/Lists.fxml");
 			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			window.setScene(listScene);
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -135,6 +183,7 @@ public class EditListController {
 				_answer.setText(df.format(answer));
 
 				if (answer % 1 == 0 && answer >= 1 && answer <= 99) { //means answer is valid
+					_madeChanges = true;
 					_equationList.getItems().add(_numberOne.getText() + " " + _operation.getSelectionModel().getSelectedItem() +
 							" " + _numberTwo.getText());
 				}
@@ -147,6 +196,7 @@ public class EditListController {
 	//when remove button is clicked
 	public void removeClick() {
 		if (_equationList.getSelectionModel().getSelectedIndex() != -1) {
+			_madeChanges = true;
 			_equationList.getItems().remove(_equationList.getSelectionModel().getSelectedIndex());
 		}
 	}
