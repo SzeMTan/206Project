@@ -10,7 +10,7 @@ public class Recording {
 
 	//Bash commands
 	private final String FILE = "foo.wav"; //name of recording file
-	private final String RECORD = "arecord " + FILE; //record 
+	private final String RECORD = "arecord -r 22050 -c 1 -i -t wav -f s16_LE foo.wav" + FILE; //record 
 	private final String RECOGNITION = "HVite -H ./HTK/MaoriNumbers/HMMs/hmm15/macros -H "
 			+ "./HTK/MaoriNumbers/HMMs/hmm15/hmmdefs -C ./HTK/MaoriNumbers/user/configLR  "
 			+ "-w ./HTK/MaoriNumbers/user/wordNetworkNum -o SWT -l '*' -i ./HTK/MaoriNumbers/"
