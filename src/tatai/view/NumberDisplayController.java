@@ -91,7 +91,7 @@ public class NumberDisplayController implements Initializable {
 		killProcesses();
 
 		Parent menu;
-		menu = FXMLLoader.load(getClass().getResource("TataiOverview.fxml"));
+		menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		menuScene = new Scene(menu);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 

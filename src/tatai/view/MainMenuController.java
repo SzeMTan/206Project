@@ -69,7 +69,7 @@ public class MainMenuController {
 		_scene = new Scene(mediumStart);
 		_window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		_window.setScene(_scene);
-		_window.setTitle("Level: Medium");
+		_window.setTitle("Practise");
 		_window.show();
 	}
 		
