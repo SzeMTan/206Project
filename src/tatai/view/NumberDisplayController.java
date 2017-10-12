@@ -34,8 +34,6 @@ public class NumberDisplayController implements Initializable {
 	@FXML
 	private Button _playBtn;
 	@FXML
-	private Button _backBtn;
-	@FXML
 	private Button _okBtn;
 	private Scene menuScene;
 	private Stage window;
@@ -68,19 +66,14 @@ public class NumberDisplayController implements Initializable {
 
 	private boolean _playTaskExist = false; //true if there's something playing
 	private Task<Void> _task;//play task
+	
+	private Timer _pressedTimer; //timer for recording when record button pressed
+	private TimerTask _pressedTask; //task for when record button is pressed
 
 	/**
 	 * This will kill all processes inside this controller
 	 */
 	public void killProcesses() {
-		if (_recordTaskExist && _levelSelected.equals(LevelSelection.EASY)) {
-			_recording.killRecordEasy();
-			_recordTimer.cancel();
-		}
-		else if(_recordTaskExist && _levelSelected.equals(LevelSelection.HARD)) {
-			_recording.killRecordHard();
-			_recordTimer.cancel();
-		}
 		if (_playTaskExist) {
 			_recording.killPlay();
 		}
@@ -100,7 +93,7 @@ public class NumberDisplayController implements Initializable {
 		window.show();
 	}
 
-	public void recordClicked(ActionEvent event) throws IOException{
+	/*public void recordClicked(ActionEvent event) throws IOException{
 		_recordBtn.setDisable(true);
 		_recordTaskExist = true;
 		countDown();
@@ -152,7 +145,7 @@ public class NumberDisplayController implements Initializable {
 		Thread recordThread = new Thread(_recordTask);
 		recordThread.setDaemon(true);
 		recordThread.start();
-	}
+	}*/
 	
 	public void countDown() {
 		if(_levelSelected.equals(LevelSelection.EASY)) {
@@ -250,7 +243,6 @@ public class NumberDisplayController implements Initializable {
 		_recordBtn.setDisable(false);
 		_recordBtn.setVisible(true);
 		
-		_backBtn.setVisible(true);
 		if (_question == 11) {
 
 			//update stats object
@@ -315,5 +307,39 @@ public class NumberDisplayController implements Initializable {
 		Thread playThread = new Thread(_task);
 		playThread.setDaemon(true);
 		playThread.start();
+	}
+	
+	public void recordPressed() {
+		_recording.beginRecord();
+	}
+	
+	public void recordReleased() {
+		_recording.finishRecord();
+		_recording.recognizeRecording();
+		
+		if (_num.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
+			//generate new question
+			_question++;
+			_numIncorrect = 0;
+			_okBtn.setText("Next");
+
+			if (_num.compare(_recording.getWord())) {
+				setCorrectScene();
+				_score++;
+			} else {
+				setNiceTryScene();
+			}
+		} 
+		//User has answered wrong once, they get second try
+		else {
+			setTryAgainScene();
+			_okBtn.setText("Retry");
+			_numIncorrect = 1;
+
+		}
+		_numberLbl.setFont(Font.font("Berlin Sans FB",50));
+		_recordBtn.setVisible(false);
+		_okBtn.setVisible(true);
+		_playBtn.setVisible(true);
 	}
 }

@@ -13,7 +13,7 @@
          <children>
             <StackPane prefHeight="100.0" prefWidth="162.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="100.0" text="Scores" textAlignment="CENTER" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ScoresClick" prefHeight="39.0" prefWidth="100.0" text="Scores" textAlignment="CENTER" />
                </children>
             </StackPane>
             <StackPane prefHeight="100.0" prefWidth="162.0">
@@ -27,12 +27,12 @@
          <children>
             <StackPane prefHeight="100.0" prefWidth="170.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" stylesheets="@Design.css" text="Play" textAlignment="CENTER" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#playClick" prefHeight="50.0" prefWidth="120.0" stylesheets="@Design.css" text="Play" textAlignment="CENTER" />
                </children>
             </StackPane>
             <StackPane prefHeight="100.0" prefWidth="162.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="100.0" stylesheets="@Design.css" text="Practise" textAlignment="CENTER" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#practiseClick" prefHeight="39.0" prefWidth="100.0" stylesheets="@Design.css" text="Practise" textAlignment="CENTER" />
                </children>
             </StackPane>
          </children>

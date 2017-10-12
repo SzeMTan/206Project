@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.LevelController">
+<AnchorPane stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.LevelController">
    <children>
-      <VBox prefHeight="286.0" prefWidth="396.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
+      <VBox layoutX="50.0" layoutY="126.0" prefHeight="286.0" prefWidth="396.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="126.0">
          <children>
             <StackPane prefHeight="100.0" prefWidth="170.0">
                <children>
@@ -26,13 +26,19 @@
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#hardButtonClicked" prefHeight="50.0" prefWidth="120.0" stylesheets="@Design.css" text="Hard" textAlignment="CENTER" />
                </children>
             </StackPane>
+            <StackPane prefHeight="100.0" prefWidth="170.0">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#hardButtonClicked" prefHeight="50.0" prefWidth="120.0" stylesheets="@Design.css" text="Custom" textAlignment="CENTER" />
+               </children>
+            </StackPane>
          </children>
       </VBox>
-      <Label alignment="CENTER" layoutX="182.0" layoutY="14.0" text="Level" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="15.0">
+      <Label alignment="CENTER" layoutX="150.0" layoutY="34.0" text="Level" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="34.0">
          <font>
             <Font name="Berlin Sans FB" size="60.0" />
          </font>
       </Label>
-      <Button id="help-button" alignment="CENTER" contentDisplay="CENTER" minWidth="110.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Main Menu" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" minWidth="110.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" AnchorPane.bottomAnchor="446.0" AnchorPane.leftAnchor="14.0" />
+      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="446.0" minWidth="110.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" />
    </children>
 </AnchorPane>

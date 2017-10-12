@@ -10,8 +10,7 @@ public class Recording {
 
 	//Bash commands
 	private final String FILE = "foo.wav"; //name of recording file
-	private final String RECORDEASY = "arecord -d 2 -r 22050 -c 1 -i -t wav -f s16_LE " + FILE; //record easy level
-	private final String RECORDHARD = "arecord -d 5 -r 22050 -c 1 -i -t wav -f s16_LE " + FILE; //record hard level
+	private final String RECORD = "arecord " + FILE; //record 
 	private final String RECOGNITION = "HVite -H /home/se206/Documents/HTK/MaoriNumbers/HMMs/hmm15/macros -H "
 			+ "/home/se206/Documents/HTK/MaoriNumbers/HMMs/hmm15/hmmdefs -C /home/se206/Documents/HTK/MaoriNumbers/user/configLR  "
 			+ "-w /home/se206/Documents/HTK/MaoriNumbers/user/wordNetworkNum -o SWT -l '*' -i /home/se206/Documents/HTK/MaoriNumbers/"
@@ -25,24 +24,29 @@ public class Recording {
 	 * record() checks if there is an existing recording and deletes it. Then a new recording is made and interpreted.
 	 * This makes sure that there is only one recording in existance at a time.
 	 */
-	public void recordEasy() {
+	public void beginRecord() {
 		File recording = new File(FILE);
 		if (recording.exists()) {
 			recording.delete();
 		}
-		Bash record = new Bash(RECORDEASY);
+		Bash record = new Bash(RECORD);
 		record.execute();
-		Bash recognition = new Bash(RECOGNITION);
-		recognition.execute();
 	}
 	
-	public void recordHard() {
-		File recording = new File(FILE);
-		if (recording.exists()) {
-			recording.delete();
-		}
-		Bash record = new Bash(RECORDHARD);
-		record.execute();
+	/**
+	 * kills recording process
+	 */
+	public void finishRecord() {
+		String killRecord = RECORD.substring(1);
+		killRecord = "kill $(ps aux | grep '[" + RECORD.charAt(0) + "]" + killRecord+ "' | awk '{print $2}')";
+		Bash kill = new Bash(killRecord);
+		kill.execute();
+	}
+	
+	/**
+	 * convert recording to string
+	 */
+	public void recognizeRecording() {
 		Bash recognition = new Bash(RECOGNITION);
 		recognition.execute();
 	}
@@ -62,23 +66,6 @@ public class Recording {
 		String killPlay = PLAY.substring(1);
 		killPlay = "kill $(ps aux | grep '[" + PLAY.charAt(0) + "]" + killPlay + "' | awk '{print $2}')";
 		Bash kill = new Bash(killPlay);
-		kill.execute();
-	}
-	
-	/**
-	 * Kills any arecord process
-	 */
-	public void killRecordEasy() {
-		String killRecord = RECORDEASY.substring(1);
-		killRecord = "kill $(ps aux | grep '[" + RECORDEASY.charAt(0) + "]" + killRecord+ "' | awk '{print $2}')";
-		Bash kill = new Bash(killRecord);
-		kill.execute();
-	}
-	
-	public void killRecordHard() {
-		String killRecord = RECORDHARD.substring(1);
-		killRecord = "kill $(ps aux | grep '[" + RECORDHARD.charAt(0) + "]" + killRecord+ "' | awk '{print $2}')";
-		Bash kill = new Bash(killRecord);
 		kill.execute();
 	}
 

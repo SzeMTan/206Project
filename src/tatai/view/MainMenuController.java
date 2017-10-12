@@ -73,11 +73,11 @@ public class MainMenuController {
 	}
 		
 	
-	public void statisticsClick(ActionEvent event) {
+	public void ScoresClick(ActionEvent event) {
 		
 	}
 	
-	public void helpClick(ActionEvent event) {
+	public void helpClick() {
 		
 	}
 }

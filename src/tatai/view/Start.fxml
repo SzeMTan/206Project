@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.StartController">
+<AnchorPane stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.StartController">
    <children>
-      <Button id="help-button" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" minWidth="110.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Main Menu" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-      <VBox prefHeight="345.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" minWidth="110.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+      <VBox layoutX="140.0" layoutY="78.0" prefHeight="345.0" prefWidth="371.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="139.0" AnchorPane.topAnchor="78.0">
          <children>
             <StackPane prefHeight="100.0" prefWidth="170.0">
                <children>
@@ -37,5 +37,6 @@
             </StackPane>
          </children>
       </VBox>
+      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="14.0" minWidth="110.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" />
    </children>
 </AnchorPane>
