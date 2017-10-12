@@ -216,13 +216,14 @@ public class NumberDisplayController implements Initializable {
 			}
 		}
 
-//		if (_level.equals(LevelSelection.PRACTISE)){
-//			_numberLbl.setText(_num.getQuiz().toString());
-//		}
-//		else {
-//			_numberLbl.setText(_num.getEquation());
-//		}
-		_numberLbl.setText(_num.getQuiz().toString());
+		if (_level.equals(LevelSelection.PRACTISE)){
+			_numberLbl.setText(_num.getQuiz().toString());
+			_scoreLbl.setVisible(false);
+			_questionLbl.setVisible(false);
+		}
+		else {
+			_numberLbl.setText(_num.getEquation());
+		}
 	}
 
 	public void setCorrectScene(){
