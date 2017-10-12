@@ -38,6 +38,9 @@ public class StartController {
 		else if(_level.equals(LevelSelection.MEDIUM)){
 			label.setText("Level: Medium");
 		}
+		else if(_level.equals(LevelSelection.PRACTISE)){
+			label.setText("Practise");
+		}
 		else{
 			label.setText("Level: Hard");
 		}
@@ -61,8 +64,8 @@ public class StartController {
 
 	}
 	
-	public void backButtonClicked(ActionEvent event) throws IOException{
-		Parent menu = FXMLLoader.load(getClass().getResource("TataiOverview.fxml"));
+	public void menuButtonClicked(ActionEvent event) throws IOException{
+		Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		menuScene = new Scene(menu);
 		
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();

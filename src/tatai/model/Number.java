@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  */
 
-public class Number implements Quiz{
+public class Number {
 
 	// set range of values _number can take
 	private int _minNumber = 1;
@@ -33,7 +33,16 @@ public class Number implements Quiz{
 
 	public Number(LevelSelection level){
 		_levelSelected = level;
-		generateNew();
+		generateEquation();
+	}
+	
+	/**
+	 * constructor to be used when you know what number you want
+	 * @param number
+	 */
+	public Number(int number){
+		_number = number;
+		convertToMaori();
 	}
 
 	/**
@@ -50,13 +59,33 @@ public class Number implements Quiz{
 		_levelSelected = level;
 		_minNumber = minNumber;
 		_maxNumber = maxNumber;
-		generateNew();
+		generateEquation();
 	}
-
+	
+	public Number(int minNumber, int maxNumber) throws NumberOutOfBoundsException{
+		if (minNumber < MIN || maxNumber > MAX){
+			throw new NumberOutOfBoundsException("cannot generate numbers in that range");
+		}
+		_minNumber = minNumber;
+		_maxNumber = maxNumber;
+		generateNumber();
+	}
+	
 	/**
 	 * Generates new random number for _number to take
 	 */
-	public void generateNew(){
+	
+	public void generateNumber(){
+		_maoriNumber = "";
+		_number = ThreadLocalRandom.current().nextInt(_minNumber, _maxNumber);//comment out this line when testing
+		//_number = 99; //Line used for testing
+		convertToMaori();
+	}
+
+	/**
+	 * Generates new random equation for _equation to take
+	 */
+	public void generateEquation(){
 		_maoriNumber = "";
 		int _level;
 		//int _operand;
@@ -71,9 +100,9 @@ public class Number implements Quiz{
 			int _operand = ThreadLocalRandom.current().nextInt(1, _level);
 			//Generates numbers from 1-99 to addition and subtraction problems
 			if(_operand < 3) {
-				_number = ThreadLocalRandom.current().nextInt(_minNumber, _maxNumber);//comment out this line when testing
+				_number = ThreadLocalRandom.current().nextInt(_minNumber, _maxNumber + 1);//comment out this line when testing
 				//_number = 99; //Line used for testing
-				_numberTwo = ThreadLocalRandom.current().nextInt(_minNumber, _number);
+				_numberTwo = ThreadLocalRandom.current().nextInt(_minNumber, _number + 1);
 			}
 			//Generates numbers from 1-10 for multiplication and division purposes
 			else if (_operand == 3){
@@ -128,7 +157,7 @@ public class Number implements Quiz{
 	/**
 	 * Generates corresponding Maori pronounciation of _number.
 	 */
-	private void convertToMaori(){
+	public void convertToMaori(){
 		int temp = _number;
 		int digit = temp % 10;
 		int placeHolder = 0;

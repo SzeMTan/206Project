@@ -87,11 +87,11 @@ public class NumberDisplayController implements Initializable {
 	}
 	
 	//Loads the controller for the main menu 
-	public void backButtonClicked(ActionEvent event) throws IOException{
+	public void menuButtonClicked(ActionEvent event) throws IOException{
 		killProcesses();
 
 		Parent menu;
-		menu = FXMLLoader.load(getClass().getResource("TataiOverview.fxml"));
+		menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		menuScene = new Scene(menu);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
@@ -198,7 +198,7 @@ public class NumberDisplayController implements Initializable {
 				e.printStackTrace();
 			}
 		}
-		else{
+		else if(_level.equals(LevelSelection.HARD)){
 			_label.setText("Level: Hard");
 			try {
 				_num = new Number(1,99,_level);
@@ -206,7 +206,19 @@ public class NumberDisplayController implements Initializable {
 				e.printStackTrace();
 			}
 		}
+		else{
+			_label.setText("Practise");
+			try {
+				_num = new Number(1,99);
+			} catch (NumberOutOfBoundsException e) {
+				e.printStackTrace();
+			}
+		}
 		_numberLbl.setText(_num.getEquation());
+		if (_level.equals(LevelSelection.PRACTISE)){
+			_numberLbl.setText(_num.getQuiz().toString());
+		}
+
 	}
 
 	public void setCorrectScene(){
@@ -262,10 +274,17 @@ public class NumberDisplayController implements Initializable {
 		_okBtn.setVisible(false);
 		_playBtn.setVisible(false);
 		_recordBtn.setVisible(true);
+
 		if (_numIncorrect != 1){
-			_num.generateNew();
+			_num.generateEquation();
+			if (_levelSelected.equals(LevelSelection.PRACTISE)){
+				_num.generateNumber();
+			}
 			_questionLbl.setText("Question number: " + _question);
 			_scoreLbl.setText("Score: " + _score);
+		}
+		if (_levelSelected.equals(LevelSelection.PRACTISE)){
+			_numberLbl.setText(_num.getQuiz().toString());
 		}
 		_numberLbl.setText(_num.getEquation());
 	}

@@ -55,10 +55,10 @@ public class LevelController {
 	public void mediumButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/Start.fxml"));
-        Parent hardStart = loader.load();
+        Parent mediumStart = loader.load();
         loader.<StartController>getController().setLevel(LevelSelection.MEDIUM);
         
-		_scene = new Scene(hardStart);
+		_scene = new Scene(mediumStart);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(_scene);
 		window.setTitle("Level: Medium");
