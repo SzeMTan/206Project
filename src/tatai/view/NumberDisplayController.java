@@ -85,7 +85,7 @@ public class NumberDisplayController implements Initializable {
 			_recording.killPlay();
 		}
 	}
-	
+
 	//Loads the controller for the main menu 
 	public void menuButtonClicked(ActionEvent event) throws IOException{
 		killProcesses();
@@ -154,7 +154,7 @@ public class NumberDisplayController implements Initializable {
 		recordThread.setDaemon(true);
 		recordThread.start();
 	}
-	
+
 	public void countDown() {
 		if(_levelSelected.equals(LevelSelection.EASY)) {
 			_countDown = 2;
@@ -188,7 +188,7 @@ public class NumberDisplayController implements Initializable {
 		_scoreLbl.setText("Score: " + _score);
 		if (_level.equals(LevelSelection.EASY)){
 			_label.setText("Level: Easy");
-			
+
 			_num = new Number(_level);
 		}
 		else if(_level.equals(LevelSelection.MEDIUM)){
@@ -215,11 +215,14 @@ public class NumberDisplayController implements Initializable {
 				e.printStackTrace();
 			}
 		}
-		_numberLbl.setText(_num.getEquation());
-		if (_level.equals(LevelSelection.PRACTISE)){
-			_numberLbl.setText(_num.getQuiz().toString());
-		}
 
+//		if (_level.equals(LevelSelection.PRACTISE)){
+//			_numberLbl.setText(_num.getQuiz().toString());
+//		}
+//		else {
+//			_numberLbl.setText(_num.getEquation());
+//		}
+		_numberLbl.setText(_num.getQuiz().toString());
 	}
 
 	public void setCorrectScene(){
@@ -245,12 +248,12 @@ public class NumberDisplayController implements Initializable {
 
 	@FXML
 	private void okBtnClicked(ActionEvent event) throws IOException{
-		
+
 		//reset the record button
 		_recordBtn.setText("Record");
 		_recordBtn.setDisable(false);
 		_recordBtn.setVisible(true);
-		
+
 		_backBtn.setVisible(true);
 		if (_question == 11) {
 
@@ -270,16 +273,18 @@ public class NumberDisplayController implements Initializable {
 			window.show();
 		}
 
-		_backgroundPane.setStyle("-fx-background-color: #84e1e0");
+		_backgroundPane.setStyle("-fx-background-color: #afeeee");
 		_numberLbl.setFont(Font.font("Berlin Sans FB", 96));
 		_okBtn.setVisible(false);
 		_playBtn.setVisible(false);
 		_recordBtn.setVisible(true);
 
 		if (_numIncorrect != 1){
-			_num.generateEquation();
 			if (_levelSelected.equals(LevelSelection.PRACTISE)){
 				_num.generateNumber();
+			}
+			else {
+				_num.generateEquation();
 			}
 			_questionLbl.setText("Question number: " + _question);
 			_scoreLbl.setText("Score: " + _score);
@@ -287,7 +292,9 @@ public class NumberDisplayController implements Initializable {
 		if (_levelSelected.equals(LevelSelection.PRACTISE)){
 			_numberLbl.setText(_num.getQuiz().toString());
 		}
-		_numberLbl.setText(_num.getEquation());
+		else {
+			_numberLbl.setText(_num.getEquation());
+		}
 	}
 
 	public void playBtnClicked(){
