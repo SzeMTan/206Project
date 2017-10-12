@@ -3,8 +3,6 @@ package tatai.view;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javafx.concurrent.Task;
 
@@ -20,10 +18,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tatai.model.Stats;
 import tatai.model.Number;
 import tatai.model.NumberOutOfBoundsException;
+import tatai.Main;
 import tatai.model.LevelSelection;
 import tatai.model.Recording;
 
@@ -58,18 +58,9 @@ public class NumberDisplayController implements Initializable {
 	private LevelSelection _levelSelected;
 	private Recording _recording = new Recording();
 
-	private int _countDown; //how long recording is
-
-	private boolean _recordTaskExist = false; //true if there is a recordTask in progress
-	private Timer _recordTimer; //timer for recording
-	private Task<Void> _recordTask; 
-
 	private boolean _playTaskExist = false; //true if there's something playing
 	private Task<Void> _task;//play task
 	
-	private Timer _pressedTimer; //timer for recording when record button pressed
-	private TimerTask _pressedTask; //task for when record button is pressed
-
 	/**
 	 * This will kill all processes inside this controller
 	 */
@@ -81,97 +72,36 @@ public class NumberDisplayController implements Initializable {
 	
 	//Loads the controller for the main menu 
 	public void menuButtonClicked(ActionEvent event) throws IOException{
-		killProcesses();
-
-		Parent menu;
-		menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-		menuScene = new Scene(menu);
-		window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-		window.setScene(menuScene);
-
-		window.show();
-	}
-
-	/*public void recordClicked(ActionEvent event) throws IOException{
-		_recordBtn.setDisable(true);
-		_recordTaskExist = true;
-		countDown();
-		_recordTask = new Task<Void>() {
-
-			@Override
-			protected Void call() throws Exception {
-				if (_levelSelected.equals(LevelSelection.EASY)) {
-					_recording.recordEasy();
-				}
-				else {
-					_recording.recordHard();
-				}
-				return null;
-			}
-			@Override
-			public void done() {
-				Platform.runLater(() -> {
-					_recordTaskExist = false;
-
-					if (_num.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
-						//generate new question
-						_question++;
-						_numIncorrect = 0;
-						_okBtn.setText("Next");
-
-						if (_num.compare(_recording.getWord())) {
-							setCorrectScene();
-							_score++;
-						} else {
-							setNiceTryScene();
-						}
-					} 
-					//User has answered wrong once, they get second try
-					else {
-						setTryAgainScene();
-						_okBtn.setText("Retry");
-						_numIncorrect = 1;
-
-					}
-					_numberLbl.setFont(Font.font("Berlin Sans FB",50));
-					_recordBtn.setVisible(false);
-					_backBtn.setVisible(true);
-					_okBtn.setVisible(true);
-					_playBtn.setVisible(true);
-				});
-			}
-		};
-		Thread recordThread = new Thread(_recordTask);
-		recordThread.setDaemon(true);
-		recordThread.start();
-	}*/
-	
-	public void countDown() {
-		if(_levelSelected.equals(LevelSelection.EASY)) {
-			_countDown = 2;
-		}
-		else {
-			_countDown = 5;
-		}
-		_recordTimer = new Timer();
-		_recordTimer.schedule(new TimerTask() {
-
-			@Override
-			public void run() {
-				Platform.runLater(new Runnable() {
-
-					@Override
-					public void run() {
-						_recordBtn.setText("" + _countDown);
-						_countDown--;
-						if (_countDown < 0) {
-							_recordTimer.cancel();
-						} 
-					}
-				});
-			}
-		}, 0, 1000); //every one second
+		//load popup asking for confirmation
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("./view/QuitPlayConfirm.fxml"));
+		Parent parent = loader.load();
+		Scene confirmScene = new Scene(parent);
+		
+		Stage confirmWindow = new Stage();
+		confirmWindow.setScene(confirmScene);
+		confirmWindow.initModality(Modality.APPLICATION_MODAL);
+		
+		loader.<QuitPlayConfirmController>getController().getYesBtn().setOnAction(e -> {
+			try {
+				FXMLLoader loaderMenu = new FXMLLoader();
+				loaderMenu.setLocation(Main.class.getResource("./view/MainMenu.fxml"));
+				Parent parentMenu = loaderMenu.load();
+				Scene sceneMenu = new Scene(parentMenu);
+				Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+				window.setScene(sceneMenu);
+				confirmWindow.close();
+				killProcesses();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}			
+		});
+		
+		loader.<QuitPlayConfirmController>getController().getNoBtn().setOnAction(e -> {
+			confirmWindow.close();
+		});
+		
+		confirmWindow.show();
 	}
 
 	public void setLabelText(LevelSelection _level) throws IOException{
@@ -342,4 +272,5 @@ public class NumberDisplayController implements Initializable {
 		_okBtn.setVisible(true);
 		_playBtn.setVisible(true);
 	}
+
 }

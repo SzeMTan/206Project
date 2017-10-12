@@ -39,6 +39,6 @@
          </font>
       </Label>
       <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" minWidth="110.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" AnchorPane.bottomAnchor="446.0" AnchorPane.leftAnchor="14.0" />
-      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="446.0" minWidth="110.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" />
+      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="446.0" minWidth="110.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" />
    </children>
 </AnchorPane>
