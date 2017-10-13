@@ -32,10 +32,11 @@ public class Bash {
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 			BufferedReader stdin = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
-			if (exitStatus != 0) { //command has executed successfully
+			if (exitStatus != 0) { //command has not executed successfully
 				String line;
 				while ((line = stdout.readLine()) != null) {
 					result = result + "\n" + line;
+					System.err.println(line);
 				}
 			} else {
 				String line;
