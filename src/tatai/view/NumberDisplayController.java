@@ -3,6 +3,8 @@ package tatai.view;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.concurrent.Task;
 
@@ -59,6 +61,8 @@ public class NumberDisplayController implements Initializable {
 
 	private boolean _playTaskExist = false; //true if there's something playing
 	private Task<Void> _task;//play task
+	
+	private Timer _recordTimer;
 	
 	/**
 	 * This will kill all processes inside this controller
@@ -239,31 +243,20 @@ public class NumberDisplayController implements Initializable {
 	}
 	
 	public void recordPressed() {
-		System.out.println("press");
-		
-		Task task = new Task<Void>() {
-
+		_recording.firstRecord();
+		TimerTask record = new TimerTask() {
 			@Override
-			protected Void call() throws Exception {
-				_recording.beginRecord();
-				return null;
-			}
-			@Override
-			public void done() {
-				Platform.runLater(() -> {
-					
-				});
+			public void run() {
+				_recording.tempRecord();
 			}
 		};
-		Thread recordThread = new Thread(task);
-		recordThread.setDaemon(true);
-		recordThread.start();
-		
+		_recordTimer = new Timer();
+		_recordTimer.schedule(record, 250, 250);
 	}
 	
 	public void recordReleased() {
-		System.out.println("release");
-		_recording.finishRecord();
+		_recordTimer.cancel();
+		_recording.recognize();
 		
 		System.out.println(_recording.getWord());
 		

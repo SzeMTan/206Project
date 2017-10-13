@@ -10,7 +10,11 @@ public class Recording {
 
 	//Bash commands
 	private final String FILE = "foo.wav"; //name of recording file
-	private final String RECORD = "arecord -r 22050 -c 1 -i -t wav -f s16_LE " + FILE; //record 
+	private final String TEMPFILE = "fooTemp.wav"; //store temp audio here
+	private final String RECORD = "arecord -d 0.25 -r 22050 -c 1 -i -t wav -f s16_LE " + FILE; //record 
+	private final String TEMPRECORD = "arecord -d 0.25 -r 22050 -c 1 -i -t wav -f s16_LE " + TEMPFILE;//record temp audio
+	private final String COMBINEAUDIO = "yes | ffmpeg -i " + FILE + " -i " + TEMPFILE + " -filter_complex '[0:0][1:0]concat=n=2"
+			+ ":v=0:a=1[out]' -map '[out]' " + FILE; //combine audio and temp audio;
 	private final String RECOGNITION = "HVite -H ./HTK/MaoriNumbers/HMMs/hmm15/macros -H "
 			+ "./HTK/MaoriNumbers/HMMs/hmm15/hmmdefs -C ./HTK/MaoriNumbers/user/configLR  "
 			+ "-w ./HTK/MaoriNumbers/user/wordNetworkNum -o SWT -l '*' -i ./HTK/MaoriNumbers/"
@@ -24,7 +28,7 @@ public class Recording {
 	 * record() checks if there is an existing recording and deletes it. Then a new recording is made and interpreted.
 	 * This makes sure that there is only one recording in existance at a time.
 	 */
-	public void beginRecord() {
+	public void firstRecord() {
 		File recording = new File(FILE);
 		if (recording.exists()) {
 			recording.delete();
@@ -33,16 +37,20 @@ public class Recording {
 		record.execute();
 	}
 	
-	/**
-	 * kills recording process
-	 */
-	public void finishRecord() {
-		String killRecord = RECORD.substring(1);
-		killRecord = "kill $(ps aux | grep '[" + RECORD.charAt(0) + "]" + killRecord+ "' | awk '{print $2}')";
-		Bash kill = new Bash(killRecord);
-		kill.execute();
-		Bash recognition = new Bash(RECOGNITION);
-		recognition.execute();
+	public void tempRecord() {
+		File tempRecording = new File(TEMPFILE);
+		if (tempRecording.exists()) {
+			tempRecording.delete();
+		}
+		Bash tempRecord = new Bash(TEMPRECORD);
+		tempRecord.execute();
+		Bash combine = new Bash(COMBINEAUDIO);
+		combine.execute();
+	}
+	
+	public void recognize() {
+		Bash recognize = new Bash(RECOGNITION);
+		recognize.execute();
 	}
 
 	/**
