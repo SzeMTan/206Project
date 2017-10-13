@@ -40,12 +40,12 @@ public class StatisticsController {
 	private BarChart<String, Integer> _hardChart;
 
 	public void backButtonClicked(ActionEvent event) throws IOException{
-		Parent menu = FXMLLoader.load(getClass().getResource("TataiOverview.fxml"));
+		Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		menuScene = new Scene(menu);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
 		window.setScene(menuScene);
-
+		window.setTitle("Tatai");
 		window.show();
 	}
 
