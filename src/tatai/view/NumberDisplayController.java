@@ -3,8 +3,6 @@ package tatai.view;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javafx.concurrent.Task;
 
@@ -62,7 +60,7 @@ public class NumberDisplayController implements Initializable {
 	private boolean _playTaskExist = false; //true if there's something playing
 	private Task<Void> _task;//play task
 	
-	private Timer _recordTimer;
+	private Task<Void> _recordTask;
 	
 	/**
 	 * This will kill all processes inside this controller
@@ -242,48 +240,54 @@ public class NumberDisplayController implements Initializable {
 		playThread.start();
 	}
 	
-	public void recordPressed() {
-		_recording.firstRecord();
-		TimerTask record = new TimerTask() {
+	public void recordPressed() {		
+		_recordTask = new Task<Void>() {
+
 			@Override
-			public void run() {
-				_recording.tempRecord();
+			protected Void call() throws Exception {
+				_recording.firstRecord();
+				return null;
+			}
+			@Override
+			public void done() {
+				Platform.runLater(() -> {
+					_recording.recognize();
+					
+					if (_num.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
+						//generate new question
+						_question++;
+						_numIncorrect = 0;
+						_okBtn.setText("Next");
+
+						if (_num.compare(_recording.getWord())) {
+							setCorrectScene();
+							_score++;
+						} else {
+							setNiceTryScene();
+						}
+					} 
+					//User has answered wrong once, they get second try
+					else {
+						setTryAgainScene();
+						_okBtn.setText("Retry");
+						_numIncorrect = 1;
+
+					}
+					_numberLbl.setFont(Font.font("Berlin Sans FB",50));
+					_recordBtn.setVisible(false);
+					_okBtn.setVisible(true);
+					_playBtn.setVisible(true);
+					
+				});
 			}
 		};
-		_recordTimer = new Timer();
-		_recordTimer.schedule(record, 250, 250);
+		Thread recordThread = new Thread(_recordTask);
+		recordThread.setDaemon(true);
+		recordThread.start();
 	}
 	
 	public void recordReleased() {
-		_recordTimer.cancel();
-		_recording.recognize();
-		
-		System.out.println(_recording.getWord());
-		
-		if (_num.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
-			//generate new question
-			_question++;
-			_numIncorrect = 0;
-			_okBtn.setText("Next");
-
-			if (_num.compare(_recording.getWord())) {
-				setCorrectScene();
-				_score++;
-			} else {
-				setNiceTryScene();
-			}
-		} 
-		//User has answered wrong once, they get second try
-		else {
-			setTryAgainScene();
-			_okBtn.setText("Retry");
-			_numIncorrect = 1;
-
-		}
-		_numberLbl.setFont(Font.font("Berlin Sans FB",50));
-		_recordBtn.setVisible(false);
-		_okBtn.setVisible(true);
-		_playBtn.setVisible(true);
+		_recording.killRecord();
 	}
 
 }

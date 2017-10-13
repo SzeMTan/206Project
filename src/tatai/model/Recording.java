@@ -11,8 +11,8 @@ public class Recording {
 	//Bash commands
 	private final String FILE = "foo.wav"; //name of recording file
 	private final String TEMPFILE = "fooTemp.wav"; //store temp audio here
-	private final String RECORD = "arecord -d 0.25 -r 22050 -c 1 -i -t wav -f s16_LE " + FILE; //record 
-	private final String TEMPRECORD = "arecord -d 0.25 -r 22050 -c 1 -i -t wav -f s16_LE " + TEMPFILE;//record temp audio
+	private final String RECORD = "ffmpeg -f alsa -i default -acodec pcm_s16le -ar 22050 -ac 1 " + FILE; //record 
+	private final String TEMPRECORD = "ffmpeg -f alsa -i default -t 0.5 -acodec pcm_s16le -ar 22050 -ac 1 " + TEMPFILE;//record temp audio
 	private final String COMBINEAUDIO = "yes | ffmpeg -i " + FILE + " -i " + TEMPFILE + " -filter_complex '[0:0][1:0]concat=n=2"
 			+ ":v=0:a=1[out]' -map '[out]' " + FILE; //combine audio and temp audio;
 	private final String RECOGNITION = "HVite -H ./HTK/MaoriNumbers/HMMs/hmm15/macros -H "
@@ -23,6 +23,7 @@ public class Recording {
 	private final String WORD = "awk '/sil/{flag = flag + 1}; flag % 2 == 1 && ! /sil/' ./HTK/"
 			+ "MaoriNumbers/recout.mlf"; //get interpretation of recording
 	private final String PLAY = "aplay " + FILE; //play recording
+	private final String KILLRECORD = "kill -SIGINT $(ps aux | grep '[f]fmpeg -f alsa -i default -acodec pcm_s16le -ar 22050 -ac 1 foo.wav' | awk '{print $2}')";
 
 	/**
 	 * record() checks if there is an existing recording and deletes it. Then a new recording is made and interpreted.
@@ -35,6 +36,11 @@ public class Recording {
 		}
 		Bash record = new Bash(RECORD);
 		record.execute();
+	}
+	
+	public void killRecord() {
+		Bash kill = new Bash(KILLRECORD);
+		kill.execute();
 	}
 	
 	public void tempRecord() {
