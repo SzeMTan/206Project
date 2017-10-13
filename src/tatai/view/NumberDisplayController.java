@@ -106,13 +106,7 @@ public class NumberDisplayController implements Initializable {
 		confirmWindow.show();
 	}
 
-	
-	
-	
-	
-	
-	
-	
+
 //	public void recordClicked(ActionEvent event) throws IOException{
 //		_recordBtn.setDisable(true);
 //		_recordTaskExist = true;
@@ -269,6 +263,8 @@ public class NumberDisplayController implements Initializable {
 		_recordBtn.setDisable(false);
 		_recordBtn.setVisible(true);
 		_backBtn.setVisible(true);
+
+		_question = 11;  _score=9;// THIS LINE IS FOR TESTING PURPOSES ONLY FOR THE SCORE PAGE
 		if (_question == 11) {
 
 			//update stats object
@@ -342,7 +338,7 @@ public class NumberDisplayController implements Initializable {
 	public void recordPressed() {
 		System.out.println("press");
 		
-		Task task = new Task<Void>() {
+		Task<Void> task = new Task<Void>() {
 
 			@Override
 			protected Void call() throws Exception {

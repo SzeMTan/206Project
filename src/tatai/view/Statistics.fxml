@@ -66,7 +66,7 @@
                                                 <Font name="Berlin Sans FB" size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="easyMax" text="max#">
+                                          <Label fx:id="easyMax" text="-">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="20.0" />
                                              </font>
@@ -76,7 +76,7 @@
                                                 <Font name="Berlin Sans FB" size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="easyMin" text="min#">
+                                          <Label fx:id="easyMin" text="-">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="20.0" />
                                              </font>
@@ -156,7 +156,7 @@
                                                 <Font name="Berlin Sans FB" size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="hardMax" text="max#">
+                                          <Label fx:id="hardMax" text="-">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="20.0" />
                                              </font>
@@ -166,7 +166,7 @@
                                                 <Font name="Berlin Sans FB" size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="hardMin" text="min#">
+                                          <Label fx:id="hardMin" text="-">
                                              <font>
                                                 <Font name="Berlin Sans FB" size="20.0" />
                                              </font>
