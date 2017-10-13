@@ -83,16 +83,16 @@
                                           </Label>
                                        </children>
                                     </VBox>
-                                    <BarChart fx:id="_easyChart" legendVisible="false" prefHeight="360.0" prefWidth="550.0" title="How Often You Got Each Score" HBox.hgrow="ALWAYS">
+                                    <BarChart fx:id="_easyChart" legendVisible="false" prefHeight="360.0" prefWidth="550.0" title="Scores over the last 10 games" HBox.hgrow="ALWAYS">
                                        <xAxis>
-                                          <CategoryAxis label="Score out of 10" side="BOTTOM">
+                                          <CategoryAxis fx:id="xAxis" label="Last 10 games" side="BOTTOM">
                                              <tickLabelFont>
                                                 <Font name="Berlin Sans FB" size="14.0" />
                                              </tickLabelFont>
                                           </CategoryAxis>
                                        </xAxis>
                                        <yAxis>
-                                          <NumberAxis label="How Often This Score" side="LEFT">
+                                          <NumberAxis fx:id="yAxis" label="Score" side="LEFT">
                                              <tickLabelFont>
                                                 <Font name="Berlin Sans FB" size="14.0" />
                                              </tickLabelFont>

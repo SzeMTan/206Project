@@ -76,10 +76,13 @@ public class MainMenuController {
 	FXMLLoader loader = new FXMLLoader();
     loader.setLocation(Main.class.getResource("view/Statistics.fxml"));
     Parent stats = loader.load();
+    loader.<StatisticsController>getController().setStats();
     
 	_scene = new Scene(stats);
 	_window = (Stage)((Node)event.getSource()).getScene().getWindow();
+	System.out.println("before scene");
 	_window.setScene(_scene);
+	System.out.println("after scene");
 	_window.setTitle("Practise");
 	_window.show();
 	}

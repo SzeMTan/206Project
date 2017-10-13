@@ -50,7 +50,7 @@ public class NumberDisplayController implements Initializable {
 	private Label _scoreLbl;
 
 	private Number _num;
-	private int _score = 0;
+	private int _score = 2; //////////////////////////////////////////////// WAS 0
 	private int _question = 1;
 	private int _numIncorrect = 0;
 
@@ -106,7 +106,13 @@ public class NumberDisplayController implements Initializable {
 		confirmWindow.show();
 	}
 
-
+	
+	
+	
+	
+	
+	
+	
 //	public void recordClicked(ActionEvent event) throws IOException{
 //		_recordBtn.setDisable(true);
 //		_recordTaskExist = true;
@@ -263,13 +269,16 @@ public class NumberDisplayController implements Initializable {
 		_recordBtn.setDisable(false);
 		_recordBtn.setVisible(true);
 		_backBtn.setVisible(true);
-
-		_question = 11;  _score=9;// THIS LINE IS FOR TESTING PURPOSES ONLY FOR THE SCORE PAGE
+		
+		_question = 11;  ;
 		if (_question == 11) {
 
 			//update stats object
-			Stats stats = Stats.getInstance();
-			stats.addResult(_score, _levelSelected);
+			Stats statsEasy = Stats.getEasyInstance();
+			statsEasy.addResult(2, _levelSelected);
+			statsEasy.addResult(3, _levelSelected);
+			statsEasy.addResult(3, _levelSelected);
+			//statsEasy.addResult(_score, _levelSelected);
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Score.fxml"));
 			Parent number = loader.load();
