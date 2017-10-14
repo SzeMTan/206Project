@@ -2,6 +2,8 @@ package tatai.view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -45,6 +47,9 @@ public class StatisticsController implements Initializable {
 	@FXML
 	private NumberAxis yAxis;
 
+	//private List<Stats,LevelSelection> statsList = new ArrayList<Stats,LevelSelection>();
+	
+	
 	public void backButtonClicked(ActionEvent event) throws IOException{
 		Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		menuScene = new Scene(menu);
@@ -56,49 +61,17 @@ public class StatisticsController implements Initializable {
 	}
 
 
-	public void setStats(){		
+	public void setStats(){	
+		
+		// Gets stats objects for each of the levels
 		Stats statsEasy = Stats.getEasyInstance();
-
-		//initialise easy bar chart
-		Integer[] scoreArrayEasy = statsEasy.getResultArray(LevelSelection.EASY);
-
-		
-		System.out.println("getResultArray invoked");
-		
-		
-		if (statsEasy.getMin(LevelSelection.EASY) >= 0){
-			easyMin.setText(statsEasy.getMin(LevelSelection.EASY) + "");
-		}
-		else{
-			easyMin.setText("-");
-		}
-		if (statsEasy.getMax(LevelSelection.EASY) >=0){
-			easyMax.setText(statsEasy.getMax(LevelSelection.EASY) + "");
-		}
-		else{
-			easyMax.setText("-");
-		}
-		if (statsEasy.getAverage(LevelSelection.EASY) >=0){
-			easyAverage.setText((Math.round(statsEasy.getAverage(LevelSelection.EASY)*(double)100))/(double)100 + "");
-		}
-		else{
-			easyAverage.setText("-");
-		}
-		
-
-		XYChart.Series<String,Integer> scoresEasy = new Series<String, Integer>();
-		scoresEasy.getData().add(new XYChart.Data<String, Integer>("1", scoreArrayEasy[0]));
-		scoresEasy.getData().add(new XYChart.Data<String, Integer>("2", scoreArrayEasy[1]));
-		scoresEasy.getData().add(new XYChart.Data<String, Integer>("3", scoreArrayEasy[2]));
-		scoresEasy.getData().add(new XYChart.Data<String, Integer>("4", scoreArrayEasy[3]));
-		scoresEasy.getData().add(new XYChart.Data<String, Integer>("5", scoreArrayEasy[4]));
-		scoresEasy.getData().add(new XYChart.Data<String, Integer>("6", scoreArrayEasy[5]));
-		scoresEasy.getData().add(new XYChart.Data<String, Integer>("7", scoreArrayEasy[6]));
-		scoresEasy.getData().add(new XYChart.Data<String, Integer>("8", scoreArrayEasy[7]));
-		scoresEasy.getData().add(new XYChart.Data<String, Integer>("9", scoreArrayEasy[8]));
-		scoresEasy.getData().add(new XYChart.Data<String, Integer>("10", scoreArrayEasy[9]));
-
-		_easyChart.getData().add(scoresEasy);
+		addStats(statsEasy,LevelSelection.EASY,_easyChart,easyMin,easyMax,easyAverage);
+////		Stats statsMedium = Stats.getMediumInstance();
+////		addStats(statsMedium,LevelSelection.MEDIUM,_easyChart,easyMin,easyMax,easyAverage);
+//		Stats statsHard = Stats.getHardInstance();
+//		addStats(statsHard,LevelSelection.HARD,_hardChart,hardMin,hardMax,hardAverage);
+////		Stats statsCustom = Stats.getCustomInstance();
+////		addStats(statsEasy,LevelSelection.EASY,_easyChart,easyMin,easyMax,easyAverage);
 	}
 
 
@@ -110,4 +83,38 @@ public class StatisticsController implements Initializable {
 	    yAxis.setTickUnit(1);
 		
 	}
+	
+	private void addStats(Stats stats, LevelSelection level, BarChart<String, Integer> chart, Label minLabel, Label maxLabel, Label avLabel){
+		//initialise easy bar chart
+				Integer[] scoreArray = stats.getResultArray(level);
+				
+				if (stats.getMin(level) >= 0){
+					minLabel.setText(stats.getMin(level) + "");
+				}
+				else{
+					minLabel.setText("-");
+				}
+				if (stats.getMax(level) >=0){
+					maxLabel.setText(stats.getMax(level) + "");
+				}
+				else{
+					maxLabel.setText("-");
+				}
+				if (stats.getAverage(level) >=0){
+					avLabel.setText((Math.round(stats.getAverage(level)*(double)100))/(double)100 + "");
+				}
+				else{
+					avLabel.setText("-");
+				}
+				
+
+				XYChart.Series<String,Integer> scores = new Series<String, Integer>();
+				for (int i = 0; i < 10; i++){
+					scores.getData().add(new XYChart.Data<String, Integer>(i+1 + "", scoreArray[i]));
+				}
+
+				chart.getData().add(scores);
+			}
+	
+	
 }

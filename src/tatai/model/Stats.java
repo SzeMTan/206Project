@@ -22,9 +22,9 @@ public class Stats {
 //	private List<Integer> _resultsHard = new ArrayList<Integer>(); // list of results from hard
 	
 	private Integer[] _resultsEasy = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-	private Integer[] _resultsMedium = {null,null,null,null,null,null,null,null,null,null};
-	private Integer[] _resultsHard = {null,null,null,null,null,null,null,null,null,null};
-	private Integer[] _resultsCustom = {null,null,null,null,null,null,null,null,null,null};
+	private Integer[] _resultsMedium = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+	private Integer[] _resultsHard = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+	private Integer[] _resultsCustom = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 
 	private Stats() {}
 

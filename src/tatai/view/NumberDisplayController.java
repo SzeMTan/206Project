@@ -272,10 +272,21 @@ public class NumberDisplayController implements Initializable {
 		
 		_question = 11;  ;
 		if (_question == 11) {
-
+			Stats stats = null;
 			//update stats object
-			Stats statsEasy = Stats.getEasyInstance();
-			statsEasy.addResult(_score, _levelSelected);
+			if (_levelSelected.equals(LevelSelection.EASY)){
+				stats = Stats.getEasyInstance();
+			}
+			else if (_levelSelected.equals(LevelSelection.MEDIUM)){
+				stats = Stats.getMediumInstance();
+			}
+			else if (_levelSelected.equals(LevelSelection.HARD)){
+				stats = Stats.getHardInstance();
+			}
+			else{
+				stats = Stats.getCustomInstance();
+			}
+			stats.addResult(_score, _levelSelected);
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Score.fxml"));
 			Parent number = loader.load();
