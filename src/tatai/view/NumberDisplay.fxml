@@ -12,7 +12,7 @@
    <children>
       <VBox alignment="TOP_CENTER" layoutX="165.0" layoutY="53.0" prefHeight="394.0" prefWidth="320.0" spacing="5.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="165.0" AnchorPane.topAnchor="10.0">
          <children>
-            <HBox prefHeight="20.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="20.0" prefWidth="200.0">
                <children>
                   <Label fx:id="_questionLbl" alignment="CENTER" prefHeight="20.0" prefWidth="150" text="Question number: 1">
                      <font>

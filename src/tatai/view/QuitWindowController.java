@@ -11,7 +11,7 @@ public class QuitWindowController {
 	private Button _cancelBtn;
 
 	public void yesBtn(){
-		
+		//Gson gson = new Gson();
 	}
 	
 	public Button getNoBtn(){

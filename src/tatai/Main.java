@@ -34,21 +34,21 @@ public class Main extends Application {
 				try {
 					Parent parent = loader.load();
 					Scene exitScene = new Scene(parent);
-					Stage confirmWindow = new Stage();
-					confirmWindow.setScene(exitScene);
-					confirmWindow.setTitle("Quit");
-					confirmWindow.initModality(Modality.APPLICATION_MODAL);
+					Stage exitWindow = new Stage();
+					exitWindow.setScene(exitScene);
+					exitWindow.setTitle("Quit");
+					exitWindow.initModality(Modality.APPLICATION_MODAL);
 					loader.<QuitWindowController>getController().getNoBtn().setOnAction(e -> { //user wishes to quit
 						System.out.println("no button");
-						confirmWindow.close();		
+						exitWindow.close();		
 					});
 					loader.<QuitWindowController>getController().getCancelBtn().setOnAction(e -> { //user wishes to quit
 						System.out.println("confirm window closing");
-						confirmWindow.close();	
+						exitWindow.close();	
 						event.consume();
 					});
 					
-					confirmWindow.showAndWait();
+					exitWindow.showAndWait();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
