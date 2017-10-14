@@ -14,23 +14,26 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import javafx.stage.Stage;
-
+import tatai.model.CustomLists;
 import tatai.model.LevelSelection;
 
 public class StartController {
 	
 	private LevelSelection _level;
+	private int _index = -1; //-1 means it's not a custom game
+	private CustomLists _customLists = CustomLists.getInstance();
 	@FXML
 	private Button back;
 	private Scene menuScene;
 	private Scene numberScene;
 	private Stage window;
 	@FXML 
-	Label label;
+	private Label label;
 	
 
-	public void setLevel(LevelSelection level){
+	public void setLevel(LevelSelection level, int index){
 		_level = level;
+		_index = index;
 		
 		if (_level.equals(LevelSelection.EASY)){
 			label.setText("Level: Easy");
@@ -40,6 +43,8 @@ public class StartController {
 		}
 		else if(_level.equals(LevelSelection.PRACTISE)){
 			label.setText("Practise");
+		} else if (_level.equals(LevelSelection.CUSTOM)) {
+			label.setText(_customLists.getLists().get(_index));
 		}
 		else{
 			label.setText("Level: Hard");
@@ -48,11 +53,11 @@ public class StartController {
 	}
 	
 	public void startBtn(ActionEvent event) throws IOException{
-				
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("NumberDisplay.fxml"));
 		Parent number = loader.load();
 		numberScene = new Scene(number);
 		NumberDisplayController c = loader.getController();
+		c.setList(_index);
 		c.setLabelText(_level);
 		
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();

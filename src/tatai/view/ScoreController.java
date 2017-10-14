@@ -25,6 +25,7 @@ public class ScoreController{
 	private Scene menuScene;
 
 	private LevelSelection _levelSelected;
+	private int _index;
 	@FXML
 	private Button nextlevelBtn;
 	@FXML
@@ -39,7 +40,7 @@ public class ScoreController{
 		Parent number = loader.load();
 		scene = new Scene(number);
 		StartController c = loader.getController();
-		c.setLevel(_levelSelected);
+		c.setLevel(_levelSelected, _index);
 
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(scene);
@@ -52,10 +53,10 @@ public class ScoreController{
 		scene = new Scene(number);
 		StartController c = loader.getController();
 		if (_levelSelected == LevelSelection.EASY){
-			c.setLevel(LevelSelection.MEDIUM);
+			c.setLevel(LevelSelection.MEDIUM, -1);
 		}
 		else if (_levelSelected == LevelSelection.MEDIUM){
-			c.setLevel(LevelSelection.HARD);
+			c.setLevel(LevelSelection.HARD, -1);
 		}
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(scene);
@@ -72,7 +73,8 @@ public class ScoreController{
 		window.show();
 	}
 
-	public void setScoreAndLevel(int score, LevelSelection level){
+	public void setScoreAndLevel(int score, LevelSelection level, int index){
+		_index = index;
 		_levelSelected = level;
 		System.out.println(level);
 		if (level.equals(LevelSelection.HARD) || score < 8) {

@@ -5,5 +5,6 @@ public enum LevelSelection{
 	EASY,
 	MEDIUM,
 	HARD,
-	PRACTISE;
+	PRACTISE,
+	CUSTOM;
 }

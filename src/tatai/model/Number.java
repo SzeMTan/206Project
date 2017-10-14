@@ -21,7 +21,7 @@ public class Number {
 	//randomly generated number
 	private int _numberOne;
 	private int _numberTwo;
-	private int  _number = 1000;
+	private int _number = 1000;
 	//_number in Maori
 	private String _maoriNumber;
 
@@ -71,10 +71,12 @@ public class Number {
 		generateNumber();
 	}
 	
+	public void setNumber(int number) {
+		_number = number;
+	}
 	/**
 	 * Generates new random number for _number to take
 	 */
-	
 	public void generateNumber(){
 		_maoriNumber = "";
 		_number = ThreadLocalRandom.current().nextInt(_minNumber, _maxNumber);//comment out this line when testing
@@ -88,7 +90,6 @@ public class Number {
 	public void generateEquation(){
 		_maoriNumber = "";
 		int _level;
-		//int _operand;
 		//To select the operand to use for the level, easy and medium uses plus and minus, hard uses plus, minus, multiply and divide
 		if (_levelSelected.equals(LevelSelection.EASY) || _levelSelected.equals(LevelSelection.MEDIUM)){
 			_level = 3;
@@ -115,8 +116,6 @@ public class Number {
 				_numberTwo = ThreadLocalRandom.current().nextInt(_minNumber, 9);
 			}
 
-			
-			System.out.println("apples "+_operand);
 			//operand 1 is for addition problems
 			if(_operand == 1) {
 				
@@ -124,17 +123,7 @@ public class Number {
 				_equation = _numberOne + " + " + _numberTwo;
 			}
 			//operand 2 is for subtraction problems
-			else if (_operand == 2) {
-				//Checks that first number is larger than the second number in the equation
-//				if (_numberTwo > _numberOne) {
-//					_number = _numberTwo - _numberOne;
-//					_equation = _numberTwo + " - " + _numberOne;
-//				}
-//				else {
-//					_number = _numberOne - _numberTwo;
-//					_equation = _numberOne + " - " + _numberTwo;
-//				}
-				
+			else if (_operand == 2) {				
 				_numberOne = _number + _numberTwo;
 				_equation = _numberOne + " - " +_numberTwo;
 			}
@@ -149,9 +138,7 @@ public class Number {
 				_equation = _numberOne + " \u00F7 " + _numberTwo;
 				System.out.println(_equation);
 			}
-		
 		convertToMaori();
-		//System.out.println(_maoriNumber);
 	}
 
 	/**
