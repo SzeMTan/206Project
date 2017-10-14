@@ -16,6 +16,11 @@ import javafx.stage.Stage;
 import tatai.Main;
 import tatai.model.CustomLists;
 
+/**
+ * Controller for list main page
+ * @author lucy
+ *
+ */
 public class ListController {
 
 	@FXML

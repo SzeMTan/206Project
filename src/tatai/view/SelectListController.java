@@ -17,6 +17,11 @@ import tatai.Main;
 import tatai.model.CustomLists;
 import tatai.model.LevelSelection;
 
+/**
+ * Controller for page where user selects which custom list they want to play
+ * @author lucy
+ *
+ */
 public class SelectListController {
 	@FXML private ListView<String> _lists;
 	

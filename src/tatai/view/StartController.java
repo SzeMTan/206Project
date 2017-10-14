@@ -60,9 +60,6 @@ public class StartController {
 		c.setLabelText(_level);
 		
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		window.setOnCloseRequest(e -> {
-			c.killProcesses();
-		});
 		window.setScene(numberScene);
 		window.show();
 

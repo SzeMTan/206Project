@@ -50,10 +50,10 @@ public class EditListController {
 
 	private int _index; //keep track of which list is being edited. If = -1, then it's a new list
 	
-	private CustomLists _customList = CustomLists.getInstance();
-	private ListProperty<String> _listProperty = new SimpleListProperty<>();
-	private ArrayList<String> _equations = new ArrayList<String>(); 
-	private ArrayList<Integer> _answers = new ArrayList<Integer>();
+	private CustomLists _customList = CustomLists.getInstance(); //contains all custom lists
+	private ListProperty<String> _listProperty = new SimpleListProperty<>(); //sets list view
+	private ArrayList<String> _equations = new ArrayList<String>(); //contains equations of viewed list
+	private ArrayList<Integer> _answers = new ArrayList<Integer>(); //contains answers to equations of viewed list
 	
 	private Boolean _madeChanges = false; //keep track of whether user has made any changes to list
 
@@ -143,7 +143,7 @@ public class EditListController {
 		_tabPane.getSelectionModel().selectNext();
 	}
 
-	//when the help button is clicked
+	//when the help button is clicked. Note that it has not been implemented yet
 	public void helpClick() {
 
 	}
@@ -151,18 +151,19 @@ public class EditListController {
 	//when the cancel button is clicked
 	public void backClick(ActionEvent event) throws IOException {
 
+		//if user has made any changes
 		if (_madeChanges) {
-			//open up a popup window asking for confirmation
+			//open up a popup window asking for confirmation that they want to leave
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("./view/BackConfirmation.fxml"));
 			Parent parent = loader.load();
 			Scene confirmationScene = new Scene(parent);
 
 			Stage popupWindow = new Stage();
-			popupWindow.initModality(Modality.APPLICATION_MODAL);
+			popupWindow.initModality(Modality.APPLICATION_MODAL);//stops user from pressing main window
 			popupWindow.setScene(confirmationScene);
 
-			//if yes button is clicked, close the popup window and go back to list scene
+			//if yes button is clicked, close the popup window and go back to list main page scene
 			loader.<BackConfirmationController>getController().getYesButton().setOnAction(e -> {
 				try {
 					Scene listScene = loadManage("./view/Lists.fxml");
@@ -180,6 +181,7 @@ public class EditListController {
 			});
 			popupWindow.show();
 		} else {
+			//user hasn't made any changes and therefore there's no point to a pop up
 			Scene listScene = loadManage("./view/Lists.fxml");
 			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			window.setScene(listScene);
@@ -188,10 +190,12 @@ public class EditListController {
 
 	//when the add button is clicked 
 	public void addClick() {
+		//notify that the user hasn't created any equation
 		if (_numberOne.getText().equals("") || _numberTwo.getText().equals("")) {
 			System.out.println("user hasn't entered any numbers");
 		} else {
 			try {
+				//calculate answer to the question the user has entered
 				int numberOne = Integer.parseInt(_numberOne.getText());
 				int numberTwo = Integer.parseInt(_numberTwo.getText());
 				double answer = 0;
@@ -205,6 +209,10 @@ public class EditListController {
 					answer = Math.multiplyExact(numberOne, numberTwo);//throws arithmetic exception for overflow
 				}
 
+				//equation user has entered
+				String equation = _numberOne.getText() + " " + _operation.getSelectionModel().getSelectedItem() +
+						" " + _numberTwo.getText();
+				
 				//round double to 2dp
 				DecimalFormat df = new DecimalFormat("#.##");
 				df.setRoundingMode(RoundingMode.CEILING);
@@ -212,10 +220,10 @@ public class EditListController {
 				//show answer to the user
 				_answer.setText(df.format(answer));
 
-				if (answer % 1 == 0 && answer >= 1 && answer <= 99) { //means answer is valid
+				//check if answer is valid and if equation is a duplicate
+				if (answer % 1 == 0 && answer >= 1 && answer <= 99 && !_equations.contains(equation)) { 
+					//indicate user has made changes
 					_madeChanges = true;
-					String equation = _numberOne.getText() + " " + _operation.getSelectionModel().getSelectedItem() +
-							" " + _numberTwo.getText();
 					//show new equation to user
 					_equationList.getItems().add(equation);
 					
@@ -223,7 +231,7 @@ public class EditListController {
 					_equations.add(equation);
 					_answers.add((int)answer);
 				}
-			} catch (NumberFormatException | ArithmeticException e) {
+			} catch (NumberFormatException | ArithmeticException e) { //occurs when number user has entered it too large
 				System.out.println("oops, the number you have entered is too big");
 			}
 		}
@@ -231,14 +239,18 @@ public class EditListController {
 
 	//when remove button is clicked
 	public void removeClick() {
+		//check if user has selected any equation
 		if (_equationList.getSelectionModel().getSelectedIndex() != -1) {
+			//indicate user has made a change
 			_madeChanges = true;
+			
+			//get selected equation
 			int index = _equationList.getSelectionModel().getSelectedIndex();
 			
 			//remove equation from gui
 			_equationList.getItems().remove(index);
 			
-			//remove equation from list
+			//remove equation from lists
 			_equations.remove(index);
 			_answers.remove(index);
 		}
@@ -246,6 +258,7 @@ public class EditListController {
 
 	//when done is clicked
 	public void doneClick(ActionEvent event) {
+		//get name of list
 		String name = _name.getText();
 		//make sure that the name of the list is valid and that there is at least one equation
 		if (!name.equals("") && name.matches("[a-zA-Z0-9_-]*") && !_equationList.getItems().isEmpty()) { 
@@ -254,7 +267,7 @@ public class EditListController {
 				//update this list
 				_customList.updateList(_index, name, _comments.getText(), _equations, _answers);
 				try {
-					//go back to list page
+					//go back to list main page scene
 					Scene listScene = loadManage("./view/Lists.fxml");
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 					window.setScene(listScene);
