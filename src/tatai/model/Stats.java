@@ -53,51 +53,30 @@ public class Stats {
 	 * @param result
 	 */
 	public void addResult(int result, LevelSelection level) {
+		Integer[] resultsArray = getResultArray(level);
 		if (result < 0 || result > 10) {
 			System.err.println("attempted to add invalid result"); //cannot have negative score of score > 10
 		} else {
-			if (level.equals(LevelSelection.EASY)) {
-				//add score from easy
-				for(int i=0; i <_resultsEasy.length; i++){
-					if(_resultsEasy[9] > -1){
-						for (int j = 0; j < _resultsEasy.length-1; j++){
-							_resultsEasy[i] = _resultsEasy[i+1];
-							_resultsEasy[9] = -1;
+				//add score from numberdisplay
+				for(int i=0; i <resultsArray.length; i++){
+					if(resultsArray[9] > -1){
+						for (int j = 0; j < resultsArray.length-1; j++){
+							resultsArray[i] = resultsArray[i+1];
+							resultsArray[9] = -1;
 						}
 					}
-					if (_resultsEasy[i] == -1){
-						_resultsEasy[i] = result;
+					if (resultsArray[i] == -1){
+						resultsArray[i] = result;
 						break;
 					}
 				}
-			} else {
-				//add score from hard
-				//_resultsHard.add(result);
-			}
 		}
 	}
 
 	/**
-	 * Creates and returns an array with frequency of results depending
-	 * on the level
+	 * Returns the array associated with the level
 	 * @return
 	 */
-	//	public int[] getResultArray(LevelSelection level) {
-	//		int[] resultFreq = new int[11];
-	//		//check what level it is
-	//		if (level.equals(LevelSelection.EASY)) {
-	//			//get array for easy level
-	//			for (int i = 0; i < _resultsEasy.size(); i++) {
-	//				resultFreq[_resultsEasy.get(i)]++;
-	//			}
-	//		} else {
-	//			//gets array for hard level
-	//			for (int i = 0; i < _resultsHard.size(); i++) {
-	//				resultFreq[_resultsHard.get(i)]++;
-	//			}
-	//		}
-	//		return resultFreq;
-	//	}
 
 	public Integer[] getResultArray(LevelSelection level){
 		if(level.equals(LevelSelection.EASY)){

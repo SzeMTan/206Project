@@ -157,7 +157,10 @@ public class NumberDisplayController {
 					_num.generateNumber();
 					_equationLbl.setText(_num.getQuiz().toString());
 				}
-				else {
+				else if(_levelSelected.equals(LevelSelection.CUSTOM)){ //custom question generated
+					
+				}
+				else{
 					_num.generateEquation();
 				}
 				_questionLbl.setText("Question number: " + _question);
@@ -167,7 +170,10 @@ public class NumberDisplayController {
 				_equationLbl.setText(_num.getQuiz().toString());
 			}
 
-			else {
+			else if (_levelSelected.equals(LevelSelection.CUSTOM)){
+				
+			}
+			else{
 				_equationLbl.setText(_num.getEquation());
 			}
 		}
@@ -294,13 +300,16 @@ public class NumberDisplayController {
 				e.printStackTrace();
 			}
 		}
-		else{
+		else if(_level.equals(LevelSelection.PRACTISE)){
 			_levelLbl.setText("Practise");//set questions for practice
 			try {
 				_num = new Number(1,99);
 			} catch (NumberOutOfBoundsException e) {
 				e.printStackTrace();
 			}
+		}
+		else{ //set questions for custom
+			
 		}
 		_equationLbl.setText(_num.getEquation());
 		if (_level.equals(LevelSelection.PRACTISE)){
