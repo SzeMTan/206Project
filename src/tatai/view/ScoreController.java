@@ -75,7 +75,7 @@ public class ScoreController{
 	public void setScoreAndLevel(int score, LevelSelection level){
 		_levelSelected = level;
 		System.out.println(level);
-		if (level.equals(LevelSelection.HARD) || score < 8) {
+		if (level.equals(LevelSelection.HARD) || score < 8 || level.equals(LevelSelection.CUSTOM)) {
 			nextlevelBtn.setVisible(false);
 		} else {
 			nextlevelBtn.setVisible(true);

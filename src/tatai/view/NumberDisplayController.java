@@ -221,13 +221,16 @@ public class NumberDisplayController implements Initializable {
 				e.printStackTrace();
 			}
 		}
-		else{
+		else if (_level.equals(LevelSelection.PRACTISE)){
 			_label.setText("Practise");
 			try {
 				_num = new Number(1,99);
 			} catch (NumberOutOfBoundsException e) {
 				e.printStackTrace();
 			}
+		}
+		else{
+			_label.setText("Level: Custom");
 		}
 
 		if (_level.equals(LevelSelection.PRACTISE)){
@@ -272,20 +275,8 @@ public class NumberDisplayController implements Initializable {
 		
 		_question = 11;  ;
 		if (_question == 11) {
-			Stats stats = null;
+			Stats stats = Stats.getInstance();
 			//update stats object
-			if (_levelSelected.equals(LevelSelection.EASY)){
-				stats = Stats.getEasyInstance();
-			}
-			else if (_levelSelected.equals(LevelSelection.MEDIUM)){
-				stats = Stats.getMediumInstance();
-			}
-			else if (_levelSelected.equals(LevelSelection.HARD)){
-				stats = Stats.getHardInstance();
-			}
-			else{
-				stats = Stats.getCustomInstance();
-			}
 			stats.addResult(_score, _levelSelected);
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Score.fxml"));
@@ -310,7 +301,10 @@ public class NumberDisplayController implements Initializable {
 			if (_levelSelected.equals(LevelSelection.PRACTISE)){
 				_num.generateNumber();
 			}
-			else {
+			else if(_levelSelected.equals(LevelSelection.CUSTOM)){
+				
+			}
+			else{
 				_num.generateEquation();
 			}
 			_questionLbl.setText("Question number: " + _question);
@@ -319,7 +313,10 @@ public class NumberDisplayController implements Initializable {
 		if (_levelSelected.equals(LevelSelection.PRACTISE)){
 			_numberLbl.setText(_num.getQuiz().toString());
 		}
-		else {
+		else if(_levelSelected.equals(LevelSelection.CUSTOM)) {
+			
+		}
+		else{
 			_numberLbl.setText(_num.getEquation());
 		}
 	}

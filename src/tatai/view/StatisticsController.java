@@ -45,7 +45,7 @@ public class StatisticsController implements Initializable {
 	@FXML
 	private BarChart<String, Integer> _hardChart;
 	@FXML
-	private NumberAxis yAxis;
+	private NumberAxis yEasyAxis;
 
 	//private List<Stats,LevelSelection> statsList = new ArrayList<Stats,LevelSelection>();
 	
@@ -64,23 +64,20 @@ public class StatisticsController implements Initializable {
 	public void setStats(){	
 		
 		// Gets stats objects for each of the levels
-		Stats statsEasy = Stats.getEasyInstance();
-		addStats(statsEasy,LevelSelection.EASY,_easyChart,easyMin,easyMax,easyAverage);
-////		Stats statsMedium = Stats.getMediumInstance();
-////		addStats(statsMedium,LevelSelection.MEDIUM,_easyChart,easyMin,easyMax,easyAverage);
-//		Stats statsHard = Stats.getHardInstance();
-//		addStats(statsHard,LevelSelection.HARD,_hardChart,hardMin,hardMax,hardAverage);
-////		Stats statsCustom = Stats.getCustomInstance();
-////		addStats(statsEasy,LevelSelection.EASY,_easyChart,easyMin,easyMax,easyAverage);
+		Stats stats = Stats.getInstance();
+		addStats(stats,LevelSelection.EASY,_easyChart,easyMin,easyMax,easyAverage);
+	//	addStats(stats,LevelSelection.MEDIUM,_easyChart,easyMin,easyMax,easyAverage);
+		addStats(stats,LevelSelection.HARD,_hardChart,hardMin,hardMax,hardAverage);
+	//	addStats(stats,LevelSelection.CUSTOM,_easyChart,easyMin,easyMax,easyAverage);
 	}
 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		yAxis.setAutoRanging(false);
-	    yAxis.setLowerBound(0);
-	    yAxis.setUpperBound(10);
-	    yAxis.setTickUnit(1);
+		yEasyAxis.setAutoRanging(false);
+	    yEasyAxis.setLowerBound(0);
+	    yEasyAxis.setUpperBound(10);
+	    yEasyAxis.setTickUnit(1);
 		
 	}
 	

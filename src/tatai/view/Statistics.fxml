@@ -85,14 +85,14 @@
                                     </VBox>
                                     <BarChart fx:id="_easyChart" legendVisible="false" prefHeight="360.0" prefWidth="550.0" title="Scores over the last 10 games" HBox.hgrow="ALWAYS">
                                        <xAxis>
-                                          <CategoryAxis fx:id="xAxis" label="Last 10 games" side="BOTTOM">
+                                          <CategoryAxis label="Last 10 games" side="BOTTOM">
                                              <tickLabelFont>
                                                 <Font name="Berlin Sans FB" size="14.0" />
                                              </tickLabelFont>
                                           </CategoryAxis>
                                        </xAxis>
                                        <yAxis>
-                                          <NumberAxis fx:id="yAxis" label="Score" side="LEFT">
+                                          <NumberAxis fx:id="yEasyAxis" label="Score" side="LEFT">
                                              <tickLabelFont>
                                                 <Font name="Berlin Sans FB" size="14.0" />
                                              </tickLabelFont>
@@ -110,7 +110,97 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Hard Level">
+            <Tab text="Medium Level">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="650.0">
+                     <children>
+                        <Button id="small-button" layoutX="15.0" layoutY="321.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="39.0" prefWidth="100" text="Main Menu" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Button>
+                        <VBox prefHeight="444.0" prefWidth="650.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label text="Statistics: Medium">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="50.0" />
+                                 </font>
+                                 <textFill>
+                                    <RadialGradient centerX="0.5722222222222222" centerY="0.5285714285714286" radius="0.8372093023255814">
+                                       <stops>
+                                          <Stop color="#ff6f0e" />
+                                          <Stop color="#e42929" offset="1.0" />
+                                       </stops>
+                                    </RadialGradient>
+                                 </textFill>
+                              </Label>
+                              <HBox prefHeight="361.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Average:">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="mediumAverage" text="-">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Maximum:">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="mediumMax" text="-">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Minimum:">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="mediumMin" text="-">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <BarChart fx:id="_mediumChart" legendVisible="false" prefHeight="360.0" prefWidth="550.0" title="Scores over the last 10 games" HBox.hgrow="ALWAYS">
+                                       <xAxis>
+                                          <CategoryAxis label="Last 10 games" side="BOTTOM">
+                                             <tickLabelFont>
+                                                <Font name="Berlin Sans FB" size="14.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis fx:id="yMediumAxis" label="Score" side="LEFT">
+                                             <tickLabelFont>
+                                                <Font name="Berlin Sans FB" size="14.0" />
+                                             </tickLabelFont>
+                                          </NumberAxis>
+                                       </yAxis>
+                                       <padding>
+                                          <Insets right="40.0" />
+                                       </padding>
+                                    </BarChart>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+           <Tab text="Hard Level">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="650.0">
                      <children>
@@ -173,16 +263,106 @@
                                           </Label>
                                        </children>
                                     </VBox>
-                                    <BarChart fx:id="_hardChart" legendVisible="false" prefHeight="360.0" prefWidth="550.0" title="How Often You Got Each Score" HBox.hgrow="ALWAYS">
+                                    <BarChart fx:id="_hardChart" legendVisible="false" prefHeight="360.0" prefWidth="550.0" title="Scores over the last 10 games" HBox.hgrow="ALWAYS">
                                        <xAxis>
-                                          <CategoryAxis label="Score out of 10" side="BOTTOM">
+                                          <CategoryAxis label="Last 10 games" side="BOTTOM">
                                              <tickLabelFont>
                                                 <Font name="Berlin Sans FB" size="14.0" />
                                              </tickLabelFont>
                                           </CategoryAxis>
                                        </xAxis>
                                        <yAxis>
-                                          <NumberAxis label="How Often This Score" side="LEFT">
+                                          <NumberAxis fx:id="yHardAxis" label="Score" side="LEFT">
+                                             <tickLabelFont>
+                                                <Font name="Berlin Sans FB" size="14.0" />
+                                             </tickLabelFont>
+                                          </NumberAxis>
+                                       </yAxis>
+                                       <padding>
+                                          <Insets right="40.0" />
+                                       </padding>
+                                    </BarChart>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Custom Level">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="650.0">
+                     <children>
+                        <Button id="small-button" layoutX="15.0" layoutY="321.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="39.0" prefWidth="100" text="Main Menu" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Button>
+                        <VBox prefHeight="444.0" prefWidth="650.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label text="Statistics: Custom">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="50.0" />
+                                 </font>
+                                 <textFill>
+                                    <RadialGradient centerX="0.5722222222222222" centerY="0.5285714285714286" radius="0.8372093023255814">
+                                       <stops>
+                                          <Stop color="#ff6f0e" />
+                                          <Stop color="#e42929" offset="1.0" />
+                                       </stops>
+                                    </RadialGradient>
+                                 </textFill>
+                              </Label>
+                              <HBox prefHeight="361.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Average:">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="customAverage" text="-">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Maximum:">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="customMax" text="-">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Minimum:">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="customMin" text="-">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <BarChart fx:id="_customChart" legendVisible="false" prefHeight="360.0" prefWidth="550.0" title="Scores over the last 10 games" HBox.hgrow="ALWAYS">
+                                       <xAxis>
+                                          <CategoryAxis label="Last 10 games" side="BOTTOM">
+                                             <tickLabelFont>
+                                                <Font name="Berlin Sans FB" size="14.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis fx:id="yCustomAxis" label="Score" side="LEFT">
                                              <tickLabelFont>
                                                 <Font name="Berlin Sans FB" size="14.0" />
                                              </tickLabelFont>
