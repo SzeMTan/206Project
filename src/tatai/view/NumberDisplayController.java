@@ -126,7 +126,7 @@ public class NumberDisplayController {
 
 	private void nextClick(ActionEvent event) throws IOException{
 		if (_question == 11) { //means user has completed 10 questions and is hence finished
-			Stats stats = null;
+			Stats stats = Stats.getInstance();
 			//update stats object
 			stats.addResult(_score, _levelSelected);
 
