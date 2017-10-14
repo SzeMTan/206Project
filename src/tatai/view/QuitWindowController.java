@@ -2,6 +2,7 @@ package tatai.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import tatai.model.Stats;
 
 public class QuitWindowController {
 	
@@ -9,9 +10,11 @@ public class QuitWindowController {
 	private Button _noBtn;
 	@FXML
 	private Button _cancelBtn;
+	@FXML
+	private Button _yesBtn;
 
-	public void yesBtn(){
-		//Gson gson = new Gson();
+	public Button getYesBtn(){
+		return _yesBtn;
 	}
 	
 	public Button getNoBtn(){
