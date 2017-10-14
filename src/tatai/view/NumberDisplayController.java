@@ -275,10 +275,7 @@ public class NumberDisplayController implements Initializable {
 
 			//update stats object
 			Stats statsEasy = Stats.getEasyInstance();
-			statsEasy.addResult(2, _levelSelected);
-			statsEasy.addResult(3, _levelSelected);
-			statsEasy.addResult(3, _levelSelected);
-			//statsEasy.addResult(_score, _levelSelected);
+			statsEasy.addResult(_score, _levelSelected);
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Score.fxml"));
 			Parent number = loader.load();
