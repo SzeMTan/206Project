@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Group?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -10,62 +10,21 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #84e1e0;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.StatisticsController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.StatisticsController">
    <children>
       <TabPane accessibleRole="IMAGE_VIEW" prefHeight="403.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
             <Tab text="Easy Level">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="650.0">
                      <children>
-                        <StackPane layoutX="54.0" layoutY="251.0" prefHeight="26.0" prefWidth="61.0" AnchorPane.bottomAnchor="94.0" AnchorPane.topAnchor="251.0">
-                           <children>
-                              <Group>
-                                 <children>
-                                    <Label fx:id="easyMin" text="min#">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Group>
-                           </children>
-                        </StackPane>
-                        <Label layoutX="15.0" text="Statistics: Easy">
-                           <font>
-                              <Font name="Berlin Sans FB" size="50.0" />
-                           </font>
-                           <textFill>
-                              <RadialGradient centerX="0.5722222222222222" centerY="0.5285714285714286" radius="0.8372093023255814">
-                                 <stops>
-                                    <Stop color="#ff6f0e" />
-                                    <Stop color="#e42929" offset="1.0" />
-                                 </stops>
-                              </RadialGradient>
-                           </textFill>
-                        </Label>
-                        <BarChart fx:id="_easyChart" layoutX="137.0" layoutY="64.0" legendVisible="false" prefHeight="291.0" prefWidth="349.0" title="How Often You Got Each Score" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="64.0">
-                           <xAxis>
-                              <CategoryAxis label="Score out of 10" side="BOTTOM">
-                                 <tickLabelFont>
-                                    <Font name="Berlin Sans FB" size="14.0" />
-                                 </tickLabelFont>
-                              </CategoryAxis>
-                           </xAxis>
-                           <yAxis>
-                              <NumberAxis label="How Often This Score" side="LEFT">
-                                 <tickLabelFont>
-                                    <Font name="Berlin Sans FB" size="14.0" />
-                                 </tickLabelFont>
-                              </NumberAxis>
-                           </yAxis>
-                        </BarChart>
-                        <Button layoutX="15.0" layoutY="321.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="39.0" prefWidth="100" text="Main Menu" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="15.0">
+                        <Button id="small-button" layoutX="15.0" layoutY="321.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="39.0" prefWidth="100" text="Main Menu" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
@@ -73,96 +32,89 @@
                               <InnerShadow />
                            </effect>
                         </Button>
-                        <StackPane layoutX="39.0" layoutY="93.0" prefHeight="30.0" prefWidth="86.0" AnchorPane.bottomAnchor="248.0" AnchorPane.topAnchor="93.0">
+                        <VBox prefHeight="444.0" prefWidth="650.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Group>
+                              <Label text="Statistics: Easy">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="50.0" />
+                                 </font>
+                                 <textFill>
+                                    <RadialGradient centerX="0.5722222222222222" centerY="0.5285714285714286" radius="0.8372093023255814">
+                                       <stops>
+                                          <Stop color="#ff6f0e" />
+                                          <Stop color="#e42929" offset="1.0" />
+                                       </stops>
+                                    </RadialGradient>
+                                 </textFill>
+                              </Label>
+                              <HBox prefHeight="361.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Average:">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="20.0" />
-                                       </font>
-                                    </Label>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Average:">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="easyAverage" text="-">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Maximum:">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="easyMax" text="-">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Minimum:">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="easyMin" text="-">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <BarChart fx:id="_easyChart" legendVisible="false" prefHeight="360.0" prefWidth="550.0" title="Scores over the last 10 games" HBox.hgrow="ALWAYS">
+                                       <xAxis>
+                                          <CategoryAxis fx:id="xAxis" label="Last 10 games" side="BOTTOM">
+                                             <tickLabelFont>
+                                                <Font name="Berlin Sans FB" size="14.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis fx:id="yAxis" label="Score" side="LEFT">
+                                             <tickLabelFont>
+                                                <Font name="Berlin Sans FB" size="14.0" />
+                                             </tickLabelFont>
+                                          </NumberAxis>
+                                       </yAxis>
+                                       <padding>
+                                          <Insets right="40.0" />
+                                       </padding>
+                                    </BarChart>
                                  </children>
-                              </Group>
+                              </HBox>
                            </children>
-                        </StackPane>
-                        <StackPane layoutX="33.0" layoutY="161.0" prefHeight="27.0" prefWidth="103.0" AnchorPane.bottomAnchor="183.0" AnchorPane.topAnchor="161.0">
-                           <children>
-                              <Group>
-                                 <children>
-                                    <Label text="Maximum:">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Group>
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="50.0" layoutY="188.0" prefHeight="23.0" prefWidth="65.0" AnchorPane.bottomAnchor="160.0" AnchorPane.topAnchor="193.0">
-                           <children>
-                              <Group>
-                                 <children>
-                                    <Label fx:id="easyMax" text="max#">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Group>
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="33.0" layoutY="227.0" prefHeight="27.0" prefWidth="97.0" AnchorPane.bottomAnchor="120.0" AnchorPane.topAnchor="224.0">
-                           <children>
-                              <Group>
-                                 <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Minimum:">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Group>
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="52.0" layoutY="123.0" prefHeight="23.0" prefWidth="65.0" AnchorPane.bottomAnchor="225.0" AnchorPane.topAnchor="123.0">
-                           <children>
-                              <Group>
-                                 <children>
-                                    <Label fx:id="easyAverage" text="score#">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Group>
-                           </children>
-                        </StackPane>
+                        </VBox>
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
             <Tab text="Hard Level">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="650.0">
                      <children>
-                        <BarChart fx:id="_hardChart" layoutX="137.0" layoutY="64.0" legendVisible="false" prefHeight="291.0" prefWidth="349.0" title="How Often You Got Each Score" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="64.0">
-                           <xAxis>
-                              <CategoryAxis label="Score out of 10" side="BOTTOM">
-                                 <tickLabelFont>
-                                    <Font name="Berlin Sans FB" size="14.0" />
-                                 </tickLabelFont>
-                              </CategoryAxis>
-                           </xAxis>
-                           <yAxis>
-                              <NumberAxis label="How Often This Score" side="LEFT">
-                                 <tickLabelFont>
-                                    <Font name="Berlin Sans FB" size="14.0" />
-                                 </tickLabelFont>
-                              </NumberAxis>
-                           </yAxis>
-                        </BarChart>
-                        <Button layoutX="15.0" layoutY="321.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="39.0" prefWidth="100" text="Main Menu" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="15.0">
+                        <Button id="small-button" layoutX="15.0" layoutY="321.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="39.0" prefWidth="100" text="Main Menu" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
@@ -170,97 +122,80 @@
                               <InnerShadow />
                            </effect>
                         </Button>
-                        <Label layoutX="15.0" text="Statistics: Hard">
-                           <font>
-                              <Font name="Berlin Sans FB" size="50.0" />
-                           </font>
-                           <textFill>
-                              <RadialGradient centerX="0.5722222222222222" centerY="0.5285714285714286" radius="0.8372093023255814">
-                                 <stops>
-                                    <Stop color="#ff6f0e" />
-                                    <Stop color="#e42929" offset="1.0" />
-                                 </stops>
-                              </RadialGradient>
-                           </textFill>
-                        </Label>
-                        <StackPane layoutX="39.0" layoutY="89.0" prefHeight="30.0" prefWidth="86.0" AnchorPane.bottomAnchor="248.0" AnchorPane.topAnchor="93.0">
+                        <VBox prefHeight="444.0" prefWidth="650.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Group>
+                              <Label text="Statistics: Hard">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="50.0" />
+                                 </font>
+                                 <textFill>
+                                    <RadialGradient centerX="0.5722222222222222" centerY="0.5285714285714286" radius="0.8372093023255814">
+                                       <stops>
+                                          <Stop color="#ff6f0e" />
+                                          <Stop color="#e42929" offset="1.0" />
+                                       </stops>
+                                    </RadialGradient>
+                                 </textFill>
+                              </Label>
+                              <HBox prefHeight="361.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Average:">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="20.0" />
-                                       </font>
-                                    </Label>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Average:">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="hardAverage" text="-">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Maximum:">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="hardMax" text="-">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Minimum:">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="hardMin" text="-">
+                                             <font>
+                                                <Font name="Berlin Sans FB" size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <BarChart fx:id="_hardChart" legendVisible="false" prefHeight="360.0" prefWidth="550.0" title="How Often You Got Each Score" HBox.hgrow="ALWAYS">
+                                       <xAxis>
+                                          <CategoryAxis label="Score out of 10" side="BOTTOM">
+                                             <tickLabelFont>
+                                                <Font name="Berlin Sans FB" size="14.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis label="How Often This Score" side="LEFT">
+                                             <tickLabelFont>
+                                                <Font name="Berlin Sans FB" size="14.0" />
+                                             </tickLabelFont>
+                                          </NumberAxis>
+                                       </yAxis>
+                                       <padding>
+                                          <Insets right="40.0" />
+                                       </padding>
+                                    </BarChart>
                                  </children>
-                              </Group>
+                              </HBox>
                            </children>
-                        </StackPane>
-                        <StackPane layoutX="33.0" layoutY="181.0" prefHeight="27.0" prefWidth="103.0" AnchorPane.bottomAnchor="183.0" AnchorPane.topAnchor="161.0">
-                           <children>
-                              <Group>
-                                 <children>
-                                    <Label text="Maximum:">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Group>
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="50.0" layoutY="284.0" prefHeight="23.0" prefWidth="65.0" AnchorPane.bottomAnchor="160.0" AnchorPane.topAnchor="193.0">
-                           <children>
-                              <Group>
-                                 <children>
-                                    <Label fx:id="hardMax" text="max#">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Group>
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="33.0" layoutY="51.0" prefHeight="27.0" prefWidth="97.0" AnchorPane.bottomAnchor="120.0" AnchorPane.topAnchor="224.0">
-                           <children>
-                              <Group>
-                                 <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Minimum:">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Group>
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="52.0" layoutY="131.0" prefHeight="23.0" prefWidth="65.0" AnchorPane.bottomAnchor="225.0" AnchorPane.topAnchor="123.0">
-                           <children>
-                              <Group>
-                                 <children>
-                                    <Label fx:id="hardAverage" text="score#">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Group>
-                           </children>
-                        </StackPane>
-                        <StackPane layoutX="54.0" layoutY="252.0" prefHeight="26.0" prefWidth="61.0" AnchorPane.bottomAnchor="94.0" AnchorPane.topAnchor="251.0">
-                           <children>
-                              <Group>
-                                 <children>
-                                    <Label fx:id="hardMin" text="min#">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="20.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Group>
-                           </children>
-                        </StackPane>
+                        </VBox>
                      </children>
                   </AnchorPane>
                </content>

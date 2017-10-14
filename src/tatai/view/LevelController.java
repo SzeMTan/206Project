@@ -35,7 +35,7 @@ public class LevelController {
 		_scene = new Scene(easyStart);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(_scene);
-		window.setTitle("Level: Easy");
+		window.setTitle("Easy");
 		window.show();
 	}
 	
@@ -48,7 +48,7 @@ public class LevelController {
 		_scene = new Scene(hardStart);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(_scene);
-		window.setTitle("Level: Hard");
+		window.setTitle("Hard");
 		window.show();
 	}
 	
@@ -61,7 +61,7 @@ public class LevelController {
 		_scene = new Scene(mediumStart);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(_scene);
-		window.setTitle("Level: Medium");
+		window.setTitle("Medium");
 		window.show();
 	}
 	
@@ -85,6 +85,7 @@ public class LevelController {
 		_scene = new Scene(menu);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(_scene);
+		window.setTitle("Tatai");
 		window.show();
 	}
 	

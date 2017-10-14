@@ -43,12 +43,21 @@ public class NumberDisplayController {
 	@FXML private TextField _userAnswer; // shows user what they said
 	@FXML private Label _answerLabel;
 
+
+	@FXML
+	private Button _recordBtn;
+	@FXML
+	private Button _playBtn;
+	@FXML
+	private Button _backBtn;
+	@FXML
+	private Button _okBtn;
 	private Stage window;
 
 	private Number _num;
-	private int _score = 0; //user's score
-	private int _question = 1; //what question the user is doing
-	private int _numIncorrect = 0; //how many times user has gotten question wrong
+	private int _score = 2; //////////////////////////////////////////////// WAS 0
+	private int _question = 1;
+	private int _numIncorrect = 0;
 
 	private Scene endScene;
 
@@ -121,11 +130,30 @@ public class NumberDisplayController {
 
 	//actions for when next is clicked
 	@FXML
-	private void nextClick(ActionEvent event) throws IOException{
-		if (_question == 11) { //means user has done 10 questions and game is finished
+	private void okBtnClicked(ActionEvent event) throws IOException{
 
+		//reset the record button
+		_recordBtn.setText("Record");
+		_recordBtn.setDisable(false);
+		_recordBtn.setVisible(true);
+		_backBtn.setVisible(true);
+		
+		_question = 11;  ;
+		if (_question == 11) {
+			Stats stats = null;
 			//update stats object
-			Stats stats = Stats.getInstance();
+			if (_levelSelected.equals(LevelSelection.EASY)){
+				stats = Stats.getEasyInstance();
+			}
+			else if (_levelSelected.equals(LevelSelection.MEDIUM)){
+				stats = Stats.getMediumInstance();
+			}
+			else if (_levelSelected.equals(LevelSelection.HARD)){
+				stats = Stats.getHardInstance();
+			}
+			else{
+				stats = Stats.getCustomInstance();
+			}
 			stats.addResult(_score, _levelSelected);
 
 			//change to score scene
@@ -146,21 +174,27 @@ public class NumberDisplayController {
 			_userAnswer.setVisible(false);
 			_answerLabel.setVisible(false);
 
-			//get recording components
-			_recordBtn.setVisible(true);
+		_backgroundPane.setStyle("-fx-background-color: #afeeee");
+		_numberLbl.setFont(Font.font("Berlin Sans FB", 96));
+		_okBtn.setVisible(false);
+		_playBtn.setVisible(false);
+		_recordBtn.setVisible(true);
 
-			if (_numIncorrect != 1){ //means that new equation is required
-				if (_levelSelected.equals(LevelSelection.PRACTISE)){
-					_num.generateNumber();
-				} else {
-					_num.generateEquation();
-				}
-				_questionLbl.setText("Question number: " + _question); //update question label
-			}
+		if (_numIncorrect != 1){
 			if (_levelSelected.equals(LevelSelection.PRACTISE)){
 				_equationLbl.setText(_num.getQuiz().toString());
 			}
-			_equationLbl.setText(_num.getEquation());
+			else {
+				_num.generateEquation();
+			}
+			_questionLbl.setText("Question number: " + _question);
+			_scoreLbl.setText("Score: " + _score);
+		}
+		if (_levelSelected.equals(LevelSelection.PRACTISE)){
+			_numberLbl.setText(_num.getQuiz().toString());
+		}
+		else {
+			_numberLbl.setText(_num.getEquation());
 		}
 	}
 

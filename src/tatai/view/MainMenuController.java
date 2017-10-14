@@ -62,19 +62,29 @@ public class MainMenuController {
 	public void practiseClick(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/Start.fxml"));
-        Parent mediumStart = loader.load();
+        Parent start = loader.load();
         loader.<StartController>getController().setLevel(LevelSelection.PRACTISE);
         
-		_scene = new Scene(mediumStart);
+		_scene = new Scene(start);
 		_window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		_window.setScene(_scene);
 		_window.setTitle("Practise");
 		_window.show();
 	}
 		
-	
-	public void ScoresClick(ActionEvent event) {
-		
+	public void scoresClick(ActionEvent event) throws IOException {
+	FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(Main.class.getResource("view/Statistics.fxml"));
+    Parent stats = loader.load();
+    loader.<StatisticsController>getController().setStats();
+    
+	_scene = new Scene(stats);
+	_window = (Stage)((Node)event.getSource()).getScene().getWindow();
+	System.out.println("before scene");
+	_window.setScene(_scene);
+	System.out.println("after scene");
+	_window.setTitle("Practise");
+	_window.show();
 	}
 	
 	public void helpClick() {

@@ -69,8 +69,8 @@ public class StartController {
 		menuScene = new Scene(menu);
 		
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		
 		window.setScene(menuScene);
+		window.setTitle("Tatai");
 		window.show();
 	}
 }

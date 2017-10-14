@@ -4,6 +4,11 @@
 	-fx-background-color: #afeeee;
 }
 
+#score-label{
+	-fx-font-family: "Berlin Sans FB";
+	-fx-font-size: 45px;
+}
+
 .button{
 	-fx-background-radius: 20px;
 	-fx-pref-width:  125;
@@ -27,7 +32,7 @@
 }
 
 #small-button{
-	-fx-pref-width: 80px;
+	-fx-pref-width: 110px;
 	-fx-pref-height: 40px;
 	-fx-font-size: 14px;
 }

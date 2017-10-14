@@ -5,61 +5,37 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="_backgroundPane" stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.NumberDisplayController">
+<AnchorPane fx:id="_backgroundPane" stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.NumberDisplayController">
    <children>
-      <VBox layoutX="173.0" layoutY="58.0" prefHeight="360.0" prefWidth="304.0" spacing="5.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="173.0" AnchorPane.topAnchor="58.0">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="132.0" spacing="5.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
          <children>
-            <StackPane prefHeight="80.0" prefWidth="162.0">
-               <children>
-                  <Label fx:id="_levelLbl" alignment="CENTER" minHeight="71.0" prefHeight="71.0" prefWidth="316.0" text="Level: ">
-                     <font>
-                        <Font name="Berlin Sans FB" size="30.0" />
-                     </font>
-                  </Label>
-               </children>
-            </StackPane>
-            <Label fx:id="_equationLbl" alignment="CENTER" prefHeight="131.0" prefWidth="300.0" text="9">
+            <Label fx:id="_label" alignment="CENTER" minHeight="90.0" prefHeight="90.0" prefWidth="350.0" text="Level: ">
+               <font>
+                  <Font name="Berlin Sans FB" size="40.0" />
+               </font>
+            </Label>
+            <Label fx:id="_numberLbl" alignment="CENTER" prefHeight="170.0" prefWidth="300.0" text="9">
                <font>
                   <Font name="Berlin Sans FB" size="96.0" />
                </font>
             </Label>
-            <StackPane layoutX="10.0" layoutY="10.0" prefHeight="90.0" prefWidth="162.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="35.0">
                <children>
-                  <VBox prefHeight="77.0" prefWidth="304.0">
-                     <children>
-                        <Label fx:id="_answerLabel" alignment="CENTER" minHeight="35.0" prefHeight="38.0" prefWidth="304.0" text="You have said:">
-                           <font>
-                              <Font name="Berlin Sans FB" size="30.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="_userAnswer" editable="false" prefHeight="45.0" />
-                     </children>
-                  </VBox>
+                  <Button fx:id="_okBtn" mnemonicParsing="false" onAction="#okBtnClicked" prefHeight="43.0" prefWidth="109.0" text="Next">
+                     <font>
+                        <Font name="Berlin Sans FB" size="25.0" />
+                     </font>
+                  </Button>
+                  <Button id="start-butto" fx:id="_playBtn" mnemonicParsing="false" onAction="#playBtnClicked" prefHeight="43.0" prefWidth="109.0" text="Play">
+                     <font>
+                        <Font name="Berlin Sans FB" size="25.0" />
+                     </font>
+                  </Button>
                </children>
-            </StackPane>
-            <StackPane prefHeight="90.0" prefWidth="162.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="35.0">
-                     <children>
-                        <Button fx:id="_nextBtn" mnemonicParsing="false" onAction="#nextClick" prefHeight="43.0" prefWidth="109.0" text="Next">
-                           <font>
-                              <Font name="Berlin Sans FB" size="25.0" />
-                           </font>
-                        </Button>
-                        <Button id="start-butto" fx:id="_playBtn" mnemonicParsing="false" onAction="#playClick" prefHeight="43.0" prefWidth="109.0" text="Play">
-                           <font>
-                              <Font name="Berlin Sans FB" size="25.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <Button fx:id="_recordBtn" mnemonicParsing="false" onMousePressed="#recordPressed" onMouseReleased="#recordReleased" text="Record" />
-               </children>
-            </StackPane>
+            </HBox>
          </children>
       </VBox>
       <Label fx:id="_questionLbl" alignment="CENTER" layoutX="173.0" layoutY="14.0" prefHeight="20.0" prefWidth="150" text="Question number: 1">
@@ -72,7 +48,12 @@
             <Font name="Berlin Sans FB" size="14.0" />
          </font>
       </Label>
-      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" minWidth="110.0" mnemonicParsing="false" onAction="#homeClick" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" />
-      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="446.0" minWidth="110.0" mnemonicParsing="false" onAction="#helpClick" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" />
+      <Button id="start-button" fx:id="_recordBtn" alignment="CENTER" mnemonicParsing="false" onMousePressed="#recordPressed" onMouseReleased="#recordReleased" prefHeight="76.0" prefWidth="170.0" text="Record" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0">
+         <font>
+            <Font name="Berlin Sans FB" size="30.0" />
+         </font>
+      </Button>
+      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+      <Button id="small-button" fx:id="_backBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="455.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
    </children>
 </AnchorPane>
