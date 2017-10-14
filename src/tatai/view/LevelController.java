@@ -24,45 +24,44 @@ public class LevelController {
 	private Stage window;
 	public String level;
 
-	
-	public void easyButtonClicked(ActionEvent event) throws IOException{
+	@FXML
+	private void easyButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/Start.fxml"));
         Parent easyStart = loader.load();
-        loader.<StartController>getController().setLevel(LevelSelection.EASY);
+        loader.<StartController>getController().setLevel(LevelSelection.EASY, -1);
         
         
 		_scene = new Scene(easyStart);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(_scene);
 		window.setTitle("Easy");
-		window.show();
 	}
 	
-	public void hardButtonClicked(ActionEvent event) throws IOException{
+	@FXML
+	private void hardButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/Start.fxml"));
         Parent hardStart = loader.load();
-        loader.<StartController>getController().setLevel(LevelSelection.HARD);
+        loader.<StartController>getController().setLevel(LevelSelection.HARD, -1);
         
 		_scene = new Scene(hardStart);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(_scene);
 		window.setTitle("Hard");
-		window.show();
 	}
 	
-	public void mediumButtonClicked(ActionEvent event) throws IOException{
+	@FXML
+	private void mediumButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/Start.fxml"));
         Parent mediumStart = loader.load();
-        loader.<StartController>getController().setLevel(LevelSelection.MEDIUM);
+        loader.<StartController>getController().setLevel(LevelSelection.MEDIUM, -1);
         
 		_scene = new Scene(mediumStart);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(_scene);
 		window.setTitle("Medium");
-		window.show();
 	}
 	
 //	public void statisticsButtonClicked(ActionEvent event) throws IOException{
@@ -77,7 +76,8 @@ public class LevelController {
 //		window.show();
 //	}
 	
-	public void menuButtonClicked(ActionEvent event) throws IOException{
+	@FXML
+	private void menuButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/MainMenu.fxml"));
         Parent menu = loader.load();
@@ -86,6 +86,19 @@ public class LevelController {
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(_scene);
 		window.setTitle("Tatai");
+		window.show();
+	}
+	
+	@FXML
+	private void customClick(ActionEvent event) throws IOException{
+		FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/SelectList.fxml"));
+        Parent menu = loader.load();
+        
+		_scene = new Scene(menu);
+		window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.setScene(_scene);
+		window.setTitle("Custom");
 		window.show();
 	}
 	

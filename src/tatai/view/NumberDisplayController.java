@@ -1,6 +1,7 @@
 package tatai.view;
 
 import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javafx.concurrent.Task;
 
@@ -22,6 +23,7 @@ import tatai.model.Stats;
 import tatai.model.Number;
 import tatai.model.NumberOutOfBoundsException;
 import tatai.Main;
+import tatai.model.CustomLists;
 import tatai.model.LevelSelection;
 import tatai.model.Recording;
 
@@ -59,6 +61,10 @@ public class NumberDisplayController {
 	private Task<Void> _task;//play task
 
 	private Task<Void> _recordTask;
+
+	private CustomLists _customLists = CustomLists.getInstance();
+	private int _index = -1; //-1 means it's not a custom game, otherwise it's what list to play
+	private int _equationIndex = -1;
 
 	@FXML
 	public void initialize() {
@@ -106,7 +112,7 @@ public class NumberDisplayController {
 			loader.<QuitPlayConfirmController>getController().getNoBtn().setOnAction(e -> { //user doesn't wish to quit
 				confirmWindow.close();
 			});
-			
+
 			confirmWindow.show();
 		} else { //user is practicing and there's no need to ask them for leave confirmation
 			//change to main menu scene
@@ -135,7 +141,7 @@ public class NumberDisplayController {
 			Parent number = loader.load();
 			endScene = new Scene(number);
 			ScoreController c = loader.getController();
-			c.setScoreAndLevel(_score, _levelSelected);
+			c.setScoreAndLevel(_score, _levelSelected, _index);
 			window = (Stage)((Node)event.getSource()).getScene().getWindow();
 			window.setScene(endScene);
 		} else { //change back to recording scene
@@ -147,7 +153,7 @@ public class NumberDisplayController {
 			_playBtn.setVisible(false);
 			_userAnswer.setVisible(false);
 			_answerLabel.setVisible(false);
-			
+
 			//get recording components
 			_recordBtn.setText("Record");
 			_recordBtn.setVisible(true);
@@ -155,7 +161,9 @@ public class NumberDisplayController {
 			if (_numIncorrect != 1){ //means new question has to be generated
 				if (_levelSelected.equals(LevelSelection.PRACTISE)){
 					_num.generateNumber();
-					_equationLbl.setText(_num.getQuiz().toString());
+				} else if (_levelSelected.equals(LevelSelection.CUSTOM)) {
+					_equationIndex = ThreadLocalRandom.current().nextInt(0, _customLists.getEquations(_index).size());
+					_num = new Number(_customLists.getAnswer(_index).get(_equationIndex));
 				}
 				else if(_levelSelected.equals(LevelSelection.CUSTOM)){ //custom question generated
 					
@@ -168,6 +176,8 @@ public class NumberDisplayController {
 			}
 			if (_levelSelected.equals(LevelSelection.PRACTISE)){//means user gets another try at same question
 				_equationLbl.setText(_num.getQuiz().toString());
+			} else if (_levelSelected.equals(LevelSelection.CUSTOM)) {
+				_equationLbl.setText(_customLists.getEquations(_index).get(_equationIndex));
 			}
 
 			else if (_levelSelected.equals(LevelSelection.CUSTOM)){
@@ -210,7 +220,7 @@ public class NumberDisplayController {
 	@FXML
 	private void recordPressed() {	
 		_recordBtn.setText("recording");
-		
+
 		_recordTask = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
@@ -272,6 +282,10 @@ public class NumberDisplayController {
 
 	}
 
+	//sets index if playing a custom list
+	public void setList(int index) {
+		_index = index;
+	}
 	/**
 	 * sets questions based on level the user has selected or if they are practicing
 	 * @param _level
@@ -299,6 +313,11 @@ public class NumberDisplayController {
 			} catch (NumberOutOfBoundsException e) {
 				e.printStackTrace();
 			}
+		} else if (_level.equals(LevelSelection.CUSTOM)){
+			_levelLbl.setText("Level: " + _customLists.getLists().get(_index));
+			_equationIndex = ThreadLocalRandom.current().nextInt(0, _customLists.getEquations(_index).size());
+			_equationLbl.setText(_customLists.getEquations(_index).get(_equationIndex));
+			_num = new Number(_customLists.getAnswer(_index).get(_equationIndex));
 		}
 		else if(_level.equals(LevelSelection.PRACTISE)){
 			_levelLbl.setText("Practise");//set questions for practice
@@ -308,12 +327,10 @@ public class NumberDisplayController {
 				e.printStackTrace();
 			}
 		}
-		else{ //set questions for custom
-			
-		}
-		_equationLbl.setText(_num.getEquation());
 		if (_level.equals(LevelSelection.PRACTISE)){
 			_equationLbl.setText(_num.getQuiz().toString()); //display question
+		} else if (!_level.equals(LevelSelection.CUSTOM)){
+			_equationLbl.setText(_num.getEquation());
 		}
 
 	}
