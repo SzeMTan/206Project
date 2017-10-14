@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane stylesheets="@popupDesign.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.QuitWindowController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="409.0" text="Would you like to save your results before you quit? " VBox.vgrow="ALWAYS" />
+            <Label text="Otherwise all your scores will be deleted" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <Button fx:id="_yesBtn" mnemonicParsing="false" onAction="#yesBtn" text="Yes" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="_noBtn" mnemonicParsing="false" onAction="#getNoBtn" text="No" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="_cancelBtn" layoutX="135.0" layoutY="28.0" mnemonicParsing="false" onAction="#getCancelBtn" text="Cancel" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

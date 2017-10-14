@@ -1,5 +1,5 @@
 .root{
-	-fx-pref-width: 300;
+	-fx-pref-width: 400;
 	-fx-pref-height: 200;
 	-fx-background-color: #afeeee;
 }
@@ -10,7 +10,7 @@
 }
 
 .button{
-	-fx-pref-width: 60;
+	-fx-pref-width: 80;
 	-fx-pref-height: 40;
 	-fx-font-size:  15px;
 	-fx-font-family: "Berlin Sans FB";

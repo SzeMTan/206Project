@@ -91,7 +91,7 @@ public class StatisticsController implements Initializable {
 		addStats(stats,LevelSelection.EASY,_easyChart,easyMin,easyMax,easyAverage);
 		addStats(stats,LevelSelection.MEDIUM,_mediumChart,mediumMin,mediumMax,mediumAverage);
 		addStats(stats,LevelSelection.HARD,_hardChart,hardMin,hardMax,hardAverage);
-		addStats(stats,LevelSelection.CUSTOM,_easyChart,customMin,customMax,customAverage);
+		addStats(stats,LevelSelection.CUSTOM,_customChart,customMin,customMax,customAverage);
 	}
 
 
@@ -104,6 +104,7 @@ public class StatisticsController implements Initializable {
 		
 	}
 	
+	//This method changed the auto ranging, upper and lower bound and the division unit for the specified axis
 	private void setAxisRange(NumberAxis axis){
 		axis.setAutoRanging(false);
 	    axis.setLowerBound(0);
@@ -112,7 +113,7 @@ public class StatisticsController implements Initializable {
 	}
 	
 	private void addStats(Stats stats, LevelSelection level, BarChart<String, Integer> chart, Label minLabel, Label maxLabel, Label avLabel){
-		//initialise easy bar chart
+		//load all the information for the specified parameters
 				Integer[] scoreArray = stats.getResultArray(level);
 				
 				if (stats.getMin(level) >= 0){

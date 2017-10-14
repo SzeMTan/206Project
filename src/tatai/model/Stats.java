@@ -74,7 +74,7 @@ public class Stats {
 	}
 
 	/**
-	 * Returns the array associated with the level
+	 * Returns the array associated with the level for setting information and calculating values
 	 * @return
 	 */
 
