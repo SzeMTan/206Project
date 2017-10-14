@@ -10,7 +10,6 @@ public class Recording {
 
 	//Bash commands
 	private final String FILE = "foo.wav"; //name of recording file
-	private final String TEMPFILE = "fooTemp.wav"; //store temp audio here
 	private final String RECORD = "ffmpeg -f alsa -i default -acodec pcm_s16le -ar 22050 -ac 1 " + FILE; //record 
 	private final String RECOGNITION = "HVite -H ./HTK/MaoriNumbers/HMMs/hmm15/macros -H "
 			+ "./HTK/MaoriNumbers/HMMs/hmm15/hmmdefs -C ./HTK/MaoriNumbers/user/configLR  "

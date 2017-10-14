@@ -43,21 +43,12 @@ public class NumberDisplayController {
 	@FXML private TextField _userAnswer; // shows user what they said
 	@FXML private Label _answerLabel;
 
-
-	@FXML
-	private Button _recordBtn;
-	@FXML
-	private Button _playBtn;
-	@FXML
-	private Button _backBtn;
-	@FXML
-	private Button _okBtn;
 	private Stage window;
 
 	private Number _num;
-	private int _score = 2; //////////////////////////////////////////////// WAS 0
+	private int _score = 0;
 	private int _question = 1;
-	private int _numIncorrect = 0;
+	private int _numIncorrect = 0; //signals how many times user has gotten same question wrong
 
 	private Scene endScene;
 
@@ -80,10 +71,10 @@ public class NumberDisplayController {
 
 
 	//actions for when home is clicked
-	public void homeClick(ActionEvent event) throws IOException{
-		//load pop up asking for user confirmation that they want to leave
-
+	@FXML
+	private void homeClick(ActionEvent event) throws IOException{
 		if (!_levelSelected.equals(LevelSelection.PRACTISE)) {
+			//load pop up asking for user confirmation that they want to leave
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("./view/QuitPlayConfirm.fxml"));
 			Parent parent = loader.load();
@@ -114,6 +105,7 @@ public class NumberDisplayController {
 			loader.<QuitPlayConfirmController>getController().getNoBtn().setOnAction(e -> { //user doesn't wish to quit
 				confirmWindow.close();
 			});
+			
 			confirmWindow.show();
 		} else { //user is practicing and there's no need to ask them for leave confirmation
 			//change to main menu scene
@@ -130,16 +122,8 @@ public class NumberDisplayController {
 
 	//actions for when next is clicked
 	@FXML
-	private void okBtnClicked(ActionEvent event) throws IOException{
-
-		//reset the record button
-		_recordBtn.setText("Record");
-		_recordBtn.setDisable(false);
-		_recordBtn.setVisible(true);
-		_backBtn.setVisible(true);
-		
-		_question = 11;  ;
-		if (_question == 11) {
+	private void nextClick(ActionEvent event) throws IOException{
+		if (_question == 11) { //means user has completed 10 questions and is hence finished
 			Stats stats = null;
 			//update stats object
 			if (_levelSelected.equals(LevelSelection.EASY)){
@@ -173,33 +157,34 @@ public class NumberDisplayController {
 			_playBtn.setVisible(false);
 			_userAnswer.setVisible(false);
 			_answerLabel.setVisible(false);
+			
+			//get recording components
+			_recordBtn.setText("Record");
+			_recordBtn.setVisible(true);
 
-		_backgroundPane.setStyle("-fx-background-color: #afeeee");
-		_numberLbl.setFont(Font.font("Berlin Sans FB", 96));
-		_okBtn.setVisible(false);
-		_playBtn.setVisible(false);
-		_recordBtn.setVisible(true);
-
-		if (_numIncorrect != 1){
-			if (_levelSelected.equals(LevelSelection.PRACTISE)){
+			if (_numIncorrect != 1){ //means new question has to be generated
+				if (_levelSelected.equals(LevelSelection.PRACTISE)){
+					_num.generateNumber();
+					_equationLbl.setText(_num.getQuiz().toString());
+				}
+				else {
+					_num.generateEquation();
+				}
+				_questionLbl.setText("Question number: " + _question);
+				_scoreLbl.setText("Score: " + _score);
+			}
+			if (_levelSelected.equals(LevelSelection.PRACTISE)){//means user gets another try at same question
 				_equationLbl.setText(_num.getQuiz().toString());
 			}
 			else {
-				_num.generateEquation();
+				_equationLbl.setText(_num.getEquation());
 			}
-			_questionLbl.setText("Question number: " + _question);
-			_scoreLbl.setText("Score: " + _score);
-		}
-		if (_levelSelected.equals(LevelSelection.PRACTISE)){
-			_numberLbl.setText(_num.getQuiz().toString());
-		}
-		else {
-			_numberLbl.setText(_num.getEquation());
 		}
 	}
 
 	//actions for when play is clicked
-	public void playClick(){
+	@FXML
+	private void playClick(){
 		//make sure user can't press play when something is already playing
 		_playBtn.setDisable(true);
 
@@ -224,9 +209,11 @@ public class NumberDisplayController {
 		playThread.start();
 	}
 
-	//actions for when record is pressed
-	public void recordPressed() {	
+	//actions for when record is pressed. While the record button is held down, audio should be recorded
+	@FXML
+	private void recordPressed() {	
 		_recordBtn.setText("recording");
+		
 		_recordTask = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
@@ -240,13 +227,12 @@ public class NumberDisplayController {
 					_recording.recognize();//get what user said
 
 					if (_num.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
-						//generate new question
-						_question++;
+						_question++;//indicate question is complete
 						_numIncorrect = 0;
 						_nextBtn.setText("Next");
 						if (_num.compare(_recording.getWord())) { //user was right
 							setCorrectScene();
-							_score++;
+							_score++; //update score
 							_scoreLbl.setText("Score: " + _score);
 						} else { //user was wrong for second time
 							setNiceTryScene();
@@ -257,13 +243,12 @@ public class NumberDisplayController {
 						setTryAgainScene();
 						_nextBtn.setText("Retry");
 						_numIncorrect = 1;
-
 					}
 					_equationLbl.setFont(Font.font("Berlin Sans FB",50)); //make text smaller so that it's readible
-					
+
 					//hide recording components
 					_recordBtn.setVisible(false);
-					
+
 					//get feedback components
 					_nextBtn.setVisible(true);
 					_playBtn.setVisible(true);
@@ -279,12 +264,14 @@ public class NumberDisplayController {
 	}
 
 	//actions for when record is released
-	public void recordReleased() {
+	@FXML
+	private void recordReleased() {
 		_recording.killRecord(); //stop recording
 	}
 
 	//actions for when help is clicked
-	public void helpClick() {
+	@FXML
+	private void helpClick() {
 
 	}
 
