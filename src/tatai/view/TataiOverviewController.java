@@ -32,7 +32,7 @@ public class TataiOverviewController {
 		FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/Start.fxml"));
         Parent easyStart = loader.load();
-        loader.<StartController>getController().setLevel(LevelSelection.EASY);
+        loader.<StartController>getController().setLevel(LevelSelection.EASY, -1);
         
 		
 		easyStartScene = new Scene(easyStart);
@@ -45,7 +45,7 @@ public class TataiOverviewController {
 		FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/Start.fxml"));
         Parent hardStart = loader.load();
-        loader.<StartController>getController().setLevel(LevelSelection.HARD);
+        loader.<StartController>getController().setLevel(LevelSelection.HARD, -1);
         
 		hardStartScene = new Scene(hardStart);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();

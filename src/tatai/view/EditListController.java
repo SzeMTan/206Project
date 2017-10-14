@@ -3,9 +3,13 @@ package tatai.view;
 import java.io.IOException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tatai.Main;
+import tatai.model.CustomLists;
 
 /**
  * Controller for the scene where the user wants to edit or create a new list of equations
@@ -43,10 +48,36 @@ public class EditListController {
 	@FXML private ComboBox<String> _operation;
 	@FXML private TextField _answer;
 
+	private int _index; //keep track of which list is being edited. If = -1, then it's a new list
+	
+	private CustomLists _customList = CustomLists.getInstance();
+	private ListProperty<String> _listProperty = new SimpleListProperty<>();
+	private ArrayList<String> _equations = new ArrayList<String>(); 
+	private ArrayList<Integer> _answers = new ArrayList<Integer>();
+	
 	private Boolean _madeChanges = false; //keep track of whether user has made any changes to list
 
+	public EditListController(int index) {
+		_index = index;
+	}
+	
 	@FXML
-	public void initialize() {
+	private void initialize() {
+		if (_index != -1) {
+			_equations = _customList.getEquations(_index);
+			_answers = _customList.getAnswer(_index);
+			
+			//display name of list
+			_name.setText(_customList.getLists().get(_index));
+			
+			//display equations
+			_listProperty.set(FXCollections.observableArrayList(_equations));
+			_equationList.itemsProperty().bind(_listProperty);
+			
+			//display comments
+			_comments.setText(_customList.getComment(_index));
+		}
+		
 		//make it so that only numbers can be entered into this textField
 		_numberOne.textProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -91,7 +122,6 @@ public class EditListController {
 				}
 			}
 		});
-
 	}
 
 	/**
@@ -184,8 +214,14 @@ public class EditListController {
 
 				if (answer % 1 == 0 && answer >= 1 && answer <= 99) { //means answer is valid
 					_madeChanges = true;
-					_equationList.getItems().add(_numberOne.getText() + " " + _operation.getSelectionModel().getSelectedItem() +
-							" " + _numberTwo.getText());
+					String equation = _numberOne.getText() + " " + _operation.getSelectionModel().getSelectedItem() +
+							" " + _numberTwo.getText();
+					//show new equation to user
+					_equationList.getItems().add(equation);
+					
+					//add equations to list
+					_equations.add(equation);
+					_answers.add((int)answer);
 				}
 			} catch (NumberFormatException | ArithmeticException e) {
 				System.out.println("oops, the number you have entered is too big");
@@ -197,20 +233,34 @@ public class EditListController {
 	public void removeClick() {
 		if (_equationList.getSelectionModel().getSelectedIndex() != -1) {
 			_madeChanges = true;
-			_equationList.getItems().remove(_equationList.getSelectionModel().getSelectedIndex());
+			int index = _equationList.getSelectionModel().getSelectedIndex();
+			
+			//remove equation from gui
+			_equationList.getItems().remove(index);
+			
+			//remove equation from list
+			_equations.remove(index);
+			_answers.remove(index);
 		}
 	}
 
 	//when done is clicked
 	public void doneClick(ActionEvent event) {
-		//make sure that the name of the list is valid
-		if (!_name.getText().equals("") && _name.getText().matches("[a-zA-Z0-9_-]*")) { //gotta add and if name doesn't already exist
-			try {
-				Scene listScene = loadManage("./view/Lists.fxml");
-				Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-				window.setScene(listScene);
-			} catch (IOException e) {
-				e.printStackTrace();
+		String name = _name.getText();
+		//make sure that the name of the list is valid and that there is at least one equation
+		if (!name.equals("") && name.matches("[a-zA-Z0-9_-]*") && !_equationList.getItems().isEmpty()) { 
+			//make sure name doesn't already belong to another list
+			if ((_index == -1 && !_customList.getLists().contains(name)) || _index != -1) {
+				//update this list
+				_customList.updateList(_index, name, _comments.getText(), _equations, _answers);
+				try {
+					//go back to list page
+					Scene listScene = loadManage("./view/Lists.fxml");
+					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+					window.setScene(listScene);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

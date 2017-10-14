@@ -63,7 +63,7 @@ public class MainMenuController {
 		FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/Start.fxml"));
         Parent start = loader.load();
-        loader.<StartController>getController().setLevel(LevelSelection.PRACTISE);
+        loader.<StartController>getController().setLevel(LevelSelection.PRACTISE, -1);
         
 		_scene = new Scene(start);
 		_window = (Stage)((Node)event.getSource()).getScene().getWindow();
