@@ -5,7 +5,7 @@
 }
 
 .button{
-	-fx-pref-width: 40;
-	-fx-pref-height: 20;
-	-fx-background-radius: 5px;
+	-fx-pref-width: 60;
+	-fx-pref-height: 40;
+	-fx-background-radius: 10px;
 }

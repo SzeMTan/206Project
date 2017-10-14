@@ -12,9 +12,6 @@ public class Recording {
 	private final String FILE = "foo.wav"; //name of recording file
 	private final String TEMPFILE = "fooTemp.wav"; //store temp audio here
 	private final String RECORD = "ffmpeg -f alsa -i default -acodec pcm_s16le -ar 22050 -ac 1 " + FILE; //record 
-	private final String TEMPRECORD = "ffmpeg -f alsa -i default -t 0.5 -acodec pcm_s16le -ar 22050 -ac 1 " + TEMPFILE;//record temp audio
-	private final String COMBINEAUDIO = "yes | ffmpeg -i " + FILE + " -i " + TEMPFILE + " -filter_complex '[0:0][1:0]concat=n=2"
-			+ ":v=0:a=1[out]' -map '[out]' " + FILE; //combine audio and temp audio;
 	private final String RECOGNITION = "HVite -H ./HTK/MaoriNumbers/HMMs/hmm15/macros -H "
 			+ "./HTK/MaoriNumbers/HMMs/hmm15/hmmdefs -C ./HTK/MaoriNumbers/user/configLR  "
 			+ "-w ./HTK/MaoriNumbers/user/wordNetworkNum -o SWT -l '*' -i ./HTK/MaoriNumbers/"
@@ -23,13 +20,14 @@ public class Recording {
 	private final String WORD = "awk '/sil/{flag = flag + 1}; flag % 2 == 1 && ! /sil/' ./HTK/"
 			+ "MaoriNumbers/recout.mlf"; //get interpretation of recording
 	private final String PLAY = "aplay " + FILE; //play recording
+	//command to sent interrupt signal to record
 	private final String KILLRECORD = "kill -SIGINT $(ps aux | grep '[f]fmpeg -f alsa -i default -acodec pcm_s16le -ar 22050 -ac 1 foo.wav' | awk '{print $2}')";
 
 	/**
 	 * record() checks if there is an existing recording and deletes it. Then a new recording is made and interpreted.
 	 * This makes sure that there is only one recording in existance at a time.
 	 */
-	public void firstRecord() {
+	public void record() {
 		File recording = new File(FILE);
 		if (recording.exists()) {
 			recording.delete();
@@ -41,17 +39,6 @@ public class Recording {
 	public void killRecord() {
 		Bash kill = new Bash(KILLRECORD);
 		kill.execute();
-	}
-	
-	public void tempRecord() {
-		File tempRecording = new File(TEMPFILE);
-		if (tempRecording.exists()) {
-			tempRecording.delete();
-		}
-		Bash tempRecord = new Bash(TEMPRECORD);
-		tempRecord.execute();
-		Bash combine = new Bash(COMBINEAUDIO);
-		combine.execute();
 	}
 	
 	public void recognize() {
