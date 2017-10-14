@@ -48,8 +48,7 @@ public class StartController {
 		}
 		else{
 			label.setText("Level: Hard");
-		}
-		
+		}		
 	}
 	
 	public void startBtn(ActionEvent event) throws IOException{

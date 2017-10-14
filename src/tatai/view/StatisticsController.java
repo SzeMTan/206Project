@@ -35,7 +35,11 @@ public class StatisticsController implements Initializable {
 	@FXML
 	private Label easyAverage;
 	@FXML
-	private BarChart<String, Integer> _easyChart;
+	private Label mediumMin;
+	@FXML
+	private Label mediumMax;
+	@FXML
+	private Label mediumAverage;
 	@FXML
 	private Label hardMin;
 	@FXML
@@ -43,9 +47,28 @@ public class StatisticsController implements Initializable {
 	@FXML
 	private Label hardAverage;
 	@FXML
+	private Label customMin;
+	@FXML
+	private Label customMax;
+	@FXML
+	private Label customAverage;
+	@FXML
+	private BarChart<String, Integer> _easyChart;
+	@FXML
+	private BarChart<String, Integer> _mediumChart;
+	@FXML
 	private BarChart<String, Integer> _hardChart;
 	@FXML
-	private NumberAxis yAxis;
+	private BarChart<String, Integer> _customChart;
+	
+	@FXML
+	private NumberAxis yEasyAxis;
+	@FXML
+	private NumberAxis yMediumAxis;
+	@FXML
+	private NumberAxis yHardAxis;
+	@FXML
+	private NumberAxis yCustomAxis;
 
 	//private List<Stats,LevelSelection> statsList = new ArrayList<Stats,LevelSelection>();
 	
@@ -64,24 +87,28 @@ public class StatisticsController implements Initializable {
 	public void setStats(){	
 		
 		// Gets stats objects for each of the levels
-		Stats statsEasy = Stats.getEasyInstance();
-		addStats(statsEasy,LevelSelection.EASY,_easyChart,easyMin,easyMax,easyAverage);
-////		Stats statsMedium = Stats.getMediumInstance();
-////		addStats(statsMedium,LevelSelection.MEDIUM,_easyChart,easyMin,easyMax,easyAverage);
-//		Stats statsHard = Stats.getHardInstance();
-//		addStats(statsHard,LevelSelection.HARD,_hardChart,hardMin,hardMax,hardAverage);
-////		Stats statsCustom = Stats.getCustomInstance();
-////		addStats(statsEasy,LevelSelection.EASY,_easyChart,easyMin,easyMax,easyAverage);
+		Stats stats = Stats.getInstance();
+		addStats(stats,LevelSelection.EASY,_easyChart,easyMin,easyMax,easyAverage);
+		addStats(stats,LevelSelection.MEDIUM,_mediumChart,mediumMin,mediumMax,mediumAverage);
+		addStats(stats,LevelSelection.HARD,_hardChart,hardMin,hardMax,hardAverage);
+		addStats(stats,LevelSelection.CUSTOM,_easyChart,customMin,customMax,customAverage);
 	}
 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		yAxis.setAutoRanging(false);
-	    yAxis.setLowerBound(0);
-	    yAxis.setUpperBound(10);
-	    yAxis.setTickUnit(1);
+		setAxisRange(yEasyAxis);
+		setAxisRange(yMediumAxis);
+		setAxisRange(yHardAxis);
+		setAxisRange(yCustomAxis);
 		
+	}
+	
+	private void setAxisRange(NumberAxis axis){
+		axis.setAutoRanging(false);
+	    axis.setLowerBound(0);
+	    axis.setUpperBound(10);
+	    axis.setTickUnit(1);
 	}
 	
 	private void addStats(Stats stats, LevelSelection level, BarChart<String, Integer> chart, Label minLabel, Label maxLabel, Label avLabel){

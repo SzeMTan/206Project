@@ -76,6 +76,7 @@ public class NumberDisplayController {
 	}
 
 
+
 	//actions for when home is clicked
 	@FXML
 	private void homeClick(ActionEvent event) throws IOException{
@@ -128,22 +129,11 @@ public class NumberDisplayController {
 
 	//actions for when next is clicked
 	@FXML
+
 	private void nextClick(ActionEvent event) throws IOException{
 		if (_question == 11) { //means user has completed 10 questions and is hence finished
-			Stats stats = null;
+			Stats stats = Stats.getInstance();
 			//update stats object
-			if (_levelSelected.equals(LevelSelection.EASY)){
-				stats = Stats.getEasyInstance();
-			}
-			else if (_levelSelected.equals(LevelSelection.MEDIUM)){
-				stats = Stats.getMediumInstance();
-			}
-			else if (_levelSelected.equals(LevelSelection.HARD)){
-				stats = Stats.getHardInstance();
-			}
-			else{
-				stats = Stats.getCustomInstance();
-			}
 			stats.addResult(_score, _levelSelected);
 
 			//change to score scene
@@ -175,7 +165,10 @@ public class NumberDisplayController {
 					_equationIndex = ThreadLocalRandom.current().nextInt(0, _customLists.getEquations(_index).size());
 					_num = new Number(_customLists.getAnswer(_index).get(_equationIndex));
 				}
-				else {
+				else if(_levelSelected.equals(LevelSelection.CUSTOM)){ //custom question generated
+					
+				}
+				else{
 					_num.generateEquation();
 				}
 				_questionLbl.setText("Question number: " + _question);
@@ -186,7 +179,11 @@ public class NumberDisplayController {
 			} else if (_levelSelected.equals(LevelSelection.CUSTOM)) {
 				_equationLbl.setText(_customLists.getEquations(_index).get(_equationIndex));
 			}
-			else {
+
+			else if (_levelSelected.equals(LevelSelection.CUSTOM)){
+				
+			}
+			else{
 				_equationLbl.setText(_num.getEquation());
 			}
 		}
@@ -322,7 +319,7 @@ public class NumberDisplayController {
 			_equationLbl.setText(_customLists.getEquations(_index).get(_equationIndex));
 			_num = new Number(_customLists.getAnswer(_index).get(_equationIndex));
 		}
-		else{
+		else if(_level.equals(LevelSelection.PRACTISE)){
 			_levelLbl.setText("Practise");//set questions for practice
 			try {
 				_num = new Number(1,99);

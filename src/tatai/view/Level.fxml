@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.LevelController">
+<AnchorPane stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.LevelController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="286.0" prefWidth="396.0" spacing="20.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
          <children>
@@ -21,7 +21,7 @@
             <Font name="Berlin Sans FB" size="60.0" />
          </font>
       </Label>
-      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" minWidth="110.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" AnchorPane.bottomAnchor="446.0" AnchorPane.leftAnchor="14.0" />
-      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="446.0" minWidth="110.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" />
+      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" minWidth="110.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0" />
+      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="446.0" minWidth="110.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
    </children>
 </AnchorPane>
