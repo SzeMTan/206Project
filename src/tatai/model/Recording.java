@@ -10,7 +10,8 @@ public class Recording {
 
 	//Bash commands
 	private final String FILE = "foo.wav"; //name of recording file
-	private final String RECORD = "arecord -r 22050 -c 1 -i -t wav -f s16_LE " + FILE; //record 
+	private final String TEMPFILE = "fooTemp.wav"; //store temp audio here
+	private final String RECORD = "ffmpeg -f alsa -i default -acodec pcm_s16le -ar 22050 -ac 1 " + FILE; //record 
 	private final String RECOGNITION = "HVite -H ./HTK/MaoriNumbers/HMMs/hmm15/macros -H "
 			+ "./HTK/MaoriNumbers/HMMs/hmm15/hmmdefs -C ./HTK/MaoriNumbers/user/configLR  "
 			+ "-w ./HTK/MaoriNumbers/user/wordNetworkNum -o SWT -l '*' -i ./HTK/MaoriNumbers/"
@@ -19,12 +20,14 @@ public class Recording {
 	private final String WORD = "awk '/sil/{flag = flag + 1}; flag % 2 == 1 && ! /sil/' ./HTK/"
 			+ "MaoriNumbers/recout.mlf"; //get interpretation of recording
 	private final String PLAY = "aplay " + FILE; //play recording
+	//command to sent interrupt signal to record
+	private final String KILLRECORD = "kill -SIGINT $(ps aux | grep '[f]fmpeg -f alsa -i default -acodec pcm_s16le -ar 22050 -ac 1 foo.wav' | awk '{print $2}')";
 
 	/**
 	 * record() checks if there is an existing recording and deletes it. Then a new recording is made and interpreted.
 	 * This makes sure that there is only one recording in existance at a time.
 	 */
-	public void beginRecord() {
+	public void record() {
 		File recording = new File(FILE);
 		if (recording.exists()) {
 			recording.delete();
@@ -33,16 +36,14 @@ public class Recording {
 		record.execute();
 	}
 	
-	/**
-	 * kills recording process
-	 */
-	public void finishRecord() {
-		String killRecord = RECORD.substring(1);
-		killRecord = "kill $(ps aux | grep '[" + RECORD.charAt(0) + "]" + killRecord+ "' | awk '{print $2}')";
-		Bash kill = new Bash(killRecord);
+	public void killRecord() {
+		Bash kill = new Bash(KILLRECORD);
 		kill.execute();
-		Bash recognition = new Bash(RECOGNITION);
-		recognition.execute();
+	}
+	
+	public void recognize() {
+		Bash recognize = new Bash(RECOGNITION);
+		recognize.execute();
 	}
 
 	/**
