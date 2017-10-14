@@ -8,11 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import tatai.model.LevelSelection;
-import tatai.view.QuitPlayConfirmController;
 import tatai.view.QuitWindowController;
-import tatai.view.StartController;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
