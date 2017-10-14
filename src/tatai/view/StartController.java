@@ -39,10 +39,10 @@ public class StartController {
 			label.setText("Level: Medium");
 		}
 		else if(_level.equals(LevelSelection.HARD)){
-			label.setText("HARD");
+			label.setText("Level: Hard");
 		}
 		else if (_level.equals(LevelSelection.CUSTOM)){
-			label.setText("Level: CUSTOM");
+			label.setText("Level: Custom");
 		}
 		else {
 			label.setText("Practise");
