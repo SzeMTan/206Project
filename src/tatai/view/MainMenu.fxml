@@ -30,7 +30,7 @@
          <children>
             <ImageView fitHeight="102.0" fitWidth="396.0">
                <image>
-                  <Image url="@../../../Title_ver2.jpg" />
+                  <Image url="@../../main/resources/Title_ver2.jpg" />
                </image>
             </ImageView>
          </children>
