@@ -1,0 +1,18 @@
+.root{
+	-fx-pref-width: 400;
+	-fx-pref-height: 200;
+	-fx-background-color: #afeeee;
+}
+
+.label{
+	-fx-font-family: "Berlin Sans FB";
+	-fx-font-size:  15px;
+}
+
+.button{
+	-fx-pref-width: 80;
+	-fx-pref-height: 40;
+	-fx-font-size:  15px;
+	-fx-font-family: "Berlin Sans FB";
+	-fx-background-radius: 10px;
+}
