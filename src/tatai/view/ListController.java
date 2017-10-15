@@ -55,7 +55,7 @@ public class ListController {
 		if (index != -1) {
 			try {
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(Main.class.getResource("./view/EditList.fxml"));
+				loader.setLocation(Main.class.getResource("/tatai/view/EditList.fxml"));
 				loader.setControllerFactory(c -> {
 					return new EditListController(index);
 				});
@@ -73,7 +73,7 @@ public class ListController {
 	private void newClick(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("./view/EditList.fxml"));
+			loader.setLocation(Main.class.getResource("/tatai/view/EditList.fxml"));
 			loader.setControllerFactory(c -> {
 				return new EditListController(-1);
 			});
@@ -101,7 +101,7 @@ public class ListController {
 
 	public void homeClick(ActionEvent event) {
 		try {
-			Scene mainMenuScene = loadManage("./view/MainMenu.fxml");
+			Scene mainMenuScene = loadManage("/tatai/view/MainMenu.fxml");
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			stage.setScene(mainMenuScene);
 		} catch (IOException e) {

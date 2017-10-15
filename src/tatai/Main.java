@@ -20,7 +20,7 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("./view/MainMenu.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/tatai/view/MainMenu.fxml"));
 		Scene mainMenu = new Scene(root);
 		primaryStage.setScene(mainMenu);
 		primaryStage.setTitle("Tatai");
@@ -30,7 +30,7 @@ public class Main extends Application {
 			public void handle(WindowEvent event) {
 				// TODO Auto-generated method stub
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(Main.class.getResource("./view/QuitWindow.fxml"));
+				loader.setLocation(Main.class.getResource("/tatai/view/QuitWindow.fxml"));
 				try {
 					Parent parent = loader.load();
 					Scene exitScene = new Scene(parent);

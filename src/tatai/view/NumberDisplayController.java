@@ -83,7 +83,7 @@ public class NumberDisplayController {
 		if (!_levelSelected.equals(LevelSelection.PRACTISE)) {
 			//load pop up asking for user confirmation that they want to leave
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("./view/QuitPlayConfirm.fxml"));
+			loader.setLocation(Main.class.getResource("/tatai/view/QuitPlayConfirm.fxml"));
 			Parent parent = loader.load();
 			Scene confirmScene = new Scene(parent);
 
@@ -95,7 +95,7 @@ public class NumberDisplayController {
 				try {
 					//change to main menu scene
 					FXMLLoader loaderMenu = new FXMLLoader();
-					loaderMenu.setLocation(Main.class.getResource("./view/MainMenu.fxml"));
+					loaderMenu.setLocation(Main.class.getResource("/tatai/view/MainMenu.fxml"));
 					Parent parentMenu = loaderMenu.load();
 					Scene sceneMenu = new Scene(parentMenu);
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -117,7 +117,7 @@ public class NumberDisplayController {
 		} else { //user is practicing and there's no need to ask them for leave confirmation
 			//change to main menu scene
 			FXMLLoader loaderMenu = new FXMLLoader();
-			loaderMenu.setLocation(Main.class.getResource("./view/MainMenu.fxml"));
+			loaderMenu.setLocation(Main.class.getResource("/tatai/view/MainMenu.fxml"));
 			Parent parentMenu = loaderMenu.load();
 			Scene sceneMenu = new Scene(parentMenu);
 			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();

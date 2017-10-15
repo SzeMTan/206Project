@@ -40,7 +40,7 @@ public class MainMenuController {
 	 */
 	public void listsClick(ActionEvent event) {
 		try {
-			Scene listScene = loadManage("./view/Lists.fxml");
+			Scene listScene = loadManage("/tatai/view/Lists.fxml");
 			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			window.setScene(listScene);
 		} catch (IOException e) {

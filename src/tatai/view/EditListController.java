@@ -155,7 +155,7 @@ public class EditListController {
 		if (_madeChanges) {
 			//open up a popup window asking for confirmation that they want to leave
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("./view/BackConfirmation.fxml"));
+			loader.setLocation(Main.class.getResource("/tatai/view/BackConfirmation.fxml"));
 			Parent parent = loader.load();
 			Scene confirmationScene = new Scene(parent);
 
@@ -166,7 +166,7 @@ public class EditListController {
 			//if yes button is clicked, close the popup window and go back to list main page scene
 			loader.<BackConfirmationController>getController().getYesButton().setOnAction(e -> {
 				try {
-					Scene listScene = loadManage("./view/Lists.fxml");
+					Scene listScene = loadManage("/tatai/view/Lists.fxml");
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 					window.setScene(listScene);
 					popupWindow.close();
@@ -182,7 +182,7 @@ public class EditListController {
 			popupWindow.show();
 		} else {
 			//user hasn't made any changes and therefore there's no point to a pop up
-			Scene listScene = loadManage("./view/Lists.fxml");
+			Scene listScene = loadManage("/tatai/view/Lists.fxml");
 			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			window.setScene(listScene);
 		}
@@ -268,7 +268,7 @@ public class EditListController {
 				_customList.updateList(_index, name, _comments.getText(), _equations, _answers);
 				try {
 					//go back to list main page scene
-					Scene listScene = loadManage("./view/Lists.fxml");
+					Scene listScene = loadManage("/tatai/view/Lists.fxml");
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 					window.setScene(listScene);
 				} catch (IOException e) {

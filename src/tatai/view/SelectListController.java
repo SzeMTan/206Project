@@ -38,7 +38,7 @@ public class SelectListController {
 	private void homeClick(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("./view/MainMenu.fxml"));
+			loader.setLocation(Main.class.getResource("/tatai/view/MainMenu.fxml"));
 			Parent parent = loader.load();
 			Scene mainMenuScene = new Scene(parent);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -58,7 +58,7 @@ public class SelectListController {
 		int index = _lists.getSelectionModel().getSelectedIndex();
 		if (index != -1) {
 			FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(Main.class.getResource("view/Start.fxml"));
+	        loader.setLocation(Main.class.getResource("/tatai/view/Start.fxml"));
 	        Parent easyStart = loader.load();
 	        loader.<StartController>getController().setLevel(LevelSelection.CUSTOM, index);
 	        
