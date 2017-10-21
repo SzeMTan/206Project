@@ -1,1 +1,11 @@
+#Maven stuff
 /target/
+
+#Compiled files
+/bin/
+
+#HTK Stuff
+recout.mlf
+foo.wav
+HMMs/
+user/
