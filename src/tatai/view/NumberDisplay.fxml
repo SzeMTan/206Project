@@ -71,12 +71,12 @@
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="_playBtn1" alignment="CENTER" layoutX="257.0" layoutY="268.0" mnemonicParsing="false" onAction="#playClick" onMousePressed="#recordPressed" onMouseReleased="#recordReleased" prefHeight="63.0" prefWidth="150.0" text="Play">
+      <Button fx:id="_playBtn1" alignment="CENTER" layoutX="257.0" layoutY="268.0" mnemonicParsing="false" onAction="#playClick" prefHeight="63.0" prefWidth="150.0" text="Play">
          <font>
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="_submitBtn" alignment="CENTER" layoutX="387.0" layoutY="268.0" mnemonicParsing="false" onAction="#submitClick" onMousePressed="#recordPressed" onMouseReleased="#recordReleased" prefHeight="63.0" prefWidth="150.0" text="Submit">
+      <Button fx:id="_submitBtn" alignment="CENTER" layoutX="387.0" layoutY="268.0" mnemonicParsing="false" onAction="#submitClick" prefHeight="63.0" prefWidth="150.0" text="Submit">
          <font>
             <Font name="Berlin Sans FB" size="30.0" />
          </font>

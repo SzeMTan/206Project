@@ -95,7 +95,6 @@ public class NumberDisplayController {
 					
 					Platform.runLater(() -> {
 						_recordBtn.setText("Record");
-						_recordBtn.setDisable(true);
 						_playBtn1.setDisable(false);
 						_submitBtn.setDisable(false);
 						
@@ -177,6 +176,7 @@ public class NumberDisplayController {
 	private void playClick(){
 		//make sure user can't press play when something is already playing
 		_playBtn2.setDisable(true);
+		setFrontEnabling(true);
 
 		_task = new Task<Void>() {
 			@Override
@@ -191,6 +191,7 @@ public class NumberDisplayController {
 					//signal that play has finished
 					_playTaskExist = false;
 					_playBtn2.setDisable(false);
+					setFrontEnabling(false);
 				});
 			}
 		};
@@ -204,7 +205,7 @@ public class NumberDisplayController {
 	//to submit the users answer for checking
 	@FXML
 	private void submitClick() {
-		_recordBtn.setText("record");
+		_recordBtn.setText("Record");
 		_recording.recognize();//get what user said
 
 		if (_num.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
@@ -324,6 +325,15 @@ public class NumberDisplayController {
 		_correctAnswerLabel.setVisible(b);
 		_correctAnswer.setVisible(b);
 		_nextBtn.setVisible(b);
+	}
+	
+	/**
+	 * This will disable or enable the front components depending on the boolean input parameter
+	 */
+	private void setFrontEnabling(boolean b) {
+		_playBtn1.setDisable(b);
+		_submitBtn.setDisable(b);
+		_recordBtn.setDisable(b);
 	}
 	
 	//actions for when help is clicked
