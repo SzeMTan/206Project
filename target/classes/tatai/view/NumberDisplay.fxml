@@ -26,22 +26,28 @@
                   </Label>
                </children>
             </HBox>
-            <Label fx:id="_levelLbl" alignment="CENTER" minHeight="90.0" prefHeight="90.0" prefWidth="350.0" text="Level: " VBox.vgrow="ALWAYS">
+            <Label fx:id="_levelLbl" alignment="CENTER" minHeight="74.0" prefHeight="74.0" prefWidth="320.0" text="Level: " VBox.vgrow="ALWAYS">
                <font>
                   <Font name="Berlin Sans FB" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="_equationLbl" alignment="CENTER" prefHeight="165.0" prefWidth="300.0" text="9">
+            <Label fx:id="_equationLbl" alignment="CENTER" prefHeight="94.0" prefWidth="300.0" text="9">
                <font>
                   <Font name="Berlin Sans FB" size="96.0" />
                </font>
             </Label>
-            <Label fx:id="_answerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="320.0" text="You have said:">
+            <Label fx:id="_correctAnswerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="289.0" prefHeight="39.0" prefWidth="320.0" text="Correct Answer:">
                <font>
                   <Font name="Berlin Sans FB" size="22.0" />
                </font>
             </Label>
-            <TextField fx:id="_userAnswer" editable="false" prefHeight="40.0" prefWidth="320.0" />
+            <TextField fx:id="_correctAnswer" alignment="CENTER" editable="false" layoutX="10.0" layoutY="342.0" prefHeight="40.0" prefWidth="320.0" />
+            <Label fx:id="_userAnswerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="320.0" text="You have said:">
+               <font>
+                  <Font name="Berlin Sans FB" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="_userAnswer" alignment="CENTER" editable="false" prefHeight="40.0" prefWidth="320.0" />
             <HBox alignment="CENTER" prefHeight="89.0" prefWidth="320.0" spacing="35.0">
                <children>
                   <Button fx:id="_nextBtn" mnemonicParsing="false" onAction="#nextClick" prefHeight="43.0" prefWidth="109.0" text="Next">
@@ -49,7 +55,7 @@
                         <Font name="Berlin Sans FB" size="25.0" />
                      </font>
                   </Button>
-                  <Button id="start-butto" fx:id="_playBtn" mnemonicParsing="false" onAction="#playClick" prefHeight="43.0" prefWidth="109.0" text="Play">
+                  <Button id="start-butto" fx:id="_playBtn2" mnemonicParsing="false" onAction="#playClick" prefHeight="43.0" prefWidth="109.0" text="Play">
                      <font>
                         <Font name="Berlin Sans FB" size="25.0" />
                      </font>
@@ -60,7 +66,17 @@
       </VBox>
       <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
       <Button id="small-button" fx:id="_backBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="455.0" mnemonicParsing="false" onAction="#homeClick" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
-      <Button id="start-button" fx:id="_recordBtn" alignment="CENTER" layoutX="223.0" layoutY="345.0" mnemonicParsing="false" onMousePressed="#recordPressed" onMouseReleased="#recordReleased" prefHeight="76.0" prefWidth="170.0" text="Record">
+      <Button fx:id="_recordBtn" alignment="CENTER" layoutX="125.0" layoutY="268.0" mnemonicParsing="false" onMousePressed="#recordPressed" onMouseReleased="#recordReleased" prefHeight="63.0" prefWidth="150.0" text="Record">
+         <font>
+            <Font name="Berlin Sans FB" size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="_playBtn1" alignment="CENTER" layoutX="257.0" layoutY="268.0" mnemonicParsing="false" onAction="#playClick" onMousePressed="#recordPressed" onMouseReleased="#recordReleased" prefHeight="63.0" prefWidth="150.0" text="Play">
+         <font>
+            <Font name="Berlin Sans FB" size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="_submitBtn" alignment="CENTER" layoutX="387.0" layoutY="268.0" mnemonicParsing="false" onAction="#submitClick" onMousePressed="#recordPressed" onMouseReleased="#recordReleased" prefHeight="63.0" prefWidth="150.0" text="Submit">
          <font>
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
