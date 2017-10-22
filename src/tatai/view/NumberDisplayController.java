@@ -138,7 +138,9 @@ public class NumberDisplayController {
 
 			//get recording components
 			_recordBtn.setText("Record");
-			_recordBtn.setVisible(true);
+			setFrontVisibility(true);
+			_playBtn1.setDisable(true);
+			_submitBtn.setDisable(true);
 
 			if (_numIncorrect != 1){ //means new question has to be generated
 				if (_levelSelected.equals(LevelSelection.PRACTISE)){
@@ -209,7 +211,12 @@ public class NumberDisplayController {
 		_recording.recognize();//get what user said
 
 		if (_num.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
+			if(_levelSelected.equals(LevelSelection.PRACTISE)) {
+				_question = 0;
+			}
+			else {
 			_question++;//indicate question is complete
+			}
 			_numIncorrect = 0;
 			_nextBtn.setText("Next");
 			if (_num.compare(_recording.getWord())) { //user was right
@@ -229,9 +236,7 @@ public class NumberDisplayController {
 		_equationLbl.setFont(Font.font("Berlin Sans FB",35)); //make text smaller so that it's readable
 
 		//hide recording components
-		_recordBtn.setVisible(false);
-		_playBtn1.setVisible(false);
-		_submitBtn.setVisible(false);
+		setFrontVisibility(false);
 
 		//get feedback components
 		setFeedbackVisibility(true);
@@ -277,6 +282,8 @@ public class NumberDisplayController {
 		}
 		else if(_level.equals(LevelSelection.PRACTISE)){
 			_levelLbl.setText("Practise");//set questions for practice
+			_questionLbl.setVisible(false);
+			_scoreLbl.setVisible(false);
 			try {
 				_num = new Number(1,99);
 			} catch (NumberOutOfBoundsException e) {
@@ -336,6 +343,14 @@ public class NumberDisplayController {
 		_recordBtn.setDisable(b);
 	}
 	
+	/**
+	 * This will show or hide the front components depending on the boolean input parameter
+	 */
+	private void setFrontVisibility(boolean b) {
+		_playBtn1.setVisible(b);
+		_submitBtn.setVisible(b);
+		_recordBtn.setVisible(b);
+	}
 	//actions for when help is clicked
 		@FXML
 		private void helpClick() {
