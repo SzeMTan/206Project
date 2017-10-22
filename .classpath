@@ -13,5 +13,10 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Admin/Documents/206/206Project/gson-2.8.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Admin/Documents/206/206Project/controlsfx-8.40.14.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
