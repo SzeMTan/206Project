@@ -5,6 +5,9 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import org.controlsfx.control.PopOver;
+
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
@@ -16,7 +19,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
@@ -47,6 +52,14 @@ public class EditListController {
 	@FXML private TextField _numberTwo;
 	@FXML private ComboBox<String> _operation;
 	@FXML private TextField _answer;
+	@FXML private Button _removeBtn;
+	@FXML private Button _addBtn;
+	@FXML private Button _doneBtn;
+	
+	//error message popOver
+	private PopOver _popOver = new PopOver();
+	private final String POPOVERTITLE = "Error Message";
+	private Label _message = new Label();
 
 	private int _index; //keep track of which list is being edited. If = -1, then it's a new list
 	
@@ -63,6 +76,7 @@ public class EditListController {
 	
 	@FXML
 	private void initialize() {
+		//means user has selected to view list
 		if (_index != -1) {
 			_equations = _customList.getEquations(_index);
 			_answers = _customList.getAnswer(_index);
@@ -122,6 +136,19 @@ public class EditListController {
 				}
 			}
 		});
+		
+		//disable delete button when list is empty
+		_removeBtn.disableProperty().bind(Bindings.isEmpty(_equationList.getItems()));
+		
+		//setup popOver
+		_popOver.setDetachable(false);
+		//allow user to close
+		_popOver.setCloseButtonEnabled(true);
+		//set title
+		_popOver.setHeaderAlwaysVisible(true);
+		_popOver.setTitle(POPOVERTITLE);
+		//add message to popOver
+		_popOver.setContentNode(_message);
 	}
 
 	/**
@@ -191,8 +218,10 @@ public class EditListController {
 	//when the add button is clicked 
 	public void addClick() {
 		//notify that the user hasn't created any equation
-		if (_numberOne.getText().equals("") || _numberTwo.getText().equals("")) {
-			System.out.println("user hasn't entered any numbers");
+		if (_numberOne.getText().equals("") || _numberTwo.getText().equals("")) {	
+			//display popOver with user message
+			_message.setText("oops, looks like you haven't entered two numbers");
+			_popOver.show(_addBtn);
 		} else {
 			try {
 				//calculate answer to the question the user has entered
@@ -230,9 +259,27 @@ public class EditListController {
 					//add equations to list
 					_equations.add(equation);
 					_answers.add((int)answer);
+				} else if (answer % 1 != 0) {
+					//display popOver with error message
+					_message.setText("oops, the answer has to be a whole number");
+					_popOver.show(_addBtn);
+				} else if (answer < 1) {
+					//display popOver with error message
+					_message.setText("oops, the answer has to be greater than 0");
+					_popOver.show(_addBtn);
+				} else if (answer > 99) {
+					//display popOver with error message
+					_message.setText("oops, the answer has to be less than 99");
+					_popOver.show(_addBtn);
+				} else {
+					//display popOver with error message
+					_message.setText("oops, looks like that equation has already been added");
+					_popOver.show(_addBtn);
 				}
 			} catch (NumberFormatException | ArithmeticException e) { //occurs when number user has entered it too large
-				System.out.println("oops, the number you have entered is too big");
+				//display popOver with error message
+				_message.setText("oops, a number you have entered is too big");
+				_popOver.show(_addBtn);
 			}
 		}
 	}
@@ -253,6 +300,9 @@ public class EditListController {
 			//remove equation from lists
 			_equations.remove(index);
 			_answers.remove(index);
+		} else {
+			_message.setText("oops, looks like you haven't selected any equation");
+			_popOver.show(_addBtn);
 		}
 	}
 
@@ -274,7 +324,23 @@ public class EditListController {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+			} else {
+				//display popOver with error message
+				_message.setText("oops, looks like the name of your list is already taken");
+				_popOver.show(_doneBtn);
 			}
+		} else if (name.equals("")) {
+			//display popOver with error message
+			_message.setText("oops, looks like you haven't entered a name for your list");
+			_popOver.show(_doneBtn);
+		} else if(!name.matches("[a-zA-Z0-9_-]*")) {
+			//display popOver with error message
+			_message.setText("oops, looks like the name you've entered contains invalid characters");
+			_popOver.show(_doneBtn);
+		} else {
+			//display popOver with error message
+			_message.setText("oops, looks like your list doesn't have any equations");
+			_popOver.show(_doneBtn);
 		}
 	}
 
