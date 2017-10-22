@@ -15,7 +15,7 @@
          <children>
             <StackPane prefHeight="110.0" prefWidth="168.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#viewClick" text="View" textAlignment="CENTER" />
+                  <Button fx:id="_viewBtn" mnemonicParsing="false" onAction="#viewClick" text="View" textAlignment="CENTER" />
                </children>
             </StackPane>
             <StackPane prefHeight="110.0" prefWidth="200.0">
@@ -25,7 +25,7 @@
             </StackPane>
             <StackPane prefHeight="110.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#deleteClick" text="Delete" />
+                  <Button fx:id="_deleteBtn" mnemonicParsing="false" onAction="#deleteClick" text="Delete" />
                </children>
             </StackPane>
          </children>

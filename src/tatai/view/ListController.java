@@ -2,6 +2,9 @@ package tatai.view;
 
 import java.io.IOException;
 
+import org.controlsfx.control.PopOver;
+
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -11,6 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import tatai.Main;
@@ -27,13 +32,40 @@ public class ListController {
 	private ListView<String> _list;
 	private ListProperty<String> _listProperty = new SimpleListProperty<>();
 
+	@FXML private Button _deleteBtn;
+	@FXML private Button _viewBtn;
+
+	//contains all the lists
 	private CustomLists _customLists = CustomLists.getInstance();
+	
+	//error message to user
+	PopOver _popOver = new PopOver();
+	Label _message = new Label();
 
 	@FXML
 	private void initialize() {
 		_listProperty.set(FXCollections.observableArrayList(_customLists.getLists()));
 		_list.itemsProperty().bind(_listProperty);
+
+		//disable delete button when list is empty
+		_deleteBtn.disableProperty().bind(Bindings.isEmpty(_list.getItems()));
+
+		//disable view button when list is empty
+		_viewBtn.disableProperty().bind(Bindings.isEmpty(_list.getItems()));
+		
+		//setup popOver
+		_popOver.setDetachable(false);
+		//allow user to close
+		_popOver.setCloseButtonEnabled(true);
+		//set title
+		_popOver.setHeaderAlwaysVisible(true);
+		_popOver.setTitle("error message");
+		//set error message to user
+		_message.setText("oops, looks like you haven't selected any list");
+		//add message to popOver
+		_popOver.setContentNode(_message);
 	}
+
 
 	/**
 	 * loadManage will take an fxmlfile and create a scene with it
@@ -52,8 +84,10 @@ public class ListController {
 	@FXML
 	private void viewClick(ActionEvent event) {
 		int index = _list.getSelectionModel().getSelectedIndex();
+		//list has been selected
 		if (index != -1) {
 			try {
+				//load scene showing the list
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(Main.class.getResource("/tatai/view/EditList.fxml"));
 				loader.setControllerFactory(c -> {
@@ -62,10 +96,13 @@ public class ListController {
 				Parent parent = loader.load();
 				Scene scene = new Scene(parent);
 				Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+				stage.setTitle(_list.getSelectionModel().getSelectedItem());
 				stage.setScene(scene);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} else {
+			_popOver.show(_viewBtn);
 		}
 	}
 
@@ -80,6 +117,7 @@ public class ListController {
 			Parent parent = loader.load();
 			Scene scene = new Scene(parent);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			stage.setTitle("new custom list");
 			stage.setScene(scene);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -92,17 +130,19 @@ public class ListController {
 		if (index != -1) {
 			_customLists.deleteList(index);
 			_list.getItems().remove(index);
+		} else {
+			_popOver.show(_deleteBtn);
 		}
 	}
 
 	public void helpclick() {
-
 	}
 
 	public void homeClick(ActionEvent event) {
 		try {
 			Scene mainMenuScene = loadManage("/tatai/view/MainMenu.fxml");
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			stage.setTitle("Tatai");
 			stage.setScene(mainMenuScene);
 		} catch (IOException e) {
 			e.printStackTrace();
