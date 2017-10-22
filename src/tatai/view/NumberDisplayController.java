@@ -241,6 +241,7 @@ public class NumberDisplayController {
 		//get feedback components
 		setFeedbackVisibility(true);
 		_userAnswer.setText(_recording.getWord());
+		_correctAnswer.setText(_num.getMaori());
 	}
 
 	//sets index if playing a custom list

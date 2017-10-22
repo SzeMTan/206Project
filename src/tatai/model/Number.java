@@ -201,5 +201,11 @@ public class Number {
 	public String getEquation(){
 		return _equation;
 	}
-
+	
+	/**
+	 * Returns the converted maori of the specified number
+	 */
+	public String getMaori() {
+		return _maoriNumber;
+	}
 }
