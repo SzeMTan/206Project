@@ -195,6 +195,7 @@ public class EditListController {
 				try {
 					Scene listScene = loadManage("/tatai/view/Lists.fxml");
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+					window.setTitle("View Lists");
 					window.setScene(listScene);
 					popupWindow.close();
 				} catch (IOException e1) {
@@ -211,6 +212,7 @@ public class EditListController {
 			//user hasn't made any changes and therefore there's no point to a pop up
 			Scene listScene = loadManage("/tatai/view/Lists.fxml");
 			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			window.setTitle("View Lists");
 			window.setScene(listScene);
 		}
 	}
@@ -320,6 +322,7 @@ public class EditListController {
 					//go back to list main page scene
 					Scene listScene = loadManage("/tatai/view/Lists.fxml");
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+					window.setTitle("View Lists");
 					window.setScene(listScene);
 				} catch (IOException e) {
 					e.printStackTrace();

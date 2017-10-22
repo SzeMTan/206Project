@@ -22,6 +22,10 @@
 	-fx-background-radius: 20px;
 }
 
+.text-area{
+	-fx-background-radius: 20px;
+}
+
 .toggle-button{
 	-fx-background-radius: 20px;
 	-fx-pref-width:  125;

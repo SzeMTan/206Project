@@ -84,8 +84,10 @@ public class ListController {
 	@FXML
 	private void viewClick(ActionEvent event) {
 		int index = _list.getSelectionModel().getSelectedIndex();
+		//list has been selected
 		if (index != -1) {
 			try {
+				//load scene showing the list
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(Main.class.getResource("/tatai/view/EditList.fxml"));
 				loader.setControllerFactory(c -> {
@@ -94,6 +96,7 @@ public class ListController {
 				Parent parent = loader.load();
 				Scene scene = new Scene(parent);
 				Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+				stage.setTitle(_list.getSelectionModel().getSelectedItem());
 				stage.setScene(scene);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -114,6 +117,7 @@ public class ListController {
 			Parent parent = loader.load();
 			Scene scene = new Scene(parent);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			stage.setTitle("new custom list");
 			stage.setScene(scene);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -138,6 +142,7 @@ public class ListController {
 		try {
 			Scene mainMenuScene = loadManage("/tatai/view/MainMenu.fxml");
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			stage.setTitle("Tatai");
 			stage.setScene(mainMenuScene);
 		} catch (IOException e) {
 			e.printStackTrace();
