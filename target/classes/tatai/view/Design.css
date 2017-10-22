@@ -37,10 +37,24 @@
 	-fx-font-size: 14px;
 }
 
+#really-small-button{
+	-fx-pref-width: 80px;
+	-fx-pref-height: 30px;
+	-fx-font-size: 12px;
+}
+
 #start-button{
 	-fx-background-radius: 20px;
 	-fx-pref-width:  200;
 	-fx-font-size:  40px;
 	-fx-pref-height:  100;
 	/*-fx-effect:  dropshadow(three-pass-box,#8b0000,5,0,0,1);*/
+}
+
+#speech{
+    -fx-text-box-border: transparent;
+    -fx-highlight-fill: null;
+    -fx-highlight-text-fill: null;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
