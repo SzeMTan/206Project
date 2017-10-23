@@ -116,13 +116,14 @@ public class NumberDisplayController {
 	//actions for when next is clicked
 	@FXML
 	private void nextClick(ActionEvent event) throws IOException{
+		_question = 11;
 		if (_question == 11) { //means user has completed 10 questions and is hence finished
 			//change to score scene
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Score.fxml"));
 			Parent number = loader.load();
 			endScene = new Scene(number);
 			ScoreController c = loader.getController();
-			c.setScoreAndLevel(_score, _levelSelected, _index);//////
+			c.setScoreAndLevel(5, _levelSelected, _index);//////
 			window = (Stage)((Node)event.getSource()).getScene().getWindow();
 			window.setScene(endScene);
 		} else { //change back to recording scene
