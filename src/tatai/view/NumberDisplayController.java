@@ -84,6 +84,7 @@ public class NumberDisplayController {
 		_correctAnswer.setVisible(false);
 		
 		//setup recording fail popover
+		_fail = new PopOver();
 		_fail.setDetachable(false);
 		//add message to popOver
 		TextArea text = new TextArea("oops looks like it didn't record properly. Make sure to hold the button down for at least a second. Try again.");
