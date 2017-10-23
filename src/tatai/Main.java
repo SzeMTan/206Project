@@ -21,6 +21,10 @@ import javafx.scene.Scene;
 
 
 public class Main extends Application {
+	
+	/**
+	 * This class sets up the primary window stage and loads the main menu scene. 
+	 */
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/tatai/view/MainMenu.fxml"));
