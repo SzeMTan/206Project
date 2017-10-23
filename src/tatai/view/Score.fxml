@@ -32,9 +32,9 @@
       </ImageView>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="30.0">
          <children>
-            <Label id="score-label" fx:id="_goodEffortLbl" text="Good Effort!" />
-            <Label id="score-label" fx:id="_scoreLbl" layoutY="10.0" prefHeight="79.0" prefWidth="202.0" text="You scored" />
-            <Label id="score-label" fx:id="scoreLbl" layoutX="10.0" layoutY="27.0" prefHeight="38.0" prefWidth="162.0" text="out of 10" />
+            <Label id="score-label" fx:id="_goodEffortLbl" alignment="CENTER" prefHeight="51.0" prefWidth="605.0" text="Good Effort!" />
+            <Label id="score-label" fx:id="_scoreLbl" alignment="CENTER" contentDisplay="CENTER" layoutY="10.0" prefHeight="62.0" prefWidth="618.0" text="You scored" textAlignment="CENTER" />
+            <Label id="score-label" fx:id="scoreLbl" alignment="CENTER" layoutX="10.0" layoutY="27.0" prefHeight="51.0" prefWidth="604.0" text="out of 10" />
             <Button fx:id="tryagainBtn" mnemonicParsing="false" onAction="#tryAgainBtn" text="Try Again" />
             <Button fx:id="nextlevelBtn" mnemonicParsing="false" onAction="#nextLevelBtn" style="-fx-font-size: 18;" text="Next Level" />
          </children>
