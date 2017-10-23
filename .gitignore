@@ -1,14 +1,7 @@
-#Maven stuff
-/target/
-
-#Compiled files
 /bin/
 
-#HTK Stuff
+#HTK things
+/user/
 recout.mlf
+/HMMs/
 foo.wav
-HMMs/
-user/
-
-#JSON Stuff
-stats.jason
