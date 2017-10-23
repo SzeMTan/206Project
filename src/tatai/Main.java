@@ -21,9 +21,6 @@ import javafx.scene.Scene;
 
 
 public class Main extends Application {
-	String _creation;
-	
-	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("/tatai/view/MainMenu.fxml"));
@@ -31,8 +28,11 @@ public class Main extends Application {
 		primaryStage.setScene(mainMenu);
 		primaryStage.setTitle("Tatai");
 
+		/**
+		 * The method invoked creates a pop-up message to ask the user whether or not they want to quit the game. 
+		 * If they do, then the stats object will be stored into a JSON object in the file system to be restored the next time the user comes back on.
+		 */
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
-
 			@Override
 			public void handle(WindowEvent event) {
 				// TODO Auto-generated method stub
