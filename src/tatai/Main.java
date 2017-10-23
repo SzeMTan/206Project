@@ -1,7 +1,6 @@
 package tatai;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -13,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import tatai.model.LevelSelection;
 import tatai.model.Stats;
 import tatai.view.QuitWindowController;
 import javafx.scene.Parent;
