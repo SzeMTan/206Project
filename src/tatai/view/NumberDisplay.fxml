@@ -5,12 +5,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="_backgroundPane" stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.NumberDisplayController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="165.0" layoutY="53.0" prefHeight="394.0" prefWidth="320.0" spacing="5.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="165.0" AnchorPane.topAnchor="10.0">
+      <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="53.0" prefHeight="437.0" prefWidth="650.0" spacing="5.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="10.0">
          <children>
             <HBox alignment="CENTER" prefHeight="20.0" prefWidth="200.0">
                <children>
@@ -31,23 +32,27 @@
                   <Font name="Berlin Sans FB" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="_equationLbl" alignment="CENTER" prefHeight="94.0" prefWidth="300.0" text="9">
+            <Label fx:id="_equationLbl" alignment="CENTER" prefHeight="106.0" prefWidth="650.0" text="9">
                <font>
                   <Font name="Berlin Sans FB" size="96.0" />
                </font>
             </Label>
-            <Label fx:id="_correctAnswerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="289.0" prefHeight="39.0" prefWidth="320.0" text="Correct Answer:">
-               <font>
-                  <Font name="Berlin Sans FB" size="22.0" />
-               </font>
-            </Label>
-            <TextField fx:id="_correctAnswer" alignment="CENTER" editable="false" layoutX="10.0" layoutY="342.0" prefHeight="40.0" prefWidth="320.0" />
-            <Label fx:id="_userAnswerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="320.0" text="You have said:">
-               <font>
-                  <Font name="Berlin Sans FB" size="22.0" />
-               </font>
-            </Label>
-            <TextField fx:id="_userAnswer" alignment="CENTER" editable="false" prefHeight="40.0" prefWidth="320.0" />
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="_userAnswerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="165.0" layoutY="80.0" prefHeight="39.0" prefWidth="320.0" text="You have said:">
+                     <font>
+                        <Font name="Berlin Sans FB" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="_correctAnswerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="165.0" prefHeight="39.0" prefWidth="320.0" text="Correct Answer:">
+                     <font>
+                        <Font name="Berlin Sans FB" size="22.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="_correctAnswer" alignment="CENTER" editable="false" layoutX="165.0" layoutY="40.0" prefHeight="40.0" prefWidth="320.0" />
+                  <TextField fx:id="_userAnswer" alignment="CENTER" editable="false" layoutX="165.0" layoutY="120.0" prefHeight="40.0" prefWidth="312.0" />
+               </children>
+            </Pane>
             <HBox alignment="CENTER" prefHeight="89.0" prefWidth="320.0" spacing="35.0">
                <children>
                   <Button fx:id="_nextBtn" mnemonicParsing="false" onAction="#nextClick" prefHeight="43.0" prefWidth="109.0" text="Next">
