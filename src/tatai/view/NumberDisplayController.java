@@ -3,6 +3,8 @@ package tatai.view;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
+import org.controlsfx.control.PopOver;
+
 import javafx.concurrent.Task;
 
 import javafx.application.Platform;
@@ -14,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
@@ -37,6 +40,7 @@ public class NumberDisplayController {
 
 	//recording scene components
 	@FXML private Button _recordBtn; //button which user is to hold down to record
+	private PopOver _fail;
 
 	//feedback scene components
 	@FXML private Button _playBtn1;
@@ -76,6 +80,21 @@ public class NumberDisplayController {
 		_submitBtn.setDisable(true);
 
 		setFeedbackVisibility(false);
+		_correctAnswerLabel.setVisible(false);
+		_correctAnswer.setVisible(false);
+		
+		//setup recording fail popover
+		_fail = new PopOver();
+		_fail.setDetachable(false);
+		//add message to popOver
+		TextArea text = new TextArea("oops looks like it didn't record properly. Make sure to hold the button down for at least a second. Try again.");
+		text.setEditable(false);
+		text.setPrefWidth(250);
+		text.setPrefHeight(100);
+		text.setWrapText(true);
+		Font font = new Font(14);
+		text.setFont(font);
+		_fail.setContentNode(text);
 	}
 
 	//actions for when record is pressed. While the record button is held down, audio should be recorded
@@ -84,18 +103,25 @@ public class NumberDisplayController {
 		_recordBtn.setText("recording");
 
 		_recordTask = new Task<Void>() {
+			int exit = -1;
 			@Override
 			protected Void call() throws Exception {
-				_recording.record(); //will record audio while button is held down
+				_fail.hide();
+				exit = _recording.record(); //will record audio while button is held down
 				return null;
 			}
 			@Override
 			public void done() {
-
 				Platform.runLater(() -> {
 					_recordBtn.setText("Record");
+					if (exit == 255) {//means recording completed properly
 					_playBtn1.setDisable(false);
 					_submitBtn.setDisable(false);
+					} else {
+						_playBtn1.setDisable(true);
+						_submitBtn.setDisable(true);
+						_fail.show(_recordBtn);
+					}
 
 				});
 			}
@@ -114,14 +140,14 @@ public class NumberDisplayController {
 	//actions for when next is clicked
 	@FXML
 	private void nextClick(ActionEvent event) throws IOException{
-		_question =11;
+		_question = 11;
 		if (_question == 11) { //means user has completed 10 questions and is hence finished
 			//change to score scene
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Score.fxml"));
 			Parent number = loader.load();
 			endScene = new Scene(number);
 			ScoreController c = loader.getController();
-			c.setScoreAndLevel(_score, _levelSelected, _index);
+			c.setScoreAndLevel(5, _levelSelected, _index);//////
 			window = (Stage)((Node)event.getSource()).getScene().getWindow();
 			window.setScene(endScene);
 		} else { //change back to recording scene
@@ -130,6 +156,8 @@ public class NumberDisplayController {
 
 			//get rid of feedback components
 			setFeedbackVisibility(false);
+			_correctAnswerLabel.setVisible(false);
+			_correctAnswer.setVisible(false);
 
 			//get recording components
 			_recordBtn.setText("Record");
@@ -143,14 +171,9 @@ public class NumberDisplayController {
 				} else if (_levelSelected.equals(LevelSelection.CUSTOM)) {
 					_equationIndex = ThreadLocalRandom.current().nextInt(0, _customLists.getEquations(_index).size());
 					_num = new Number(_customLists.getAnswer(_index).get(_equationIndex));
-				}
-				else if(_levelSelected.equals(LevelSelection.CUSTOM)){ //custom question generated
-
-				}
-				else{
+				} else{
 					_num.generateEquation();
 				}
-				_correctAnswer.clear();
 				_questionLbl.setText("Question number: " + _question);
 				_scoreLbl.setText("Score: " + _score);
 			}
@@ -207,11 +230,8 @@ public class NumberDisplayController {
 		_recording.recognize();//get what user said
 
 		if (_num.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
-			if(_levelSelected.equals(LevelSelection.PRACTISE)) {
-				_question = 0;
-			}
-			else {
-				_question++;//indicate question is complete
+			if (!_levelSelected.equals(LevelSelection.PRACTISE)) {
+				_question++;//indicate moving on to next question
 			}
 			_numIncorrect = 0;
 			_nextBtn.setText("Next");
@@ -220,18 +240,22 @@ public class NumberDisplayController {
 				_score++; //update score
 				_scoreLbl.setText("Score: " + _score);
 			} else { //user was wrong for second time
-				_correctAnswer.setText(_num.getMaori());
 				setNiceTryScene();
 			}
+			_correctAnswer.setText(_num.getMaori());
+			_correctAnswerLabel.setVisible(true);
+			_correctAnswer.setVisible(true);
 		} 
 		//User has answered wrong once, they get second try
 		else {
 			setTryAgainScene();
+			_correctAnswerLabel.setVisible(false);
+			_correctAnswer.setVisible(false);
 			_nextBtn.setText("Retry");
 			_numIncorrect = 1;
 		}
 		_equationLbl.setFont(Font.font("Berlin Sans FB",35)); //make text smaller so that it's readable
-
+		 
 		//hide recording components
 		setFrontVisibility(false);
 
@@ -326,8 +350,6 @@ public class NumberDisplayController {
 		_playBtn2.setVisible(b);
 		_userAnswerLabel.setVisible(b);
 		_userAnswer.setVisible(b);
-		_correctAnswerLabel.setVisible(b);
-		_correctAnswer.setVisible(b);
 		_nextBtn.setVisible(b);
 	}
 

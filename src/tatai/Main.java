@@ -1,7 +1,6 @@
 package tatai;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -13,7 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import tatai.model.LevelSelection;
+import tatai.model.CustomLists;
 import tatai.model.Stats;
 import tatai.view.QuitWindowController;
 import javafx.scene.Parent;
@@ -27,10 +26,13 @@ public class Main extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) throws IOException {
+		//load main menu
 		Parent root = FXMLLoader.load(getClass().getResource("/tatai/view/MainMenu.fxml"));
 		Scene mainMenu = new Scene(root);
 		primaryStage.setScene(mainMenu);
 		primaryStage.setTitle("Tatai");
+		//make sure the window is not resizable
+		primaryStage.setResizable(false);
 
 		/**
 		 * The method invoked creates a pop-up message to ask the user whether or not they want to quit the game. 
@@ -39,7 +41,7 @@ public class Main extends Application {
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
 			@Override
 			public void handle(WindowEvent event) {
-				// TODO Auto-generated method stub
+				//open quit confirmation window
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(Main.class.getResource("/tatai/view/QuitWindow.fxml"));
 				try {
@@ -49,16 +51,21 @@ public class Main extends Application {
 					exitWindow.setScene(exitScene);
 					exitWindow.setTitle("Quit");
 					exitWindow.initModality(Modality.APPLICATION_MODAL);
-					loader.<QuitWindowController>getController().getYesBtn().setOnAction(e -> { //user wishes to quit
-						Gson gson = new Gson();  ///Creates new Gson object to load to Json
-				        Stats stats = Stats.getInstance(); // retrieves the current stats object that we want to store
-				        
-
-				        //Saves file into Json object directly
-				        try (FileWriter writer = new FileWriter(new File("stats.json"))) {
-
-				            gson.toJson(stats, writer);
-
+					loader.<QuitWindowController>getController().getYesBtn().setOnAction(e -> { //user wishes to quit        
+				        try {
+				        	//save stats
+					        Stats stats = Stats.getInstance(); // retrieves the current stats object that we want to store
+				        	Gson gson = new Gson();  ///Creates new Gson object to load to Json
+				        	FileWriter statsWriter = new FileWriter(new File("stats.json"));
+				            gson.toJson(stats, statsWriter);
+				            statsWriter.close();
+				       
+				            //save custom lists
+				            CustomLists customLists = CustomLists.getInstance();
+				            Gson listGson = new Gson();
+				            FileWriter listsWriter = new FileWriter(new File("customLists.json"));
+				            listGson.toJson(customLists, listsWriter);
+				            listsWriter.close();
 				        } catch (IOException err) {
 				            err.printStackTrace();
 				        }
@@ -66,19 +73,10 @@ public class Main extends Application {
 						
 					});
 					loader.<QuitWindowController>getController().getNoBtn().setOnAction(e -> { //user wishes to quit
-						System.out.println("no button");
 						exitWindow.close();		
-					});
-					loader.<QuitWindowController>getController().getCancelBtn().setOnAction(e -> { //user wishes to quit
-						System.out.println("confirm window closing");
-						exitWindow.close();	
-						event.consume();
-					});
-					
-					
+					});				
 					exitWindow.showAndWait();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

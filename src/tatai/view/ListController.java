@@ -36,7 +36,7 @@ public class ListController {
 	@FXML private Button _viewBtn;
 
 	//contains all the lists
-	private CustomLists _customLists = CustomLists.getInstance();
+	private CustomLists _customLists;
 	
 	//error message to user
 	PopOver _popOver = new PopOver();
@@ -44,6 +44,8 @@ public class ListController {
 
 	@FXML
 	private void initialize() {
+		_customLists = CustomLists.getInstance();
+		
 		_listProperty.set(FXCollections.observableArrayList(_customLists.getLists()));
 		_list.itemsProperty().bind(_listProperty);
 
