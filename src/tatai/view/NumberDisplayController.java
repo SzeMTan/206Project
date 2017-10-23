@@ -19,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import tatai.model.Stats;
 import tatai.model.Number;
 import tatai.model.NumberOutOfBoundsException;
 import tatai.Main;
@@ -66,7 +65,7 @@ public class NumberDisplayController {
 
 	private Task<Void> _recordTask;
 
-	private CustomLists _customLists = CustomLists.getInstance();
+	private CustomLists _customLists = CustomLists.getInstance();//contains all custom lists
 	private int _index = -1; //-1 means it's not a custom game, otherwise it's what list to play
 	private int _equationIndex = -1;
 
@@ -75,52 +74,47 @@ public class NumberDisplayController {
 		//hide all components which aren't part of recording scene
 		_playBtn1.setDisable(true);
 		_submitBtn.setDisable(true);
-		
+
 		setFeedbackVisibility(false);
 	}
 
 	//actions for when record is pressed. While the record button is held down, audio should be recorded
-		@FXML
-		private void recordPressed() {	
-			_recordBtn.setText("recording");
+	@FXML
+	private void recordPressed() {	
+		_recordBtn.setText("recording");
 
-			_recordTask = new Task<Void>() {
-				@Override
-				protected Void call() throws Exception {
-					_recording.record(); //will record audio while button is held down
-					return null;
-				}
-				@Override
-				public void done() {
-					
-					Platform.runLater(() -> {
-						_recordBtn.setText("Record");
-						_playBtn1.setDisable(false);
-						_submitBtn.setDisable(false);
-						
-					});
-				}
-			};
-			Thread recordThread = new Thread(_recordTask);
-			recordThread.setDaemon(true);
-			recordThread.start();
-		}
+		_recordTask = new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				_recording.record(); //will record audio while button is held down
+				return null;
+			}
+			@Override
+			public void done() {
 
-		//actions for when record is released
-		@FXML
-		private void recordReleased() {
-			_recording.killRecord(); //stop recording
-		}
+				Platform.runLater(() -> {
+					_recordBtn.setText("Record");
+					_playBtn1.setDisable(false);
+					_submitBtn.setDisable(false);
+
+				});
+			}
+		};
+		Thread recordThread = new Thread(_recordTask);
+		recordThread.setDaemon(true);
+		recordThread.start();
+	}
+
+	//actions for when record is released
+	@FXML
+	private void recordReleased() {
+		_recording.killRecord(); //stop recording
+	}
 
 	//actions for when next is clicked
 	@FXML
-
 	private void nextClick(ActionEvent event) throws IOException{
 		if (_question == 11) { //means user has completed 10 questions and is hence finished
-			Stats stats = Stats.getInstance();
-			//update stats object
-			stats.addResult(_score, _levelSelected);
-
 			//change to score scene
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Score.fxml"));
 			Parent number = loader.load();
@@ -150,11 +144,12 @@ public class NumberDisplayController {
 					_num = new Number(_customLists.getAnswer(_index).get(_equationIndex));
 				}
 				else if(_levelSelected.equals(LevelSelection.CUSTOM)){ //custom question generated
-					
+
 				}
 				else{
 					_num.generateEquation();
 				}
+				_correctAnswer.clear();
 				_questionLbl.setText("Question number: " + _question);
 				_scoreLbl.setText("Score: " + _score);
 			}
@@ -165,7 +160,7 @@ public class NumberDisplayController {
 			}
 
 			else if (_levelSelected.equals(LevelSelection.CUSTOM)){
-				
+
 			}
 			else{
 				_equationLbl.setText(_num.getEquation());
@@ -202,8 +197,8 @@ public class NumberDisplayController {
 		playThread.start();
 	}
 
-	
-	
+
+
 	//to submit the users answer for checking
 	@FXML
 	private void submitClick() {
@@ -215,7 +210,7 @@ public class NumberDisplayController {
 				_question = 0;
 			}
 			else {
-			_question++;//indicate question is complete
+				_question++;//indicate question is complete
 			}
 			_numIncorrect = 0;
 			_nextBtn.setText("Next");
@@ -224,6 +219,7 @@ public class NumberDisplayController {
 				_score++; //update score
 				_scoreLbl.setText("Score: " + _score);
 			} else { //user was wrong for second time
+				_correctAnswer.setText(_num.getMaori());
 				setNiceTryScene();
 			}
 		} 
@@ -241,7 +237,6 @@ public class NumberDisplayController {
 		//get feedback components
 		setFeedbackVisibility(true);
 		_userAnswer.setText(_recording.getWord());
-		_correctAnswer.setText(_num.getMaori());
 	}
 
 	//sets index if playing a custom list
@@ -322,7 +317,7 @@ public class NumberDisplayController {
 			_recording.killPlay();
 		}
 	}
-	
+
 	/**
 	 * This will show or hide the feedback components depending on the boolean input parameter
 	 */
@@ -334,7 +329,7 @@ public class NumberDisplayController {
 		_correctAnswer.setVisible(b);
 		_nextBtn.setVisible(b);
 	}
-	
+
 	/**
 	 * This will disable or enable the front components depending on the boolean input parameter
 	 */
@@ -343,7 +338,7 @@ public class NumberDisplayController {
 		_submitBtn.setDisable(b);
 		_recordBtn.setDisable(b);
 	}
-	
+
 	/**
 	 * This will show or hide the front components depending on the boolean input parameter
 	 */
@@ -353,59 +348,59 @@ public class NumberDisplayController {
 		_recordBtn.setVisible(b);
 	}
 	//actions for when help is clicked
-		@FXML
-		private void helpClick() {
+	@FXML
+	private void helpClick() {
 
-		}
-	
+	}
+
 	//actions for when home is clicked
-		@FXML
-		private void homeClick(ActionEvent event) throws IOException{
-			if (!_levelSelected.equals(LevelSelection.PRACTISE)) {
-				//load pop up asking for user confirmation that they want to leave
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(Main.class.getResource("/tatai/view/QuitPlayConfirm.fxml"));
-				Parent parent = loader.load();
-				Scene confirmScene = new Scene(parent);
+	@FXML
+	private void homeClick(ActionEvent event) throws IOException{
+		if (!_levelSelected.equals(LevelSelection.PRACTISE)) {
+			//load pop up asking for user confirmation that they want to leave
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/tatai/view/QuitPlayConfirm.fxml"));
+			Parent parent = loader.load();
+			Scene confirmScene = new Scene(parent);
 
-				Stage confirmWindow = new Stage();
-				confirmWindow.setScene(confirmScene);
-				confirmWindow.initModality(Modality.APPLICATION_MODAL);//makes it so that user can't click on main window
+			Stage confirmWindow = new Stage();
+			confirmWindow.setScene(confirmScene);
+			confirmWindow.initModality(Modality.APPLICATION_MODAL);//makes it so that user can't click on main window
 
-				loader.<QuitPlayConfirmController>getController().getYesBtn().setOnAction(e -> { //user wishes to quit
-					try {
-						//change to main menu scene
-						FXMLLoader loaderMenu = new FXMLLoader();
-						loaderMenu.setLocation(Main.class.getResource("/tatai/view/MainMenu.fxml"));
-						Parent parentMenu = loaderMenu.load();
-						Scene sceneMenu = new Scene(parentMenu);
-						Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-						window.setScene(sceneMenu);
+			loader.<QuitPlayConfirmController>getController().getYesBtn().setOnAction(e -> { //user wishes to quit
+				try {
+					//change to main menu scene
+					FXMLLoader loaderMenu = new FXMLLoader();
+					loaderMenu.setLocation(Main.class.getResource("/tatai/view/MainMenu.fxml"));
+					Parent parentMenu = loaderMenu.load();
+					Scene sceneMenu = new Scene(parentMenu);
+					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+					window.setScene(sceneMenu);
 
-						confirmWindow.close();//close pop up window
+					confirmWindow.close();//close pop up window
 
-						killProcesses();//make sure to stop anything that is playing
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}			
-				});
+					killProcesses();//make sure to stop anything that is playing
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}			
+			});
 
-				loader.<QuitPlayConfirmController>getController().getNoBtn().setOnAction(e -> { //user doesn't wish to quit
-					confirmWindow.close();
-				});
+			loader.<QuitPlayConfirmController>getController().getNoBtn().setOnAction(e -> { //user doesn't wish to quit
+				confirmWindow.close();
+			});
 
-				confirmWindow.show();
-			} else { //user is practicing and there's no need to ask them for leave confirmation
-				//change to main menu scene
-				FXMLLoader loaderMenu = new FXMLLoader();
-				loaderMenu.setLocation(Main.class.getResource("/tatai/view/MainMenu.fxml"));
-				Parent parentMenu = loaderMenu.load();
-				Scene sceneMenu = new Scene(parentMenu);
-				Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-				window.setScene(sceneMenu);
+			confirmWindow.show();
+		} else { //user is practicing and there's no need to ask them for leave confirmation
+			//change to main menu scene
+			FXMLLoader loaderMenu = new FXMLLoader();
+			loaderMenu.setLocation(Main.class.getResource("/tatai/view/MainMenu.fxml"));
+			Parent parentMenu = loaderMenu.load();
+			Scene sceneMenu = new Scene(parentMenu);
+			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			window.setScene(sceneMenu);
 
-				killProcesses();//make sure to stop anything that is playing
-			}
+			killProcesses();//make sure to stop anything that is playing
 		}
+	}
 
 }
