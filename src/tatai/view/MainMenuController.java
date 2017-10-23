@@ -115,7 +115,7 @@ public class MainMenuController {
 		//make sure text in speech is initial one
 		_instructions.setText("Hi, my name is Tahi and I'll be helping you along your T\u0101tai! journey.");
 		_speech.setLayoutX(36);
-		_speech.setLayoutY(147);
+		_speech.setLayoutY(200);
 		_helpBtn.setDisable(true);
 		_nextBtn.setText("next");
 		_firstTahi.setVisible(true);
@@ -125,53 +125,43 @@ public class MainMenuController {
 	@FXML
 	private void nextClick() {
 		if (_clicks == 0) {
-			//hide first tahi and speech
+			//hide first tahi
 			_firstTahi.setVisible(false);
-			_speech.setVisible(false);
 			//show and position left tahi
 			_leftTahi.setLayoutX(47);
-			_leftTahi.setLayoutY(147);
+			_leftTahi.setLayoutY(250);
 			_leftTahi.setVisible(true);
 			//show and set speech
 			_instructions.setText("Click here to practise saying 1-99 in Maori.");
 			_speech.setLayoutX(58);
-			_speech.setLayoutY(14);
-			_speech.setVisible(true);
+			_speech.setLayoutY(115);
 			_clicks++;
 		} else if (_clicks == 1) {
-			//hide speech
-			_speech.setVisible(false);
 			//position left tahi
-			_leftTahi.setLayoutY(250);
+			_leftTahi.setLayoutY(147);
 			//show and set speech
 			_instructions.setText("Click here to start working on your math skills.");
-			_speech.setLayoutY(115);
-			_speech.setVisible(true);
+			_speech.setLayoutY(14);
 			_clicks++;
 		} else if (_clicks == 2) {
-			//hide left tahi and speech
+			//hide left tahi
 			_leftTahi.setVisible(false);
-			_speech.setVisible(false);
 			//show and position right tahi
 			_rightTahi.setLayoutX(464);
-			_rightTahi.setLayoutY(147);
+			_rightTahi.setLayoutY(250);
 			_rightTahi.setVisible(true);
-			//show and set speech
+			//set speech
 			_instructions.setText("Click here to create your own math questions.");
 			_speech.setLayoutX(428);
-			_speech.setLayoutY(23);
-			_speech.setVisible(true);
+			_speech.setLayoutY(121);
 			_clicks++;
 		} else if (_clicks == 3) {
 			_nextBtn.setText("done");
-			//hide speech
-			_speech.setVisible(false);
 			//position right tahi
-			_rightTahi.setLayoutY(250);
-			//show and set speech
+			_rightTahi.setLayoutY(147);
+			//set speech
 			_instructions.setText("Lastly, click here to see your past scores.");
-			_speech.setLayoutY(121);
-			_speech.setVisible(true);
+			_speech.setLayoutY(23);
 			_clicks++;
 		} else if (_clicks == 4) {
 			//hide help components
