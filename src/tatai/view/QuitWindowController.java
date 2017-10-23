@@ -9,8 +9,6 @@ public class QuitWindowController {
 	@FXML
 	private Button _noBtn;
 	@FXML
-	private Button _cancelBtn;
-	@FXML
 	private Button _yesBtn;
 
 	public Button getYesBtn(){
@@ -21,7 +19,4 @@ public class QuitWindowController {
 		return _noBtn;
 	}
 	
-	public Button getCancelBtn(){
-		return _cancelBtn;
-	}
 }

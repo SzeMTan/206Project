@@ -31,12 +31,14 @@ public class Main extends Application {
 		Scene mainMenu = new Scene(root);
 		primaryStage.setScene(mainMenu);
 		primaryStage.setTitle("Tatai");
+		
 		//make sure the window is not resizable
 		primaryStage.setResizable(false);
 
 		/**
 		 * The method invoked creates a pop-up message to ask the user whether or not they want to quit the game. 
-		 * If they do, then the stats object will be stored into a JSON object in the file system to be restored the next time the user comes back on.
+		 * If they do, then the stats object and custom lists object will be stored into a JSON object in the file system,
+		 * to be restored the next time the user comes back on.
 		 */
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
 			@Override
@@ -72,8 +74,9 @@ public class Main extends Application {
 						exitWindow.close();		
 						
 					});
-					loader.<QuitWindowController>getController().getNoBtn().setOnAction(e -> { //user wishes to quit
-						exitWindow.close();		
+					loader.<QuitWindowController>getController().getNoBtn().setOnAction(e -> { //user wants to remain in the game.
+						exitWindow.close();
+						event.consume();
 					});				
 					exitWindow.showAndWait();
 				} catch (IOException e) {
