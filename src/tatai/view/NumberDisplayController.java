@@ -224,7 +224,6 @@ public class NumberDisplayController {
 		//User has answered wrong once, they get second try
 		else {
 			setTryAgainScene();
-			_correctAnswer.clear();
 			_correctAnswerLabel.setVisible(false);
 			_correctAnswer.setVisible(false);
 			_nextBtn.setText("Retry");
