@@ -45,7 +45,7 @@ public class ScoreController{
 	private Scene scene;
 	
 	@FXML
-	private void initializable() {
+	private void initialize() {
 		_tahi.setVisible(false);;
 		_amazing.setVisible(false);
 		_scoreLbl.setText("You scored");
@@ -98,7 +98,7 @@ public class ScoreController{
 		} else {
 			nextlevelBtn.setVisible(true);
 		}
-		scoreLbl.setText(_score + " out of 10");
+		scoreLbl.setText(score + " out of 10");
 
 		//get stats instance
 		Stats stats = Stats.getInstance();
