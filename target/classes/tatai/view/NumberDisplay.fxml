@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="_backgroundPane" stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.NumberDisplayController">
+<AnchorPane fx:id="_backgroundPane" stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.NumberDisplayController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="165.0" layoutY="53.0" prefHeight="394.0" prefWidth="320.0" spacing="5.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="165.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -41,7 +41,7 @@
                   <Font name="Berlin Sans FB" size="22.0" />
                </font>
             </Label>
-            <TextField fx:id="_correctAnswer" alignment="CENTER" editable="false" layoutX="10.0" layoutY="342.0" prefHeight="40.0" prefWidth="320.0" />
+            <TextField fx:id="_correctAnswer" alignment="CENTER" editable="false" layoutX="10.0" layoutY="342.0" prefHeight="40.0" prefWidth="320.0" promptText="correct answer will appear here" />
             <Label fx:id="_userAnswerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="320.0" text="You have said:">
                <font>
                   <Font name="Berlin Sans FB" size="22.0" />

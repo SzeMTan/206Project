@@ -10,11 +10,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tatai.model.LevelSelection;
+import tatai.model.Stats;
 
 public class ScoreController{
-
+	
+	//new high score components
+	@FXML private ImageView _tahi;
+	@FXML private ImageView _amazing;
+	
+	
+	@FXML private Label _scoreLbl;
+	@FXML private Label _goodEffortLbl;
 	@FXML 
 	private Scene scoreScene;
 	@FXML 
@@ -25,6 +34,7 @@ public class ScoreController{
 	private Scene menuScene;
 
 	private LevelSelection _levelSelected;
+	private int _score;
 	private int _index;
 	@FXML
 	private Button nextlevelBtn;
@@ -33,6 +43,13 @@ public class ScoreController{
 	@FXML 
 	private Button tryagainBtn;
 	private Scene scene;
+	
+	@FXML
+	private void initializable() {
+		_tahi.setVisible(false);;
+		_amazing.setVisible(false);
+		_scoreLbl.setText("You scored");
+	}
 
 	public void tryAgainBtn(ActionEvent event) throws IOException{
 
@@ -76,13 +93,28 @@ public class ScoreController{
 	public void setScoreAndLevel(int score, LevelSelection level, int index){
 		_index = index;
 		_levelSelected = level;
-		System.out.println(level);
 		if (level.equals(LevelSelection.HARD) || score < 8 || level.equals(LevelSelection.CUSTOM)) {
 			nextlevelBtn.setVisible(false);
 		} else {
 			nextlevelBtn.setVisible(true);
 		}
-		scoreLbl.setText(score + " out of 10");
+		scoreLbl.setText(_score + " out of 10");
+
+		//get stats instance
+		Stats stats = Stats.getInstance();
+		//only show new high score if they get a new high score and it's not their first attempt
+		if (stats.getMax(_levelSelected) != -1) {
+			if (score > stats.getMax(_levelSelected)) {
+				_goodEffortLbl.setVisible(false);
+				_scoreLbl.setText("New High Score!");
+				_tahi.setVisible(true);
+				_amazing.setVisible(true);
+			}
+		}		
+		//update stats object
+		stats.addResult(score, _levelSelected);
+		
+		_tahi.setLayoutX(480);
 	}
 
 
