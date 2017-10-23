@@ -13,6 +13,7 @@ public class Recording {
 	//Bash commands
 	private final String FILE = "foo.wav"; //name of recording file
 	private final String RECORD = "ffmpeg -f alsa -i default -acodec pcm_s16le -ar 22050 -ac 1 " + FILE; //record 
+	//Recognises the user input and translates it into words
 	private final String RECOGNITION = "HVite -H HMMs/hmm15/macros -H HMMs/hmm15/hmmdefs -C user/configLR  -w user/wordNetworkNum -o SWT -l '*' -i recout.mlf -p 0.0 -s 5.0  user/dictionaryD user/tiedList " + FILE;
 	private final String WORD = "awk '/sil/{flag = flag + 1}; flag % 2 == 1 && ! /sil/' recout.mlf"; //get interpretation of recording
 	private final String PLAY = "aplay " + FILE; //play recording
@@ -31,7 +32,8 @@ public class Recording {
 		}
 		//record new recording
 		ProcessBuilder builder = new ProcessBuilder("bash","-c",RECORD);
-		int exitStatus = -1;
+		int exitStatus = -1; //This exit status is used for checking whether the recording has been successfully created (recording of over 2 seconds)
+		//If it hasn't been successfully recorded then a popup will notify the user.
 		try {
 			Process process = builder.start();
 			
@@ -50,11 +52,17 @@ public class Recording {
 		return exitStatus;
 	}
 	
+	/**
+	 * Kills the recording thread that the user is recording on
+	 */
 	public void killRecord() {
 		Bash kill = new Bash(KILLRECORD);
 		kill.execute();
 	}
 	
+	/**
+	 * Runs the recognition bash command for recording recognition
+	 */
 	public void recognize() {
 		Bash recognize = new Bash(RECOGNITION);
 		recognize.execute();
