@@ -33,8 +33,13 @@ public class ScoreController{
 	@FXML 
 	private Button tryagainBtn;
 	private Scene scene;
+	
+	public ScoreController() {
+		
+	}
 
-	public void tryAgainBtn(ActionEvent event) throws IOException{
+	@FXML
+	private void tryAgainBtn(ActionEvent event) throws IOException{
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
 		Parent number = loader.load();
@@ -76,7 +81,6 @@ public class ScoreController{
 	public void setScoreAndLevel(int score, LevelSelection level, int index){
 		_index = index;
 		_levelSelected = level;
-		System.out.println(level);
 		if (level.equals(LevelSelection.HARD) || score < 8 || level.equals(LevelSelection.CUSTOM)) {
 			nextlevelBtn.setVisible(false);
 		} else {

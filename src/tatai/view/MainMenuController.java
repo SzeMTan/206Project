@@ -5,7 +5,6 @@ import java.io.IOException;
 import tatai.Main;
 import tatai.model.LevelSelection;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -15,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class MainMenuController {
@@ -97,8 +95,9 @@ public class MainMenuController {
 		_window.setTitle("Practise");
 		_window.show();
 	}
-		
-	public void scoresClick(ActionEvent event) throws IOException {
+	
+	@FXML
+	private void statisticsClick(ActionEvent event) throws IOException {
 	FXMLLoader loader = new FXMLLoader();
     loader.setLocation(Main.class.getResource("view/Statistics.fxml"));
     Parent stats = loader.load();
