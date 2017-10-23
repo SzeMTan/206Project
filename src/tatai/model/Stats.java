@@ -48,7 +48,7 @@ public class Stats {
 				e.printStackTrace();
 			}
 		}
-		else if(_statsInstance == null){
+		if(_statsInstance == null){
 			_statsInstance = new Stats();
 		}
 		return _statsInstance;

@@ -122,7 +122,7 @@ public class NumberDisplayController {
 			Parent number = loader.load();
 			endScene = new Scene(number);
 			ScoreController c = loader.getController();
-			c.setScoreAndLevel(_score, _levelSelected, _index);
+			c.setScoreAndLevel(_score, _levelSelected, _index);//////
 			window = (Stage)((Node)event.getSource()).getScene().getWindow();
 			window.setScene(endScene);
 		} else { //change back to recording scene

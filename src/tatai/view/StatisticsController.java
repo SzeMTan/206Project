@@ -86,7 +86,6 @@ public class StatisticsController implements Initializable {
 		
 		// Gets stats objects for each of the levels
 		Stats stats = Stats.getInstance();
-		System.out.println(stats.getResultArray(LevelSelection.EASY)[0]);
 		addStats(stats,LevelSelection.EASY,_easyChart,easyMin,easyMax,easyAverage);
 		addStats(stats,LevelSelection.MEDIUM,_mediumChart,mediumMin,mediumMax,mediumAverage);
 		addStats(stats,LevelSelection.HARD,_hardChart,hardMin,hardMax,hardAverage);
