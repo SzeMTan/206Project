@@ -114,6 +114,7 @@ public class ScoreController{
 		//update stats object
 		stats.addResult(score, _levelSelected);
 		
+		
 		_tahi.setLayoutX(480);
 	}
 
