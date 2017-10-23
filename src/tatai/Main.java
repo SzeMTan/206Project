@@ -24,10 +24,13 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
+		//load main menu
 		Parent root = FXMLLoader.load(getClass().getResource("/tatai/view/MainMenu.fxml"));
 		Scene mainMenu = new Scene(root);
 		primaryStage.setScene(mainMenu);
 		primaryStage.setTitle("Tatai");
+		//make sure the window is not resizable
+		primaryStage.setResizable(false);
 
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
 
