@@ -30,9 +30,12 @@ public class Main extends Application {
 		Scene mainMenu = new Scene(root);
 		primaryStage.setScene(mainMenu);
 		primaryStage.setTitle("Tatai");
+<<<<<<< HEAD
 		
 		//Getting JSON file if it exists and load it onto the singleton Stats object
 		
+=======
+>>>>>>> master
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
 
 			@Override
@@ -48,6 +51,7 @@ public class Main extends Application {
 					exitWindow.setTitle("Quit");
 					exitWindow.initModality(Modality.APPLICATION_MODAL);
 					loader.<QuitWindowController>getController().getYesBtn().setOnAction(e -> { //user wishes to quit
+<<<<<<< HEAD
 						Gson gsonSave = new Gson();  ///Creates new Gson object to load to Json
 				        Stats stats = Stats.getInstance(); // retrieves the current stats object that we want to store
 				        _creation = System.getProperty("user.dir"); // The current project directory that we want to store the Json file to
@@ -57,12 +61,27 @@ public class Main extends Application {
 				        try (FileWriter writer = new FileWriter(_creation + "\\stats.json")) {
 
 				            gsonSave.toJson(stats, writer);
+=======
+						Gson gson = new Gson();  ///Creates new Gson object to load to Json
+				        Stats stats = Stats.getInstance(); // retrieves the current stats object that we want to store
+				        String creation = System.getProperty("user.dir"); // The current project directory that we want to store the Json file to
+				        
+
+				        //Saves file into Json object directly
+				        try (FileWriter writer = new FileWriter(creation + "\\stats.json")) {
+
+				            gson.toJson(stats, writer);
+>>>>>>> master
 
 				        } catch (IOException err) {
 				            err.printStackTrace();
 				        }
 						exitWindow.close();		
+<<<<<<< HEAD
 						
+=======
+					
+>>>>>>> master
 					});
 					loader.<QuitWindowController>getController().getNoBtn().setOnAction(e -> { //user wishes to quit
 						System.out.println("no button");
@@ -82,7 +101,11 @@ public class Main extends Application {
 				}
 			}
 		});
+<<<<<<< HEAD
 		
+=======
+	
+>>>>>>> master
 		primaryStage.show();
 		
 	}
