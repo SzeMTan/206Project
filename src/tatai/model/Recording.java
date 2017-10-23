@@ -34,7 +34,17 @@ public class Recording {
 		int exitStatus = -1;
 		try {
 			Process process = builder.start();
+			
+			BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+			
 			exitStatus = process.waitFor();
+			
+			if (exitStatus != 0) { //command has not executed successfully
+				String line;
+				while ((line = stdout.readLine()) != null) {
+					System.err.println(line);
+				}
+			} 
 		} catch (Exception e) {}
 		//return whether or not recording completed successfully
 		return exitStatus;

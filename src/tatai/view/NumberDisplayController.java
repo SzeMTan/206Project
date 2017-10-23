@@ -95,12 +95,12 @@ public class NumberDisplayController {
 			@Override
 			public void done() {
 				Platform.runLater(() -> {
-					if (exit == 2) {
+					if (exit == 255) {//means recording completed properly
 					_recordBtn.setText("Record");
 					_playBtn1.setDisable(false);
 					_submitBtn.setDisable(false);
 					} else {
-						System.out.println("oops");
+						//System.out.println("oops");
 					}
 
 				});
