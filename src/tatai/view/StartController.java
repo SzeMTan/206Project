@@ -14,55 +14,60 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import javafx.stage.Stage;
+import tatai.Main;
+import tatai.model.CustomLevel;
 import tatai.model.CustomLists;
+import tatai.model.EasyLevel;
+import tatai.model.HardLevel;
+import tatai.model.Level;
 import tatai.model.LevelSelection;
+import tatai.model.MediumLevel;
+import tatai.model.Practise;
 
 public class StartController {
 	
-	private LevelSelection _level;
+	private LevelSelection _levelSelection;
+	private Level _level; //level object
 	private int _index = -1; //-1 means it's not a custom game
-	private CustomLists _customLists = CustomLists.getInstance();
 	@FXML
 	private Button back;
 	private Scene menuScene;
-	private Scene numberScene;
 	private Stage window;
-	@FXML 
-	private Label label;
+	@FXML private Label _label;
 	
 
 	public void setLevel(LevelSelection level, int index){
-		_level = level;
+		_levelSelection = level;
 		_index = index;
 		
-		if (_level.equals(LevelSelection.EASY)){
-			label.setText("Level: Easy");
-		}
-		else if(_level.equals(LevelSelection.MEDIUM)){
-			label.setText("Level: Medium");
-		}
-		else if(_level.equals(LevelSelection.PRACTISE)){
-			label.setText("Practise");
-		} else if (_level.equals(LevelSelection.CUSTOM)) {
-			label.setText(_customLists.getLists().get(_index));
-		}
-		else{
-			label.setText("Level: Hard");
-		}		
+		_label.setText("level: " + _levelSelection.toString());		
 	}
 	
 	public void startBtn(ActionEvent event) throws IOException{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("NumberDisplay.fxml"));
-		Parent number = loader.load();
-		numberScene = new Scene(number);
-		NumberDisplayController c = loader.getController();
-		c.setList(_index);
-		c.setLabelText(_level);
+		//set the level
+		if (_levelSelection.equals(LevelSelection.EASY)){
+			_level = new EasyLevel();
+		}
+		else if(_levelSelection.equals(LevelSelection.MEDIUM)){
+			_level = new MediumLevel();
+		}
+		else if(_levelSelection.equals(LevelSelection.PRACTISE)){
+			_level = new Practise();
+		} else if (_levelSelection.equals(LevelSelection.CUSTOM)) {
+			_level = new CustomLevel(_index);
+		}
+		else{
+			_level = new HardLevel();
+		}
 		
-		window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		window.setScene(numberScene);
-		window.show();
-
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("view/NumberDisplay.fxml"));
+		Parent numDisplay = loader.load();
+		loader.<NumberDisplayController>getController().setup(_levelSelection,_level);
+		
+		Scene numDisplayScene = new Scene(numDisplay);
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.setScene(numDisplayScene);
 	}
 	
 	public void menuButtonClicked(ActionEvent event) throws IOException{
@@ -72,6 +77,5 @@ public class StartController {
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(menuScene);
 		window.setTitle("Tatai");
-		window.show();
 	}
 }
