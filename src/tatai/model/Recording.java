@@ -1,10 +1,12 @@
 package tatai.model;
 
+import java.io.BufferedReader;
 /**
  * Recording create a recording, plays the recording and will interpret what is said in the recording.
  * Interpretation will only work for Maori numbers between 1 to 99.
  */
 import java.io.File;
+import java.io.InputStreamReader;
 
 public class Recording {
 
@@ -21,13 +23,21 @@ public class Recording {
 	 * record() checks if there is an existing recording and deletes it. Then a new recording is made and interpreted.
 	 * This makes sure that there is only one recording in existance at a time.
 	 */
-	public void record() {
+	public int record() {
+		//delete old recording file
 		File recording = new File(FILE);
 		if (recording.exists()) {
 			recording.delete();
 		}
-		Bash record = new Bash(RECORD);
-		record.execute();
+		//record new recording
+		ProcessBuilder builder = new ProcessBuilder("bash","-c",RECORD);
+		int exitStatus = -1;
+		try {
+			Process process = builder.start();
+			exitStatus = process.waitFor();
+		} catch (Exception e) {}
+		//return whether or not recording completed successfully
+		return exitStatus;
 	}
 	
 	public void killRecord() {
