@@ -9,6 +9,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
+
+/**
+ * This class creates a CustomLists singleton instance to store all the lists and attributes of the list.
+ * The singleton will be called when the program is first executed to load any previous lists if there exists a customList JSON object.
+ * @author lucy
+ *
+ */
 public class CustomLists {
 
 	private ArrayList<String> _nameOfList = new ArrayList<String>();
@@ -20,6 +27,7 @@ public class CustomLists {
 
 	private CustomLists() {}
 
+	//Loads the CustomList JSON object data into the singleton is there is an object, otherwise initialises a new CustomList object with default values.
 	public static CustomLists getInstance() {
 		Gson gsonLoad = new Gson();
 		File jsonFile = new File("customLists.json");
@@ -36,6 +44,7 @@ public class CustomLists {
 		return _instance;
 	}
 
+	// Deletes the selected list
 	public void deleteList(int index) {
 		_nameOfList.remove(index);
 		_equations.remove(index);
@@ -43,6 +52,7 @@ public class CustomLists {
 		_comments.remove(index);
 	}
 
+	// This method updates or adds the list of questions into the list display for that selected list.
 	public void updateList(int index, String name, String comments, ArrayList<String> equations, ArrayList<Integer> answers) {
 		if (index != -1) {
 			_nameOfList.set(index, name);
