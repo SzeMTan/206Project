@@ -5,3 +5,6 @@
 recout.mlf
 /HMMs/
 foo.wav
+
+#JSON stuff
+stats.json
