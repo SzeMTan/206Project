@@ -19,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import tatai.model.Stats;
 import tatai.model.Number;
 import tatai.model.NumberOutOfBoundsException;
 import tatai.Main;
