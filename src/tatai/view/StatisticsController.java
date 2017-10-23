@@ -27,25 +27,17 @@ public class StatisticsController implements Initializable {
 	@FXML
 	private Stage window;
 	@FXML
-	private Label easyMin;
-	@FXML
 	private Label easyMax;
 	@FXML
 	private Label easyAverage;
-	@FXML
-	private Label mediumMin;
 	@FXML
 	private Label mediumMax;
 	@FXML
 	private Label mediumAverage;
 	@FXML
-	private Label hardMin;
-	@FXML
 	private Label hardMax;
 	@FXML
 	private Label hardAverage;
-	@FXML
-	private Label customMin;
 	@FXML
 	private Label customMax;
 	@FXML
@@ -86,10 +78,10 @@ public class StatisticsController implements Initializable {
 		
 		// Gets stats objects for each of the levels
 		Stats stats = Stats.getInstance();
-		addStats(stats,LevelSelection.EASY,_easyChart,easyMin,easyMax,easyAverage);
-		addStats(stats,LevelSelection.MEDIUM,_mediumChart,mediumMin,mediumMax,mediumAverage);
-		addStats(stats,LevelSelection.HARD,_hardChart,hardMin,hardMax,hardAverage);
-		addStats(stats,LevelSelection.CUSTOM,_customChart,customMin,customMax,customAverage);
+		addStats(stats,LevelSelection.EASY,_easyChart,easyMax,easyAverage);
+		addStats(stats,LevelSelection.MEDIUM,_mediumChart,mediumMax,mediumAverage);
+		addStats(stats,LevelSelection.HARD,_hardChart,hardMax,hardAverage);
+		addStats(stats,LevelSelection.CUSTOM,_customChart,customMax,customAverage);
 	}
 
 
@@ -110,16 +102,10 @@ public class StatisticsController implements Initializable {
 	    axis.setTickUnit(1);
 	}
 	
-	private void addStats(Stats stats, LevelSelection level, BarChart<String, Integer> chart, Label minLabel, Label maxLabel, Label avLabel){
+	private void addStats(Stats stats, LevelSelection level, BarChart<String, Integer> chart, Label maxLabel, Label avLabel){
 		//load all the information for the specified parameters
 				Integer[] scoreArray = stats.getResultArray(level);
 				
-				if (stats.getMin(level) >= 0){
-					minLabel.setText(stats.getMin(level) + "");
-				}
-				else{
-					minLabel.setText("-");
-				}
 				if (stats.getMax(level) >=0){
 					maxLabel.setText(stats.getMax(level) + "");
 				}
@@ -133,7 +119,6 @@ public class StatisticsController implements Initializable {
 					avLabel.setText("-");
 				}
 				
-
 				XYChart.Series<String,Integer> scores = new Series<String, Integer>();
 				for (int i = 0; i < 10; i++){
 					scores.getData().add(new XYChart.Data<String, Integer>(i+1 + "", scoreArray[i]));

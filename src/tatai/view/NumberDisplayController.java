@@ -86,6 +86,7 @@ public class NumberDisplayController {
 		_recordBtn.setText("recording");
 
 		_recordTask = new Task<Void>() {
+			int exit;
 			@Override
 			protected Void call() throws Exception {
 				_recording.record(); //will record audio while button is held down
@@ -93,7 +94,6 @@ public class NumberDisplayController {
 			}
 			@Override
 			public void done() {
-
 				Platform.runLater(() -> {
 					_recordBtn.setText("Record");
 					_playBtn1.setDisable(false);

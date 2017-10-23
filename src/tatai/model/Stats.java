@@ -189,31 +189,6 @@ public class Stats {
 	}
 
 	/**
-	 * Calculates and returns lowest result of level as int
-	 * @return
-	 */
-	public int getMin(LevelSelection level) {
-		Integer[] resultsArray = getResultArray(level);
-		if (resultsArray[0] == -1) {//no scores for easy
-			return -1;
-		}
-		else {//calculate min for easy
-			int min = resultsArray[0];
-			for (int i = 1; i < resultsArray.length; i++) {
-				if (resultsArray[i] == -1){
-					break;
-				}
-				if (min == 0) {
-					return min;
-				} else if (resultsArray[i] < min ) {
-					min = resultsArray[i];
-				}
-			}
-			return min;
-		}
-	}
-
-	/**
 	 * calculates and returns max score of level result as int
 	 * @return
 	 */
