@@ -1,10 +1,17 @@
 package tatai.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * Singleton stats object
@@ -18,7 +25,7 @@ public class Stats {
 	//	private static Stats _hardInstance = new Stats();
 	//	private static Stats _customInstance = new Stats();
 
-	private static Stats _statsInstance = new Stats();
+	private static Stats _statsInstance = null;
 	//	private List<Integer> _resultsEasy = new ArrayList<Integer>(); //list of results from easy
 	//	private List<Integer> _resultsHard = new ArrayList<Integer>(); // list of results from hard
 
@@ -29,23 +36,21 @@ public class Stats {
 
 	private Stats() {}
 
-	//	public static Stats getEasyInstance() {
-	//		return _easyInstance;
-	//	}
-	//	
-	//	public static Stats getMediumInstance() {
-	//		return _mediumInstance;
-	//	}
-	//	
-	//	public static Stats getHardInstance() {
-	//		return _hardInstance;
-	//	}
-	//	
-	//	public static Stats getCustomInstance() {
-	//		return _customInstance;
-	//	}
-
+	//loads 
 	public static Stats getInstance(){
+		Gson gsonLoad = new Gson();
+		File jsonFile = new File("stats.json");
+		if (_statsInstance == null  && jsonFile.exists()){
+			try {
+				_statsInstance = gsonLoad.fromJson(new FileReader(jsonFile),Stats.class);
+			} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(_statsInstance == null){
+			_statsInstance = new Stats();
+		}
 		return _statsInstance;
 	}
 	/**
@@ -169,5 +174,13 @@ public class Stats {
 				}
 				return max;
 			}
+	}
+	
+	/**
+	 * Loads the default stats object if a JSON file does not exist
+	 */
+	
+	public void loadDefault(){
+		
 	}
 }
