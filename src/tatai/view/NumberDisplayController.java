@@ -116,11 +116,11 @@ public class NumberDisplayController {
 	@FXML
 
 	private void nextClick(ActionEvent event) throws IOException{
-		_question = 11;/////////////////////////////////////////////////
+	/////////	_question =11;
 		if (_question == 11) { //means user has completed 10 questions and is hence finished
 			Stats stats = Stats.getInstance();
 			//update stats object
-			stats.addResult(_score, _levelSelected); 
+			stats.addResult(_score,_levelSelected);
 			//change to score scene
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Score.fxml"));
 			Parent number = loader.load();

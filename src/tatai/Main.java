@@ -48,11 +48,10 @@ public class Main extends Application {
 					loader.<QuitWindowController>getController().getYesBtn().setOnAction(e -> { //user wishes to quit
 						Gson gson = new Gson();  ///Creates new Gson object to load to Json
 				        Stats stats = Stats.getInstance(); // retrieves the current stats object that we want to store
-				        String creation = System.getProperty("user.dir"); // The current project directory that we want to store the Json file to
 				        
 
 				        //Saves file into Json object directly
-				        try (FileWriter writer = new FileWriter(creation + "\\stats.json")) {
+				        try (FileWriter writer = new FileWriter(new File("stats.json"))) {
 
 				            gson.toJson(stats, writer);
 
