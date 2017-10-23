@@ -3,6 +3,8 @@ package tatai.view;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
+import org.controlsfx.control.PopOver;
+
 import javafx.concurrent.Task;
 
 import javafx.application.Platform;
@@ -14,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
@@ -95,12 +98,27 @@ public class NumberDisplayController {
 			@Override
 			public void done() {
 				Platform.runLater(() -> {
-					if (exit == 255) {//means recording completed properly
 					_recordBtn.setText("Record");
+					if (exit == 255) {//means recording completed properly
 					_playBtn1.setDisable(false);
 					_submitBtn.setDisable(false);
 					} else {
-						//System.out.println("oops");
+						_playBtn1.setDisable(true);
+						_submitBtn.setDisable(true);
+						PopOver fail = new PopOver();
+						//setup popOver
+						fail.setDetachable(false);
+						//add message to popOver
+						TextArea text = new TextArea("oops looks like it didn't record properly. Make sure to hold the button down for at least a second. Try again.");
+						text.setEditable(false);
+						text.setPrefWidth(250);
+						text.setPrefHeight(100);
+						text.setWrapText(true);
+						Font font = new Font(14);
+						text.setFont(font);
+						fail.setContentNode(text);
+						
+						fail.show(_recordBtn);
 					}
 
 				});
