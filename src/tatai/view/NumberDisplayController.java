@@ -40,6 +40,7 @@ public class NumberDisplayController {
 
 	//recording scene components
 	@FXML private Button _recordBtn; //button which user is to hold down to record
+	private PopOver _fail;
 
 	//feedback scene components
 	@FXML private Button _playBtn1;
@@ -81,6 +82,18 @@ public class NumberDisplayController {
 		setFeedbackVisibility(false);
 		_correctAnswerLabel.setVisible(false);
 		_correctAnswer.setVisible(false);
+		
+		//setup recording fail popover
+		_fail.setDetachable(false);
+		//add message to popOver
+		TextArea text = new TextArea("oops looks like it didn't record properly. Make sure to hold the button down for at least a second. Try again.");
+		text.setEditable(false);
+		text.setPrefWidth(250);
+		text.setPrefHeight(100);
+		text.setWrapText(true);
+		Font font = new Font(14);
+		text.setFont(font);
+		_fail.setContentNode(text);
 	}
 
 	//actions for when record is pressed. While the record button is held down, audio should be recorded
@@ -92,6 +105,7 @@ public class NumberDisplayController {
 			int exit = -1;
 			@Override
 			protected Void call() throws Exception {
+				_fail.hide();
 				exit = _recording.record(); //will record audio while button is held down
 				return null;
 			}
@@ -105,20 +119,7 @@ public class NumberDisplayController {
 					} else {
 						_playBtn1.setDisable(true);
 						_submitBtn.setDisable(true);
-						PopOver fail = new PopOver();
-						//setup popOver
-						fail.setDetachable(false);
-						//add message to popOver
-						TextArea text = new TextArea("oops looks like it didn't record properly. Make sure to hold the button down for at least a second. Try again.");
-						text.setEditable(false);
-						text.setPrefWidth(250);
-						text.setPrefHeight(100);
-						text.setWrapText(true);
-						Font font = new Font(14);
-						text.setFont(font);
-						fail.setContentNode(text);
-						
-						fail.show(_recordBtn);
+						_fail.show(_recordBtn);
 					}
 
 				});
