@@ -81,6 +81,7 @@ public class StartController {
 			_level = new HardLevel();
 		}
 		
+		//loads the numberdisplay
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("view/NumberDisplay.fxml"));
 		Parent numDisplay = loader.load();

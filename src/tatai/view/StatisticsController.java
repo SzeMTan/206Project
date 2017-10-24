@@ -20,49 +20,43 @@ import javafx.stage.Stage;
 import tatai.model.LevelSelection;
 import tatai.model.Stats;
 
+/**
+ * This controller is associated with the Statistics fxml. It contains and loads a bar chart for the last 10 games played.
+ * It also shows the current high score and average score for each level which can be toggled through a tab bar
+ * 
+ * @author stan557
+ *
+ */
 public class StatisticsController implements Initializable {
 
-	@FXML
-	private Scene menuScene;
-	@FXML
-	private Stage window;
-	@FXML
-	private Label easyMax;
-	@FXML
-	private Label easyAverage;
-	@FXML
-	private Label mediumMax;
-	@FXML
-	private Label mediumAverage;
-	@FXML
-	private Label hardMax;
-	@FXML
-	private Label hardAverage;
-	@FXML
-	private Label customMax;
-	@FXML
-	private Label customAverage;
-	@FXML
-	private BarChart<String, Integer> _easyChart;
-	@FXML
-	private BarChart<String, Integer> _mediumChart;
-	@FXML
-	private BarChart<String, Integer> _hardChart;
-	@FXML
-	private BarChart<String, Integer> _customChart;
+	@FXML private Scene menuScene;
+	@FXML private Stage window;
 	
-	@FXML
-	private NumberAxis yEasyAxis;
-	@FXML
-	private NumberAxis yMediumAxis;
-	@FXML
-	private NumberAxis yHardAxis;
-	@FXML
-	private NumberAxis yCustomAxis;
+	//Max values for all the levels
+	@FXML private Label easyMax;
+	@FXML private Label mediumMax;
+	@FXML private Label hardMax;
+	@FXML private Label customMax;
+	
+	//Average values for all the levels
+	@FXML private Label easyAverage;
+	@FXML private Label mediumAverage;
+	@FXML private Label hardAverage;
+	@FXML private Label customAverage;
+	
+	//bar charts for all the levels
+	@FXML private BarChart<String, Integer> _easyChart;
+	@FXML private BarChart<String, Integer> _mediumChart;
+	@FXML private BarChart<String, Integer> _hardChart;
+	@FXML private BarChart<String, Integer> _customChart;
+	
+	//y-axis for all the levels
+	@FXML private NumberAxis yEasyAxis;
+	@FXML private NumberAxis yMediumAxis;
+	@FXML private NumberAxis yHardAxis;
+	@FXML private NumberAxis yCustomAxis;
 
-	//private List<Stats,LevelSelection> statsList = new ArrayList<Stats,LevelSelection>();
-	
-	
+	//sends user back to the main menu
 	public void backButtonClicked(ActionEvent event) throws IOException{
 		Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		menuScene = new Scene(menu);
@@ -73,9 +67,8 @@ public class StatisticsController implements Initializable {
 		window.show();
 	}
 
-
+	//Retrives the resultArrays for each of the levels and adds the statistics to each of the bar charts
 	public void setStats(){	
-		
 		// Gets stats objects for each of the levels
 		Stats stats = Stats.getInstance();
 		addStats(stats,LevelSelection.EASY,_easyChart,easyMax,easyAverage);
@@ -83,7 +76,6 @@ public class StatisticsController implements Initializable {
 		addStats(stats,LevelSelection.HARD,_hardChart,hardMax,hardAverage);
 		addStats(stats,LevelSelection.CUSTOM,_customChart,customMax,customAverage);
 	}
-
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -106,7 +98,8 @@ public class StatisticsController implements Initializable {
 		//load all the information for the specified parameters
 				Integer[] scoreArray = stats.getResultArray(level);
 				
-				if (stats.getMax(level) >=0){
+				//if the max or average have not been set yet, then rather than showing "-1", a "-" is displayed.
+				if (stats.getMax(level) >=0){ 
 					maxLabel.setText(stats.getMax(level) + "");
 				}
 				else{
@@ -120,8 +113,9 @@ public class StatisticsController implements Initializable {
 				}
 				
 				XYChart.Series<String,Integer> scores = new Series<String, Integer>();
+				//assigns the scores from the resultArray to the chart
 				for (int i = 0; i < 10; i++){
-					scores.getData().add(new XYChart.Data<String, Integer>(i+1 + "", scoreArray[i]));
+					scores.getData().add(new XYChart.Data<String, Integer>(i+1 + "", scoreArray[i])); 
 				}
 
 				chart.getData().add(scores);
