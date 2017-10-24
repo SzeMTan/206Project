@@ -16,7 +16,7 @@
       </Label>
       <ListView fx:id="_lists" layoutX="46.0" layoutY="96.0" prefHeight="254.0" prefWidth="274.0" />
       <Button id="small-button" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
-      <Button id="small-button" layoutX="14.0" layoutY="446.0" mnemonicParsing="false" onAction="#startClick" text="Help" />
+      <Button id="small-button" layoutX="14.0" layoutY="446.0" mnemonicParsing="false" onAction="#startClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
       <Button fx:id="_startBtn" layoutX="263.0" layoutY="376.0" mnemonicParsing="false" onAction="#startClick" text="Start" />
       <TextArea fx:id="_comments" editable="false" layoutX="330.0" layoutY="96.0" prefHeight="254.0" prefWidth="274.0" promptText="List comments" wrapText="true">
          <font>
