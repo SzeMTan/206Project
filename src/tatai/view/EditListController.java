@@ -16,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -55,43 +56,63 @@ public class EditListController {
 	@FXML private Button _removeBtn;
 	@FXML private Button _addBtn;
 	@FXML private Button _doneBtn;
-	
+
+	//help components
+	@FXML private Button _helpOne;
+	@FXML private Button _helpTwo;
+	@FXML private Button _helpThree;
+	@FXML private Group _speechOne;
+	@FXML private Group _speechTwo;
+	@FXML private Group _speechThree;
+	@FXML private Button _nextOne;
+	@FXML private Button _nextTwo;
+	@FXML private Button _nextThree;
+	@FXML private TextArea _instructionsOne;
+	@FXML private TextArea _instructionsTwo;
+	@FXML private TextArea _instructionsThree;
+	private int _clicks = 0;
+
 	//error message popOver
 	private PopOver _popOver = new PopOver();
 	private final String POPOVERTITLE = "Error Message";
 	private Label _message = new Label();
 
 	private int _index; //keep track of which list is being edited. If = -1, then it's a new list
-	
+
 	private CustomLists _customList = CustomLists.getInstance(); //contains all custom lists
 	private ListProperty<String> _listProperty = new SimpleListProperty<>(); //sets list view
 	private ArrayList<String> _equations = new ArrayList<String>(); //contains equations of viewed list
 	private ArrayList<Integer> _answers = new ArrayList<Integer>(); //contains answers to equations of viewed list
-	
+
 	private Boolean _madeChanges = false; //keep track of whether user has made any changes to list
 
 	public EditListController(int index) {
 		_index = index;
 	}
-	
+
 	@FXML
 	private void initialize() {
+		//hide all help components
+		_speechOne.setVisible(false);
+		_speechTwo.setVisible(false);
+		_speechThree.setVisible(false);
+		
 		//means user has selected to view list
 		if (_index != -1) {
 			_equations = _customList.getEquations(_index);
 			_answers = _customList.getAnswer(_index);
-			
+
 			//display name of list
 			_name.setText(_customList.getLists().get(_index));
-			
+
 			//display equations
 			_listProperty.set(FXCollections.observableArrayList(_equations));
 			_equationList.itemsProperty().bind(_listProperty);
-			
+
 			//display comments
 			_comments.setText(_customList.getComment(_index));
 		}
-		
+
 		//make it so that only numbers can be entered into this textField
 		_numberOne.textProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -136,10 +157,10 @@ public class EditListController {
 				}
 			}
 		});
-		
+
 		//disable delete button when list is empty
 		_removeBtn.disableProperty().bind(Bindings.isEmpty(_equationList.getItems()));
-		
+
 		//setup popOver
 		_popOver.setDetachable(false);
 		//allow user to close
@@ -171,10 +192,98 @@ public class EditListController {
 		_tabPane.getSelectionModel().selectNext();
 	}
 
-	//when the help button is clicked. Note that it has not been implemented yet
+	//when the help button on name tab is clicked.
 	@FXML
-	private void helpClick() {
+	private void helpClick(ActionEvent event) {
+		_helpOne.setDisable(true);
+		_helpTwo.setDisable(true);
+		_helpThree.setDisable(true);
+		
+		_clicks = 0;
+		
+		if (event.getSource().equals(_helpOne)) { //user clicked help on name tab
+			_nextOne.setText("next");
+			_instructionsOne.setText("The name of your list goes here.");
+			_speechOne.setVisible(true);
+		} else if (event.getSource().equals(_helpTwo)) { //user clicked help on comments tab
+			_nextTwo.setText("next");
+			_instructionsTwo.setText("Comments about the list go here.");
+			_speechTwo.setVisible(true);
+		} else if (event.getSource().equals(_helpThree)) { //user clicked help on equations tab
+			_nextThree.setText("next");
+			_instructionsThree.setText("Here is where new equations are added to the list.");
+			_speechThree.setLayoutX(250);
+			_speechThree.setVisible(true);
+		}
+	}
 
+	//when the nextHelp button on name tab is clicked.
+	@FXML
+	private void helpOneNextClick() {
+		if (_clicks == 0) {
+			_instructionsOne.setText("There are a number of rules the name has to follow.");
+		} else if (_clicks == 1) {
+			_instructionsOne.setText("It can’t be the same name as another list");
+		} else if (_clicks == 2) {
+			_instructionsOne.setText("And it can only contain letters, numbers, underscores or dashes");
+			_nextOne.setText("done!");
+		} else if (_clicks == 3) {
+			_helpOne.setDisable(false);
+			_helpTwo.setDisable(false);
+			_helpThree.setDisable(false);
+			_speechOne.setVisible(false);
+		}
+		_clicks++;
+	}
+
+	//when the nextHelp button on comments tab is clicked.
+	@FXML
+	private void helpTwoNextClick() {
+		//run through all the instructions
+		if (_clicks == 0) {
+			_instructionsTwo.setText("These comments can be about what type of questions are in the list");
+		} else if (_clicks == 1) {
+			_instructionsTwo.setText("or what the goals are for this list for example.");
+			_nextTwo.setText("done!");
+		} else if (_clicks == 2) {
+			_helpOne.setDisable(false);
+			_helpTwo.setDisable(false);
+			_helpThree.setDisable(false);
+			_speechTwo.setVisible(false);
+		}
+		_clicks++;
+	}
+
+	//when the nextHelp button on equations tab is clicked.
+	@FXML
+	private void helpThreeNextClick() {
+		//run through all the instructions
+		if (_clicks == 0) {
+			_instructionsThree.setText("Just type a number into each of the two boxes labelled number.");
+		} else if (_clicks == 1) {
+			_instructionsThree.setText("then pick an operator from the drop down list.");
+		} else if (_clicks == 2) {
+			_instructionsThree.setText("If you’re happy with the equation, click add and it’ll appear above.");
+		} else if (_clicks == 3) {
+			_instructionsThree.setText("There are some rules about the equations though.");
+		} else if (_clicks == 4) {
+			_instructionsThree.setText("It can’t already be in the list");
+		} else if (_clicks == 5) {
+			_instructionsThree.setText("and the answer has to be a whole number between 1 and 99.");
+		} else if (_clicks == 6) {
+			_speechThree.setLayoutX(380);
+			_instructionsThree.setText("To remove a question just select it and then click remove.");
+		} else if (_clicks == 7) {
+			_instructionsThree.setText("Once you’re happy with everyone, click done to finish.");
+			_nextThree.setText("done!");
+		} 
+		else if (_clicks == 8) {
+			_helpOne.setDisable(false);
+			_helpTwo.setDisable(false);
+			_helpThree.setDisable(false);
+			_speechThree.setVisible(false);
+		}
+		_clicks++;
 	}
 
 	//when the back button is clicked
@@ -247,7 +356,7 @@ public class EditListController {
 				//equation user has entered
 				String equation = _numberOne.getText() + " " + _operation.getSelectionModel().getSelectedItem() +
 						" " + _numberTwo.getText();
-				
+
 				//round double to 2dp
 				DecimalFormat df = new DecimalFormat("#.##");
 				df.setRoundingMode(RoundingMode.CEILING);
@@ -261,7 +370,7 @@ public class EditListController {
 					_madeChanges = true;
 					//show new equation to user
 					_equationList.getItems().add(equation);
-					
+
 					//add equations to list
 					_equations.add(equation);
 					_answers.add((int)answer);
@@ -297,13 +406,13 @@ public class EditListController {
 		if (_equationList.getSelectionModel().getSelectedIndex() != -1) {
 			//indicate user has made a change
 			_madeChanges = true;
-			
+
 			//get selected equation
 			int index = _equationList.getSelectionModel().getSelectedIndex();
-			
+
 			//remove equation from gui
 			_equationList.getItems().remove(index);
-			
+
 			//remove equation from lists
 			_equations.remove(index);
 			_answers.remove(index);
