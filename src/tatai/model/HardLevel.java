@@ -31,7 +31,6 @@ public class HardLevel extends Level {
 	@Override
 	public void generateQuestion() {
 		int operand = ThreadLocalRandom.current().nextInt(1, 5); //choose operand
-		operand = 4;
 		if (operand <= 2 ) {
 			_answer = ThreadLocalRandom.current().nextInt(MIN, MAXADDSUB + 1); //make sure answer is from 1 to 99
 			if(operand == 1) { // means it's addition

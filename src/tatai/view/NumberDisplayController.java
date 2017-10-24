@@ -97,7 +97,7 @@ public class NumberDisplayController {
 			_scoreLbl.setVisible(false);
 		}
 		
-		_levelTitle.setImage(new Image("\\main\\resources\\" + _levelSelected.name() + ".png"));
+		_levelTitle.setImage(new Image("/main/resources/" + _levelSelected.name() + ".png"));
 		_level.generateQuestion();
 		_equationLbl.setText(_level.getQuestion());
 	}
