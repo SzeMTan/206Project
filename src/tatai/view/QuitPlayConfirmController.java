@@ -4,8 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 /**
- * This controller belongs to the fxml pop-up for when the user wants to exit the Main window. It asks
- * for confirmation to exit, "Yes" will save all the data into JSON objects and "No" will just close the curret
+ * This controller belongs to the fxml pop-up for when the user wants to exit current game. It asks
+ * for confirmation to exit and tells the user they will lose all current data,
+ * "Yes" will return the user to the main menu and "No" will just close the current
  * pop-up and continue the application.
  * @author se206
  *
