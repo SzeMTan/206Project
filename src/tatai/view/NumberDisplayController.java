@@ -226,7 +226,12 @@ public class NumberDisplayController {
 	//to submit the users answer for checking
 	@FXML
 	private void submitClick() {
+		//hide help stuff
+		_tahi.setVisible(false);
+		_speech.setVisible(false);
+		
 		_helpBtn.setVisible(false);
+		_helpBtn.setDisable(false);
 		_recording.recognize();//get what user said
 
 		if (_level.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
@@ -350,13 +355,16 @@ public class NumberDisplayController {
 			_instructions.setText("If you get an answer wrong, don’t worry about it.");
 			_clicks++;
 		} else if (_clicks == 5) {
-			_instructions.setText("You get two tries for every question and there’ll be ten questions in total.");
+			_instructions.setText("You get two tries for every question and there’ll be ten questions in total unless you're on practise.");
 			_clicks++;
 		} else if (_clicks == 6) {
+			_instructions.setText("On practise you get as many questions as you want until you quit.");
+			_clicks++;
+		} else if (_clicks == 7) {
 			_instructions.setText("The important thing is to learn and have fun!");
 			_nextBtn.setText("done!");
 			_clicks++;
-		} else if (_clicks == 7) {
+		} else if (_clicks == 8) {
 			_clicks = 0;
 			_tahi.setVisible(false);
 			_speech.setVisible(false);
