@@ -1,7 +1,6 @@
 package tatai.view;
 
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,12 +15,14 @@ import javafx.stage.Stage;
 import tatai.Main;
 import tatai.model.LevelSelection;
 
+/**
+ * This is the controller for the level fxml. It allows the user to select which level they would like to play
+ * depending on the level they select. It also has the option of returning back to the main menu and the help option
+ * with Tahi. On button clicks, Tahi directs the user and appears on different areas of the screen for instructions.
+ * @author se206
+ *
+ */
 public class LevelController {
-
-	@FXML
-	private Button easyButton;
-	@FXML
-	private Button hardButton;
 
 	@FXML private Button _helpBtn;
 
@@ -43,6 +44,7 @@ public class LevelController {
 		_speech.setVisible(false);
 	}
 
+	//Changes scene to Easy level
 	@FXML
 	private void easyButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
@@ -56,20 +58,8 @@ public class LevelController {
 		window.setScene(_scene);
 		window.setTitle("Easy");
 	}
-
-	@FXML
-	private void hardButtonClicked(ActionEvent event) throws IOException{
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/Start.fxml"));
-		Parent hardStart = loader.load();
-		loader.<StartController>getController().setLevel(LevelSelection.HARD, -1);
-
-		_scene = new Scene(hardStart);
-		window = (Stage)((Node)event.getSource()).getScene().getWindow();
-		window.setScene(_scene);
-		window.setTitle("Hard");
-	}
-
+	
+	//Changes scene to Medium level
 	@FXML
 	private void mediumButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
@@ -83,19 +73,21 @@ public class LevelController {
 		window.setTitle("Medium");
 	}
 
+	//Changes scene to Hard level
 	@FXML
-	private void menuButtonClicked(ActionEvent event) throws IOException{
+	private void hardButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/MainMenu.fxml"));
-		Parent menu = loader.load();
+		loader.setLocation(Main.class.getResource("view/Start.fxml"));
+		Parent hardStart = loader.load();
+		loader.<StartController>getController().setLevel(LevelSelection.HARD, -1);
 
-		_scene = new Scene(menu);
+		_scene = new Scene(hardStart);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(_scene);
-		window.setTitle("Tatai");
-		window.show();
+		window.setTitle("Hard");
 	}
-
+	
+	//Changes scene to the Custom level
 	@FXML
 	private void customClick(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
@@ -109,6 +101,22 @@ public class LevelController {
 		window.show();
 	}
 
+	//Returns to the main menu
+	@FXML
+	private void menuButtonClicked(ActionEvent event) throws IOException{
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("view/MainMenu.fxml"));
+		Parent menu = loader.load();
+
+		_scene = new Scene(menu);
+		window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.setScene(_scene);
+		window.setTitle("Tatai");
+		window.show();
+	}
+
+	//Activates Tahi, the help guide, and sets him on different areas of the screen depending on the number
+	//of button clicks to indicate help process.
 	@FXML
 	private void helpClick() {
 		//show and initialize all help components
@@ -124,6 +132,7 @@ public class LevelController {
 		_speech.setVisible(true);
 	}
 
+	//Moves Tahi depending on the number of clicks recorded.
 	@FXML 
 	private void nextClick() {
 		//run through all the instructions of the help button
