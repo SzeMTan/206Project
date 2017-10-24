@@ -166,17 +166,20 @@ public class EditListController {
 	}
 
 	//when the next button is clicked
-	public void nextClick() {
+	@FXML
+	private void nextClick() {
 		_tabPane.getSelectionModel().selectNext();
 	}
 
 	//when the help button is clicked. Note that it has not been implemented yet
-	public void helpClick() {
+	@FXML
+	private void helpClick() {
 
 	}
 
-	//when the cancel button is clicked
-	public void backClick(ActionEvent event) throws IOException {
+	//when the back button is clicked
+	@FXML
+	private void backClick(ActionEvent event) throws IOException {
 
 		//if user has made any changes
 		if (_madeChanges) {
@@ -218,7 +221,8 @@ public class EditListController {
 	}
 
 	//when the add button is clicked 
-	public void addClick() {
+	@FXML
+	private void addClick() {
 		//notify that the user hasn't created any equation
 		if (_numberOne.getText().equals("") || _numberTwo.getText().equals("")) {	
 			//display popOver with user message
@@ -287,7 +291,8 @@ public class EditListController {
 	}
 
 	//when remove button is clicked
-	public void removeClick() {
+	@FXML
+	private void removeClick() {
 		//check if user has selected any equation
 		if (_equationList.getSelectionModel().getSelectedIndex() != -1) {
 			//indicate user has made a change
@@ -309,7 +314,8 @@ public class EditListController {
 	}
 
 	//when done is clicked
-	public void doneClick(ActionEvent event) {
+	@FXML
+	private void doneClick(ActionEvent event) {
 		//get name of list
 		String name = _name.getText();
 		//make sure that the name of the list is valid and that there is at least one equation

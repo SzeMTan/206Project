@@ -1,13 +1,10 @@
 package tatai.view;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -87,7 +84,7 @@ public class StatisticsController {
 		_speech.setVisible(false);
 	}
 
-	public void backButtonClicked(ActionEvent event) throws IOException{
+	public void homeClick(ActionEvent event) throws IOException{
 		Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		menuScene = new Scene(menu);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -142,6 +139,7 @@ public class StatisticsController {
 	
 	@FXML
 	private void helpClick(){
+		//disable all help buttons
 		_helpOne.setDisable(true);
 		_helpTwo.setDisable(true);
 		_helpThree.setDisable(true);

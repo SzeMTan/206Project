@@ -87,7 +87,7 @@
                               </RadialGradient>
                            </textFill>
                         </Label>
-                        <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Home" />
+                        <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
                         <Button id="small-button" fx:id="_helpOne" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" />
                      </children>
                   </AnchorPane>
@@ -157,7 +157,7 @@
                               </BarChart>
                            </children>
                         </HBox>
-                        <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Home" />
+                        <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
                         <Button id="small-button" fx:id="_helpTwo" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" />
                      </children>
                   </AnchorPane>
@@ -227,7 +227,7 @@
                               </BarChart>
                            </children>
                         </HBox>
-                        <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Home" />
+                        <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
                         <Button id="small-button" fx:id="_helpThree" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" />
                      </children>
                   </AnchorPane>
@@ -297,7 +297,7 @@
                               </BarChart>
                            </children>
                         </HBox>
-                        <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Home" />
+                        <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
                         <Button id="small-button" fx:id="_helpFour" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" />
                      </children>
                   </AnchorPane>
