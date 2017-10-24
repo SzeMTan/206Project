@@ -40,7 +40,7 @@ public class StartController {
 		_levelSelection = level;
 		_index = index;
 		
-		_label.setText("level: " + _levelSelection.toString());		
+		_label.setText("Level: " + _levelSelection.toString());		
 	}
 	
 	public void startBtn(ActionEvent event) throws IOException{
