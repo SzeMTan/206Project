@@ -30,7 +30,7 @@ public class Main extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("/tatai/view/MainMenu.fxml"));
 		Scene mainMenu = new Scene(root);
 		primaryStage.setScene(mainMenu);
-		primaryStage.setTitle("Tatai");
+		primaryStage.setTitle("T\u0101tai");
 		
 		//make sure the window is not resizable
 		primaryStage.setResizable(false);

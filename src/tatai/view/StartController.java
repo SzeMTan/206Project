@@ -24,31 +24,46 @@ import tatai.model.LevelSelection;
 import tatai.model.MediumLevel;
 import tatai.model.Practise;
 
+/**
+ * This controller is associated with the Start fxml. This gets loaded when the user first chooses a level
+ * so that they can get ready before they start the game. 
+ * @author stan557
+ *
+ */
 public class StartController {
 	
-	private LevelSelection _levelSelection;
+	private LevelSelection _levelSelection; //level enum
 	private Level _level; //level object
 	private int _index = -1; //-1 means it's not a custom game
-	@FXML
-	private Button back;
-	private Scene menuScene;
-	private Stage window;
+	@FXML private Button back;
+	@FXML private Scene menuScene;
+	@FXML private Stage window;
 	@FXML private Label _label;
 	
 
-	public void setLevel(LevelSelection level, int index){
+	/**
+	 * Receives the selected level as a parameter and sets the "Level" label with the correct string.
+	 * @param level
+	 * @param index
+	 */
+	public void setLevel(LevelSelection level, int index){ //Used for custom level as it needs an integer
 		_levelSelection = level;
 		_index = index;
 		
 		_label.setText("Level: " + _levelSelection.toString());		
 	}
 	
-	public void setLevel(LevelSelection level){
+	public void setLevel(LevelSelection level){ //Overloaded for the other levels which are not custom
 		_levelSelection = level;
 		
 		_label.setText("Level: " + _levelSelection.toString());		
 	}
 	
+	/**
+	 * When clicked, sends the user to the first question generated for that level.
+	 * @param event
+	 * @throws IOException
+	 */
 	public void startBtn(ActionEvent event) throws IOException{
 		//set the level
 		if (_levelSelection.equals(LevelSelection.EASY)){
@@ -76,12 +91,13 @@ public class StartController {
 		window.setScene(numDisplayScene);
 	}
 	
+	//Sends the user back to the main menu
 	public void menuButtonClicked(ActionEvent event) throws IOException{
 		Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		menuScene = new Scene(menu);
 		
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(menuScene);
-		window.setTitle("Tatai");
+		window.setTitle("T\u0101tai");
 	}
 }

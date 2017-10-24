@@ -144,7 +144,7 @@ public class ListController {
 		try {
 			Scene mainMenuScene = loadManage("/tatai/view/MainMenu.fxml");
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-			stage.setTitle("Tatai");
+			stage.setTitle("T\u0101tai");
 			stage.setScene(mainMenuScene);
 		} catch (IOException e) {
 			e.printStackTrace();

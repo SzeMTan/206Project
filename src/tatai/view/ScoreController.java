@@ -98,7 +98,7 @@ public class ScoreController{
 
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(scene);
-		window.setTitle("Tatai");
+		window.setTitle("T\u0101tai");
 		window.show();
 	}
 

@@ -343,7 +343,7 @@ public class NumberDisplayController {
 					Parent parentMenu = loaderMenu.load();
 					Scene sceneMenu = new Scene(parentMenu);
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-					window.setTitle("Tatai");
+					window.setTitle("T\u0101tai");
 					window.setScene(sceneMenu);
 
 					confirmWindow.close();//close pop up window

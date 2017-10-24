@@ -70,7 +70,7 @@ public class SelectListController {
 			Parent parent = loader.load();
 			Scene mainMenuScene = new Scene(parent);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-			stage.setTitle("Tatai");
+			stage.setTitle("T\u0101tai");
 			stage.setScene(mainMenuScene);
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -69,7 +69,7 @@ public class StatisticsController implements Initializable {
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
 		window.setScene(menuScene);
-		window.setTitle("Tatai");
+		window.setTitle("T\u0101tai");
 		window.show();
 	}
 
