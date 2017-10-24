@@ -48,6 +48,10 @@ public class SelectListController {
 
 	@FXML
 	private void initialize() {
+		
+		//hide help stuff
+		_speech.setVisible(false);
+		
 		_listProperty.set(FXCollections.observableArrayList(_customList.getLists()));
 		_lists.itemsProperty().bind(_listProperty);
 
@@ -104,7 +108,7 @@ public class SelectListController {
 		} else if (_clicks == 1) {
 			_instructions.setText("When you have selected the list you want to play, just click start");
 			_nextBtn.setText("done!");
-		} else if (_clicks == 3) {
+		} else if (_clicks == 2) {
 			_helpBtn.setDisable(false);
 			_speech.setVisible(false);
 		}
