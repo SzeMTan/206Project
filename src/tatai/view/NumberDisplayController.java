@@ -328,7 +328,7 @@ public class NumberDisplayController {
 	@FXML
 	private void helpClick() {
 		_helpBtn.setDisable(true);
-		_instructions.setText("Welcome! When you’re ready to answer just hold down the record button and say your answer.");
+		_instructions.setText("Welcome! When youï¿½re ready to answer just hold down the record button and say your answer.");
 		_nextBtn.setText("next");
 		_tahi.setVisible(true);
 		_speech.setVisible(true);
@@ -343,19 +343,19 @@ public class NumberDisplayController {
 			_instructions.setText("Make sure to say it in a nice clear voice.");
 			_clicks++;
 		} else if (_clicks == 1) {
-			_instructions.setText("When you’re done, you can press the play button to hear what you said.");
+			_instructions.setText("When you are done, you can press the play button to hear what you said.");
 			_clicks++;
 		} else if (_clicks == 2) {
-			_instructions.setText("If you’re not happy with your answer, just hold the record button to answer again.");
+			_instructions.setText("If you are not happy with your answer, just hold the record button to answer again.");
 			_clicks++;
 		} else if (_clicks == 3) {
 			_instructions.setText("Otherwise click the submit button to enter your answer.");
 			_clicks++;
 		} else if (_clicks == 4) {
-			_instructions.setText("If you get an answer wrong, don’t worry about it.");
+			_instructions.setText("If you get an answer wrong, do not worry about it.");
 			_clicks++;
 		} else if (_clicks == 5) {
-			_instructions.setText("You get two tries for every question and there’ll be ten questions in total unless you're on practise.");
+			_instructions.setText("You get two tries for every question and there will be ten questions in total unless you're on practise.");
 			_clicks++;
 		} else if (_clicks == 6) {
 			_instructions.setText("On practise you get as many questions as you want until you quit.");
