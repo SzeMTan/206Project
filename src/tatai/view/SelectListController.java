@@ -131,7 +131,7 @@ public class SelectListController {
 			PopOver popOver = new PopOver();
 			popOver.setDetachable(false);
 			//set error message to user
-			Label label = new Label("oops, it looks like you haven't selected any list");
+			Label label = new Label("Oops, it looks like you haven't selected any list");
 			//add message to popOver
 			popOver.setContentNode(label);
 			popOver.show(_startBtn);

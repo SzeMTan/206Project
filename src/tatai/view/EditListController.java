@@ -223,7 +223,7 @@ public class EditListController {
 		if (_clicks == 0) {
 			_instructionsOne.setText("There are a number of rules the name has to follow.");
 		} else if (_clicks == 1) {
-			_instructionsOne.setText("It can’t be the same name as another list");
+			_instructionsOne.setText("It cannot be the same name as another list");
 		} else if (_clicks == 2) {
 			_instructionsOne.setText("And it can only contain letters, numbers, underscores or dashes");
 			_nextOne.setText("done!");
@@ -263,18 +263,18 @@ public class EditListController {
 		} else if (_clicks == 1) {
 			_instructionsThree.setText("then pick an operator from the drop down list.");
 		} else if (_clicks == 2) {
-			_instructionsThree.setText("If you’re happy with the equation, click add and it’ll appear above.");
+			_instructionsThree.setText("If you are happy with the equation, click add and it will appear above.");
 		} else if (_clicks == 3) {
 			_instructionsThree.setText("There are some rules about the equations though.");
 		} else if (_clicks == 4) {
-			_instructionsThree.setText("It can’t already be in the list");
+			_instructionsThree.setText("It cannot already be in the list");
 		} else if (_clicks == 5) {
 			_instructionsThree.setText("and the answer has to be a whole number between 1 and 99.");
 		} else if (_clicks == 6) {
 			_speechThree.setLayoutX(380);
 			_instructionsThree.setText("To remove a question just select it and then click remove.");
 		} else if (_clicks == 7) {
-			_instructionsThree.setText("Once you’re happy with everyone, click done to finish.");
+			_instructionsThree.setText("Once you are happy with everything, click done to finish.");
 			_nextThree.setText("done!");
 		} 
 		else if (_clicks == 8) {

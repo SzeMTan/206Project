@@ -181,7 +181,7 @@ public class ListController {
 		} else if (_clicks == 4) {
 			//move help
 			_speech.setLayoutY(190);
-			_instructions.setText("If you want to delete a list, select it then click here.”");
+			_instructions.setText("If you want to delete a list, select it then click here.");
 			_clicks++;
 			_nextBtn.setText("done!");
 		} else if (_clicks == 5) {
