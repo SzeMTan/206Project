@@ -5,23 +5,32 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tatai.model.LevelSelection;
 import tatai.model.Stats;
 
 public class ScoreController{
-	
+
 	//new high score components
 	@FXML private ImageView _tahi;
 	@FXML private ImageView _amazing;
-	
-	
+
+	//help components
+	@FXML private ImageView _helpTahi;
+	@FXML private Group _speech;
+	@FXML private TextArea _instructions;
+	@FXML private Button _nextBtn;
+	@FXML private Button _helpBtn;
+	private int _clicks = 0;
+
 	@FXML private Label _scoreLbl;
 	@FXML private Label _goodEffortLbl;
 	@FXML 
@@ -43,12 +52,17 @@ public class ScoreController{
 	@FXML 
 	private Button tryagainBtn;
 	private Scene scene;
-	
+
 	@FXML
 	private void initialize() {
-		_tahi.setVisible(false);;
+		//hide high score stuff
+		_tahi.setVisible(false);
 		_amazing.setVisible(false);
 		_scoreLbl.setText("You scored");
+
+		//hide help stuff
+		_helpTahi.setVisible(false);
+		_speech.setVisible(false);
 	}
 
 	public void tryAgainBtn(ActionEvent event) throws IOException{
@@ -92,6 +106,7 @@ public class ScoreController{
 
 	public void setScoreAndLevel(int score, LevelSelection level){
 		_levelSelected = level;
+		_score = score;
 		if (level.equals(LevelSelection.HARD) || score < 8 || level.equals(LevelSelection.CUSTOM)) {
 			nextlevelBtn.setVisible(false);
 		} else {
@@ -114,5 +129,47 @@ public class ScoreController{
 		stats.addResult(score, _levelSelected);
 	}
 
+	@FXML
+	private void helpClick() {
+		if (_score < 8 || _levelSelected.equals(LevelSelection.HARD) || _levelSelected.equals(LevelSelection.CUSTOM)) {
+			_nextBtn.setText("done!");
+		} else {
+			_nextBtn.setText("next");
+		}
+
+		_helpBtn.setDisable(true);
+
+		_helpTahi.setLayoutX(130);
+		_helpTahi.setLayoutY(250);
+
+		_speech.setLayoutX(60);
+		_speech.setLayoutY(128);
+
+		_instructions.setText("Click here to play the same level again");
+
+		_helpTahi.setVisible(true);
+		_speech.setVisible(true);
+
+		_clicks = 0;
+	}
+
+	@FXML 
+	private void nextClick() {
+		if (_score >= 8 &&  !_levelSelected.equals(LevelSelection.HARD) && !_levelSelected.equals(LevelSelection.CUSTOM) && _clicks == 0) {
+			_clicks++;
+			_helpTahi.setLayoutY(350);
+			_speech.setLayoutY(228);
+			_nextBtn.setText("done!");
+			if (_levelSelected.equals(LevelSelection.EASY)) {
+				_instructions.setText("Click here to try medium");
+			} else if(_levelSelected.equals(LevelSelection.MEDIUM)) {
+				_instructions.setText("Click here to try hard");
+			}
+		} else {
+			_helpBtn.setDisable(false);
+			_helpTahi.setVisible(false);
+			_speech.setVisible(false);
+		}
+	}
 
 }
