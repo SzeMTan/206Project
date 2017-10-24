@@ -127,7 +127,7 @@ public class LevelController {
 		_speech.setLayoutX(75);
 		_speech.setLayoutY(0);
 		_instructions.setText("Easy is for addition and subtraction where the answer is between 1 and 9.");
-		_nextBtn.setText("next");
+		_nextBtn.setText("Next");
 		_tahi.setVisible(true);
 		_speech.setVisible(true);
 	}

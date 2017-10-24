@@ -183,7 +183,7 @@ public class ListController {
 			_speech.setLayoutY(190);
 			_instructions.setText("If you want to delete a list, select it then click here.");
 			_clicks++;
-			_nextBtn.setText("done!");
+			_nextBtn.setText("Done!");
 		} else if (_clicks == 5) {
 			//reenable help button
 			_helpBtn.setDisable(false);

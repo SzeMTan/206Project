@@ -91,6 +91,11 @@ public class NumberDisplayController {
 		_levelSelected = levelSelected; //set level user has selected
 		_level = level;
 
+		if(levelSelected.equals(LevelSelection.PRACTISE)) {
+			_equationLbl.setVisible(false);
+			_scoreLbl.setVisible(false);
+		}
+		
 		_levelLbl.setText("Level: " + levelSelected.name());
 		_level.generateQuestion();
 		_equationLbl.setText(_level.getQuestion());
@@ -338,8 +343,8 @@ public class NumberDisplayController {
 	@FXML
 	private void helpClick() {
 		_helpBtn.setDisable(true);
-		_instructions.setText("Welcome! When you�re ready to answer just hold down the record button and say your answer.");
-		_nextBtn.setText("next");
+		_instructions.setText("Welcome! When you are ready to answer just hold down the record button and say your answer.");
+		_nextBtn.setText("Next");
 		_tahi.setVisible(true);
 		_speech.setVisible(true);
 		
@@ -372,7 +377,7 @@ public class NumberDisplayController {
 			_clicks++;
 		} else if (_clicks == 7) {
 			_instructions.setText("The important thing is to learn and have fun!");
-			_nextBtn.setText("done!");
+			_nextBtn.setText("Done!");
 			_clicks++;
 		} else if (_clicks == 8) {
 			_clicks = 0;

@@ -144,7 +144,7 @@ public class StatisticsController {
 		_helpThree.setDisable(true);
 		_helpFour.setDisable(true);
 
-		_nextBtn.setText("next");
+		_nextBtn.setText("Next");
 
 		_instructions.setText("Welcome to the stats page.");
 		_speech.setVisible(true);
@@ -162,7 +162,7 @@ public class StatisticsController {
 			_instructions.setText("The graph shows your last ten scores.");
 			_clicks++;
 		} else if (_clicks == 2) {
-			_nextBtn.setText("done!");
+			_nextBtn.setText("Done!");
 			_instructions.setText("Your most recent score will be on the right side of the graph.");
 			_clicks++;
 		} else if (_clicks == 3) {

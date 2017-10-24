@@ -150,9 +150,9 @@ public class ScoreController{
 	@FXML
 	private void helpClick() {
 		if (_score < 8 || _levelSelected.equals(LevelSelection.HARD) || _levelSelected.equals(LevelSelection.CUSTOM)) {
-			_nextBtn.setText("done!");
+			_nextBtn.setText("Done!");
 		} else {
-			_nextBtn.setText("next");
+			_nextBtn.setText("Next");
 		}
 
 		_helpBtn.setDisable(true);
@@ -177,7 +177,7 @@ public class ScoreController{
 			_clicks++;
 			_helpTahi.setLayoutY(350);
 			_speech.setLayoutY(228);
-			_nextBtn.setText("done!");
+			_nextBtn.setText("Done!");
 			if (_levelSelected.equals(LevelSelection.EASY)) {
 				_instructions.setText("Click here to try medium");
 			} else if(_levelSelected.equals(LevelSelection.MEDIUM)) {

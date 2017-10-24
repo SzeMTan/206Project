@@ -120,7 +120,7 @@ public class MainMenuController {
 	_scene = new Scene(stats);
 	_window = (Stage)((Node)event.getSource()).getScene().getWindow();
 	_window.setScene(_scene);
-	_window.setTitle("Practise");
+	_window.setTitle("Statistics");
 	_window.show();
 	}
 	
@@ -134,7 +134,7 @@ public class MainMenuController {
 		_speech.setLayoutX(36);
 		_speech.setLayoutY(200);
 		_helpBtn.setDisable(true);
-		_nextBtn.setText("next");
+		_nextBtn.setText("Next");
 		_firstTahi.setVisible(true);
 		_speech.setVisible(true);
 	}
@@ -176,7 +176,7 @@ public class MainMenuController {
 			_speech.setLayoutY(121);
 			_clicks++;
 		} else if (_clicks == 3) {
-			_nextBtn.setText("done");
+			_nextBtn.setText("Done!");
 			//position right tahi
 			_rightTahi.setLayoutY(147);
 			//set speech

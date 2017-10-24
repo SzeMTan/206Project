@@ -8,7 +8,7 @@
 
 <AnchorPane stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.StartController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="140.0" layoutY="78.0" prefHeight="345.0" prefWidth="371.0" spacing="20.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0">
+      <VBox alignment="TOP_CENTER" layoutX="140.0" layoutY="78.0" prefHeight="345.0" prefWidth="371.0" spacing="20.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
          <children>
             <Label fx:id="_label" alignment="CENTER" minHeight="74.0" prefHeight="74.0" prefWidth="350.0" stylesheets="@Design.css" text="Level: " VBox.vgrow="ALWAYS">
                <font>
