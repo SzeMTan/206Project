@@ -11,12 +11,14 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import tatai.Main;
 import tatai.model.CustomLists;
@@ -35,17 +37,27 @@ public class ListController {
 	@FXML private Button _deleteBtn;
 	@FXML private Button _viewBtn;
 
+	//help components
+	@FXML private Button _helpBtn;
+	@FXML private Group _speech;
+	@FXML private Button _nextBtn;
+	@FXML private TextArea _instructions;
+	private int _clicks = 0;
+
 	//contains all the lists
 	private CustomLists _customLists;
-	
+
 	//error message to user
 	PopOver _popOver = new PopOver();
 	Label _message = new Label();
 
 	@FXML
 	private void initialize() {
+		//hide help components
+		_speech.setVisible(false);
+
 		_customLists = CustomLists.getInstance();
-		
+
 		_listProperty.set(FXCollections.observableArrayList(_customLists.getLists()));
 		_list.itemsProperty().bind(_listProperty);
 
@@ -54,7 +66,7 @@ public class ListController {
 
 		//disable view button when list is empty
 		_viewBtn.disableProperty().bind(Bindings.isEmpty(_list.getItems()));
-		
+
 		//setup popOver
 		_popOver.setDetachable(false);
 		//allow user to close
@@ -114,7 +126,7 @@ public class ListController {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("/tatai/view/EditList.fxml"));
 			loader.setControllerFactory(c -> {
-				return new EditListController(-1);
+				return new EditListController(-1); //indicate it's a new list
 			});
 			Parent parent = loader.load();
 			Scene scene = new Scene(parent);
@@ -129,16 +141,57 @@ public class ListController {
 	@FXML
 	private void deleteClick(ActionEvent event) {
 		int index = _list.getSelectionModel().getSelectedIndex();
-		if (index != -1) {
+		if (index != -1) {//means user has selected something
 			_customLists.deleteList(index);
 			_list.getItems().remove(index);
-		} else {
+		} else { //user hasn't selected anything
 			_popOver.show(_deleteBtn);
 		}
 	}
-
-	public void helpclick() {
+	
+	@FXML
+	private void helpClick(){
+		//disable help button
+		_helpBtn.setDisable(true);
+		
+		//setup help 
+		_instructions.setText("Welcome to the lists page");
+		_speech.setLayoutY(0);
+		_speech.setVisible(true);
+		
+		_clicks = 0;
 	}
+	
+	@FXML 
+	private void nextClick() {
+		if (_clicks == 0) {
+			_instructions.setText("Here you can create, view or delete your custom lists.");
+			_clicks++;
+		} else if (_clicks == 1) {
+			_instructions.setText("In these lists will be the equations displayed when the user selects to play custom level.");
+			_clicks++;
+		} else if (_clicks == 2) {
+			_instructions.setText("Select a list then click here to view and edit it.");
+			_clicks++;
+		} else if (_clicks == 3) {
+			//move help
+			_speech.setLayoutY(100);
+			_instructions.setText("Create a new list by clicking here.");
+			_clicks++;
+		} else if (_clicks == 4) {
+			//move help
+			_speech.setLayoutY(190);
+			_instructions.setText("If you want to delete a list, select it then click here.");
+			_clicks++;
+			_nextBtn.setText("done!");
+		} else if (_clicks == 5) {
+			//reenable help button
+			_helpBtn.setDisable(false);
+			//hide help
+			_speech.setVisible(false);
+		}
+	}
+
 
 	public void homeClick(ActionEvent event) {
 		try {

@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -54,25 +56,31 @@ public class NumberDisplayController {
 	@FXML private Label _userAnswerLabel;
 	@FXML private Label _correctAnswerLabel;
 	@FXML private Button _submitBtn;
-
+	
+	//help components
+	@FXML private Button _helpBtn;
+	@FXML private ImageView _tahi;
+	@FXML private Group _speech;
+	@FXML private TextArea _instructions;
+	@FXML private Button _helpNextBtn;
+	private int _clicks;
+	
 	private Stage window;
 
-	private Number _num;
-	private int _score = 0;
-	private int _question = 1;
+	private int _score = 0; //user's score
+	private int _question = 1; //what question the user is on
 	private int _numIncorrect = 0; //signals how many times user has gotten same question wrong
 
 	private Scene endScene;
 
-	private LevelSelection _levelSelected;
-	private Recording _recording = new Recording();
-
+	private LevelSelection _levelSelected;//level user is doing
+	private Level _level;//level object generates questions
+	
+	private Recording _recording = new Recording();//recording object to do all the recording
+	private Task<Void> _recordTask;//recording task
+	
 	private boolean _playTaskExist = false; //true if there's something playing
 	private Task<Void> _task;//play task
-
-	private Task<Void> _recordTask;
-
-	private Level _level;
 	
 	/**
 	 * sets questions based on level the user has selected or if they are practicing
@@ -93,6 +101,10 @@ public class NumberDisplayController {
 		//hide all components which aren't part of recording scene
 		_playBtn1.setDisable(true);
 		_submitBtn.setDisable(true);
+		
+		//hide all help components except the button
+		_tahi.setVisible(false);
+		_speech.setVisible(false);
 
 		setFeedbackVisibility(false);
 		_correctAnswerLabel.setVisible(false);
@@ -165,6 +177,7 @@ public class NumberDisplayController {
 			window = (Stage)((Node)event.getSource()).getScene().getWindow();
 			window.setScene(endScene);
 		} else { //change back to recording scene
+			_helpBtn.setVisible(true);
 			_backgroundPane.setStyle("-fx-background-color: #afeeee"); //change colour back
 			_equationLbl.setFont(Font.font("Berlin Sans FB", 96)); //make question large again
 
@@ -220,7 +233,12 @@ public class NumberDisplayController {
 	//to submit the users answer for checking
 	@FXML
 	private void submitClick() {
-		_recordBtn.setText("Record");
+		//hide help stuff
+		_tahi.setVisible(false);
+		_speech.setVisible(false);
+		
+		_helpBtn.setVisible(false);
+		_helpBtn.setDisable(false);
 		_recording.recognize();//get what user said
 
 		if (_level.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
@@ -315,10 +333,53 @@ public class NumberDisplayController {
 		_submitBtn.setVisible(b);
 		_recordBtn.setVisible(b);
 	}
+	
 	//actions for when help is clicked
 	@FXML
 	private void helpClick() {
-
+		_helpBtn.setDisable(true);
+		_instructions.setText("Welcome! When you�re ready to answer just hold down the record button and say your answer.");
+		_nextBtn.setText("next");
+		_tahi.setVisible(true);
+		_speech.setVisible(true);
+		
+		_clicks = 0;
+	}
+	
+	@FXML
+	private void helpNextClick() {
+		//on each next click, show the next set of instructions
+		if (_clicks == 0) {
+			_instructions.setText("Make sure to say it in a nice clear voice.");
+			_clicks++;
+		} else if (_clicks == 1) {
+			_instructions.setText("When you are done, you can press the play button to hear what you said.");
+			_clicks++;
+		} else if (_clicks == 2) {
+			_instructions.setText("If you are not happy with your answer, just hold the record button to answer again.");
+			_clicks++;
+		} else if (_clicks == 3) {
+			_instructions.setText("Otherwise click the submit button to enter your answer.");
+			_clicks++;
+		} else if (_clicks == 4) {
+			_instructions.setText("If you get an answer wrong, do not worry about it.");
+			_clicks++;
+		} else if (_clicks == 5) {
+			_instructions.setText("You get two tries for every question and there will be ten questions in total unless you're on practise.");
+			_clicks++;
+		} else if (_clicks == 6) {
+			_instructions.setText("On practise you get as many questions as you want until you quit.");
+			_clicks++;
+		} else if (_clicks == 7) {
+			_instructions.setText("The important thing is to learn and have fun!");
+			_nextBtn.setText("done!");
+			_clicks++;
+		} else if (_clicks == 8) {
+			_clicks = 0;
+			_tahi.setVisible(false);
+			_speech.setVisible(false);
+			_helpBtn.setDisable(false);
+		}
 	}
 
 	//actions for when home is clicked
@@ -371,5 +432,4 @@ public class NumberDisplayController {
 			killProcesses();//make sure to stop anything that is playing
 		}
 	}
-
 }
