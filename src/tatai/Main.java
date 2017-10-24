@@ -20,21 +20,27 @@ import javafx.scene.Scene;
 
 
 public class Main extends Application {
-	String _creation;
 	
-	
+	/**
+	 * This class sets up the primary window stage and loads the main menu scene. 
+	 */
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		//load main menu
 		Parent root = FXMLLoader.load(getClass().getResource("/tatai/view/MainMenu.fxml"));
 		Scene mainMenu = new Scene(root);
 		primaryStage.setScene(mainMenu);
-		primaryStage.setTitle("Tatai");
+		primaryStage.setTitle("T\u0101tai");
+		
 		//make sure the window is not resizable
 		primaryStage.setResizable(false);
 
+		/**
+		 * The method invoked creates a pop-up message to ask the user whether or not they want to quit the game. 
+		 * If they do, then the stats object and custom lists object will be stored into a JSON object in the file system,
+		 * to be restored the next time the user comes back on.
+		 */
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
-
 			@Override
 			public void handle(WindowEvent event) {
 				//open quit confirmation window
@@ -68,8 +74,9 @@ public class Main extends Application {
 						exitWindow.close();		
 						
 					});
-					loader.<QuitWindowController>getController().getNoBtn().setOnAction(e -> { //user wishes to quit
-						exitWindow.close();		
+					loader.<QuitWindowController>getController().getNoBtn().setOnAction(e -> { //user wants to remain in the game.
+						exitWindow.close();
+						event.consume();
 					});				
 					exitWindow.showAndWait();
 				} catch (IOException e) {

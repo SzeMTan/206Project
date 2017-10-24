@@ -1,7 +1,6 @@
 package tatai.view;
 
 import java.io.IOException;
-
 import tatai.Main;
 import tatai.model.LevelSelection;
 import javafx.event.ActionEvent;
@@ -70,6 +69,11 @@ public class MainMenuController {
 		}
 	}
 	
+	/**
+	 * When the play button has been clicked, changed to the level screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void playClick(ActionEvent event) throws IOException {
 		Parent menu;
@@ -82,6 +86,11 @@ public class MainMenuController {
 		_window.show();
 	}
 	
+	/**
+	 * When the practise button has been clicked, changed to the start page for practice
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void practiseClick(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -95,6 +104,12 @@ public class MainMenuController {
 		_window.setTitle("Practise");
 	}
 	
+	/**
+	 * When the statistics button has been clicked, changes to the scene with the barchart and results from 
+	 * current and previous scores.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void statisticsClick(ActionEvent event) throws IOException {
 	FXMLLoader loader = new FXMLLoader();
@@ -105,10 +120,13 @@ public class MainMenuController {
 	_scene = new Scene(stats);
 	_window = (Stage)((Node)event.getSource()).getScene().getWindow();
 	_window.setScene(_scene);
-	_window.setTitle("Practise");
+	_window.setTitle("Statistics");
 	_window.show();
 	}
 	
+	/**
+	 * Activates Tahi for help
+	 */
 	@FXML 
 	private void helpClick() {
 		//make sure text in speech is initial one
@@ -116,11 +134,14 @@ public class MainMenuController {
 		_speech.setLayoutX(36);
 		_speech.setLayoutY(200);
 		_helpBtn.setDisable(true);
-		_nextBtn.setText("next");
+		_nextBtn.setText("Next");
 		_firstTahi.setVisible(true);
 		_speech.setVisible(true);
 	}
 	
+	/**
+	 * Moves Tahi around the screen for instructions 
+	 */
 	@FXML
 	private void nextClick() {
 		if (_clicks == 0) {
@@ -155,7 +176,7 @@ public class MainMenuController {
 			_speech.setLayoutY(121);
 			_clicks++;
 		} else if (_clicks == 3) {
-			_nextBtn.setText("done");
+			_nextBtn.setText("Done!");
 			//position right tahi
 			_rightTahi.setLayoutY(147);
 			//set speech

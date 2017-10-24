@@ -27,6 +27,13 @@ import tatai.model.Level;
 import tatai.model.LevelSelection;
 import tatai.model.Recording;
 
+
+/**
+ * The controller for the NumberDisplay fxml, it controls the loading of scenes for the equations of the different
+ * levels and responsible for the buttons to record, submit and play recording.
+ * @author se206
+ *
+ */
 public class NumberDisplayController {
 
 	//components of both scenes
@@ -41,8 +48,8 @@ public class NumberDisplayController {
 	private PopOver _fail;
 
 	//feedback scene components
-	@FXML private Button _playBtn1;
-	@FXML private Button _playBtn2;//button which plays back the user's recording
+	@FXML private Button _playBtn1;//button which plays back the user's recording in the front screen
+	@FXML private Button _playBtn2;//button which plays back the user's recording in the feedback screen
 	@FXML private Button _nextBtn; //button to go to next question
 	@FXML private TextField _userAnswer; // shows user what they said
 	@FXML private TextField _correctAnswer;
@@ -84,6 +91,11 @@ public class NumberDisplayController {
 		_levelSelected = levelSelected; //set level user has selected
 		_level = level;
 
+		if(levelSelected.equals(LevelSelection.PRACTISE)) {
+			_equationLbl.setVisible(false);
+			_scoreLbl.setVisible(false);
+		}
+		
 		_levelLbl.setText("Level: " + levelSelected.name());
 		_level.generateQuestion();
 		_equationLbl.setText(_level.getQuestion());
@@ -272,16 +284,19 @@ public class NumberDisplayController {
 		_userAnswer.setText(_recording.getWord());
 	}
 
+	//sets the screen for when the user answers correctly
 	public void setCorrectScene(){
 		_equationLbl.setText("Well Done!");
 		_backgroundPane.setStyle("-fx-background-color: #66ff66");
 	}
 
+	//sets the screen for when the user answers incorrectly the first time
 	public void setTryAgainScene(){
 		_equationLbl.setText("Try Again!");
 		_backgroundPane.setStyle("-fx-background-color: #ff6666");
 	}
 
+	//sets the screen for when the user answers incorrectly the second and final time
 	public void setNiceTryScene(){
 		_equationLbl.setText("Next Time!");
 		_backgroundPane.setStyle("-fx-background-color: #ff6666");
@@ -328,8 +343,8 @@ public class NumberDisplayController {
 	@FXML
 	private void helpClick() {
 		_helpBtn.setDisable(true);
-		_instructions.setText("Welcome! When you�re ready to answer just hold down the record button and say your answer.");
-		_nextBtn.setText("next");
+		_instructions.setText("Welcome! When you are ready to answer just hold down the record button and say your answer.");
+		_nextBtn.setText("Next");
 		_tahi.setVisible(true);
 		_speech.setVisible(true);
 		
@@ -362,7 +377,7 @@ public class NumberDisplayController {
 			_clicks++;
 		} else if (_clicks == 7) {
 			_instructions.setText("The important thing is to learn and have fun!");
-			_nextBtn.setText("done!");
+			_nextBtn.setText("Done!");
 			_clicks++;
 		} else if (_clicks == 8) {
 			_clicks = 0;
@@ -394,6 +409,7 @@ public class NumberDisplayController {
 					Parent parentMenu = loaderMenu.load();
 					Scene sceneMenu = new Scene(parentMenu);
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+					window.setTitle("T\u0101tai");
 					window.setScene(sceneMenu);
 
 					confirmWindow.close();//close pop up window

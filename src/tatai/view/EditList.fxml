@@ -26,13 +26,13 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
-								<Label layoutX="290.0" layoutY="82.0" text="Name of list">
+								<Label id="customlist-label" layoutX="290.0" layoutY="82.0" text="Name of list">
 									<font>
 										<Font name="Batang" size="12.0" />
 									</font>
 								</Label>
 								<Button id="small-button" layoutX="526.0" layoutY="417.0" mnemonicParsing="false" onAction="#nextClick" text="Next" />
-								<Button id="small-button" fx:id="_helpOne" layoutX="14.0" layoutY="417.0" mnemonicParsing="false" onAction="#helpClick" text="Help" />
+								<Button id="small-button" fx:id="_helpOne" layoutX="14.0" layoutY="417.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
 								<TextField fx:id="_name" layoutX="160.0" layoutY="166.0" prefHeight="38.0" prefWidth="330.0" promptText="Enter name here" />
 								<Button id="small-button" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backClick" text="Back" />
                         <Group fx:id="_speechOne" layoutX="430.0" layoutY="20.0">
@@ -47,7 +47,7 @@
                                     <Font name="Berlin Sans FB" size="15.0" />
                                  </font>
                               </TextArea>
-                              <Button id="really-small-button" fx:id="_nextOne" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#helpOneNextClick" text="next" />
+                              <Button id="really-small-button" fx:id="_nextOne" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#helpOneNextClick" text="Next" />
                               <ImageView fitHeight="172.0" fitWidth="141.0" layoutX="55.0" layoutY="120.0">
                                  <image>
                                     <Image url="@../../main/resources/leftTahi.png" />
@@ -63,9 +63,9 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
-								<Label layoutX="251.0" layoutY="71.0" text="Comments about the list" />
+								<Label id="customlist-label" layoutX="163.0" layoutY="71.0" text="Comments about the list" />
 								<Button id="small-button" layoutX="526.0" layoutY="417.0" mnemonicParsing="false" onAction="#nextClick" text="Next" />
-								<Button id="small-button" fx:id="_helpTwo" layoutX="14.0" layoutY="417.0" mnemonicParsing="false" onAction="#helpClick" text="help" />
+								<Button id="small-button" fx:id="_helpTwo" layoutX="14.0" layoutY="417.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
 								<TextArea fx:id="_comments" layoutX="216.0" layoutY="136.0" prefHeight="200.0" prefWidth="200.0" promptText="Enter comments here. These comments will be displayed to the user when they select this list during play." wrapText="true" />
 								<Button id="small-button" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backClick" text="Back" />
                         <Group fx:id="_speechTwo" layoutX="380.0" layoutY="44.0">
@@ -97,7 +97,7 @@
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
 								<ListView fx:id="_equationList" layoutX="225.0" layoutY="75.0" prefHeight="210.0" prefWidth="200.0" />
-								<Label layoutX="283.0" layoutY="43.0" text="Equations in list" />
+								<Label id="customlist-label" layoutX="283.0" layoutY="43.0" text="Equations in list" />
 								<Button id="small-button" fx:id="_doneBtn" layoutX="526.0" layoutY="417.0" mnemonicParsing="false" onAction="#doneClick" text="Done!" />
 								<Button id="small-button" fx:id="_helpThree" layoutX="14.0" layoutY="417.0" mnemonicParsing="false" onAction="#helpClick" text="Help" />
 								<HBox layoutX="145.0" layoutY="307.0" prefHeight="37.0" prefWidth="360.0">
@@ -165,7 +165,7 @@
                                     <Font name="Berlin Sans FB" size="15.0" />
                                  </font>
                               </TextArea>
-                              <Button id="really-small-button" fx:id="_nextThree" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#helpThreeNextClick" text="next" />
+                              <Button id="really-small-button" fx:id="_nextThree" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#helpThreeNextClick" text="Next" />
                               <ImageView fitHeight="132.0" fitWidth="127.0" layoutX="55.0" layoutY="120.0">
                                  <image>
                                     <Image url="@../../main/resources/leftTahi.png" />

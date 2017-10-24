@@ -17,15 +17,9 @@ import com.google.gson.JsonSyntaxException;
  */
 public class Stats {
 
-	//	private static Stats _easyInstance = new Stats();
-	//	private static Stats _mediumInstance = new Stats();
-	//	private static Stats _hardInstance = new Stats();
-	//	private static Stats _customInstance = new Stats();
-
 	private static Stats _statsInstance = null;
-	//	private List<Integer> _resultsEasy = new ArrayList<Integer>(); //list of results from easy
-	//	private List<Integer> _resultsHard = new ArrayList<Integer>(); // list of results from hard
-
+	
+	//stores previous 10 results and used for data display on bar graph. Initialised to -1 before any user input
 	private Integer[] _resultsEasy = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	private Integer[] _resultsMedium = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	private Integer[] _resultsHard = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
@@ -54,13 +48,13 @@ public class Stats {
 
 	private Stats() {}
 
-	//loads 
+	//loads the stored JSON stats object if there exists one otherwise creates a new singleton Stats object with default values
 	public static Stats getInstance(){
 		Gson gsonLoad = new Gson();
 		File jsonFile = new File("stats.json");
-		if (_statsInstance == null  && jsonFile.exists()){
+		if (_statsInstance == null  && jsonFile.exists()){ //Checks if the file exists
 			try {
-				_statsInstance = gsonLoad.fromJson(new FileReader(jsonFile),Stats.class);
+				_statsInstance = gsonLoad.fromJson(new FileReader(jsonFile),Stats.class); //loads JSON object
 			} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -71,9 +65,11 @@ public class Stats {
 		}
 		return _statsInstance;
 	}
+	
 	/**
 	 * Adds result to list of results
-	 * @param result
+	 * @param result from NumberDisplayController
+	 * @param level specified
 	 */
 	public void addResult(int result, LevelSelection level) {
 		Integer[] resultsArray = getResultArray(level);
@@ -85,7 +81,7 @@ public class Stats {
 				if (resultsArray[i] == -1){
 					resultsArray[i] = result;
 					break;
-				} else if (i == resultsArray.length - 1) { //means array is full and results have to be shifted to left
+				} else if (i == resultsArray.length - 1) { //means array is full and results have to be shifted to left so new result can be appended
 					for (int j = 0; j < resultsArray.length-2; j++){
 						resultsArray[j] = resultsArray[j+1];
 						resultsArray[resultsArray.length - 1] = result;
@@ -123,7 +119,8 @@ public class Stats {
 
 	/**
 	 * Returns the array associated with the level for setting information and calculating values
-	 * @return
+	 * @param level
+	 * @return: corresponding array depending on level.
 	 */
 
 	public Integer[] getResultArray(LevelSelection level){
@@ -143,7 +140,7 @@ public class Stats {
 
 	/**
 	 * Calculates and returns average of easy or hard level as an int.
-	 * @return
+	 * @return: either the calculated average or -1 if there isn't any data to calculate.
 	 */
 	public double getAverage(LevelSelection level) {
 		if (level.equals(LevelSelection.EASY)) {
@@ -190,7 +187,7 @@ public class Stats {
 
 	/**
 	 * calculates and returns max score of level result as int
-	 * @return
+	 * @return max value corresponding to the input level
 	 */
 	public int getMax(LevelSelection level) {
 		if (level.equals(LevelSelection.EASY)) {
@@ -202,13 +199,5 @@ public class Stats {
 		} else {
 			return _maxCustom;
 		}
-	}
-
-	/**
-	 * Loads the default stats object if a JSON file does not exist
-	 */
-
-	public void loadDefault(){
-
 	}
 }

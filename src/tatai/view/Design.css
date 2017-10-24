@@ -9,6 +9,11 @@
 	-fx-font-size: 45px;
 }
 
+#customlist-label{
+	-fx-font-family: "Berlin Sans FB";
+	-fx-font-size:  30px;
+}
+
 .button{
 	-fx-background-radius: 20px;
 	-fx-pref-width:  125;

@@ -17,7 +17,7 @@ public class Bash {
 	}
 
 	/**
-	 * Execute the bash command. If the command fails to execute then an error will be thrown.
+	 * A bash string command will be passed into this class and will be executed. If the command fails to execute then an error will be thrown.
 	 * @return String containing the results of executing the command.
 	 */
 	public String execute(){ //will throw exception if cancelled
@@ -38,7 +38,7 @@ public class Bash {
 					result = result + "\n" + line;
 					System.err.println(line);
 				}
-			} else {
+			} else { //Otherwise _bashCommand will be executed
 				String line;
 				if ((line = stdin.readLine()) != null) {
 					result = line;

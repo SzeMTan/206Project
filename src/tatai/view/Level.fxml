@@ -43,7 +43,7 @@
                   <Font name="Berlin Sans FB" size="15.0" />
                </font>
             </TextArea>
-            <Button id="really-small-button" fx:id="_nextBtn" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#nextClick" text="next" />
+            <Button id="really-small-button" fx:id="_nextBtn" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#nextClick" text="Next" />
          </children>
       </Group>
    </children>

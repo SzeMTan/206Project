@@ -7,7 +7,7 @@ import java.util.Map;
  * MaoriNumbers contains all the numbers and their corresponding Maori pronounciation
  * required to pronounce 1 to 99 in Maori. In order to count to greater than 99, the 
  * required words in Maori will need to be added with their integer value. Note that 
- * the enum does not include "ma".
+ * the enum does not include "maa".
  * @author lucy
  *
  */

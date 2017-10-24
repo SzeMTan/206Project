@@ -21,45 +21,40 @@ import javafx.stage.Stage;
 import tatai.model.LevelSelection;
 import tatai.model.Stats;
 
+/**
+ * This controller is associated with the Statistics fxml. It contains and loads a bar chart for the last 10 games played.
+ * It also shows the current high score and average score for each level which can be toggled through a tab bar
+ * 
+ * @author stan557
+ *
+ */
 public class StatisticsController {
+	@FXML private Scene menuScene;
+	@FXML private Stage window;
 
-	@FXML
-	private Scene menuScene;
-	@FXML
-	private Stage window;
-	@FXML
-	private Label easyMax;
-	@FXML
-	private Label easyAverage;
-	@FXML
-	private Label mediumMax;
-	@FXML
-	private Label mediumAverage;
-	@FXML
-	private Label hardMax;
-	@FXML
-	private Label hardAverage;
-	@FXML
-	private Label customMax;
-	@FXML
-	private Label customAverage;
-	@FXML
-	private BarChart<String, Integer> _easyChart;
-	@FXML
-	private BarChart<String, Integer> _mediumChart;
-	@FXML
-	private BarChart<String, Integer> _hardChart;
-	@FXML
-	private BarChart<String, Integer> _customChart;
+	//Max values for all the levels
+	@FXML private Label easyMax;
+	@FXML private Label mediumMax;
+	@FXML private Label hardMax;
+	@FXML private Label customMax;
 
-	@FXML
-	private NumberAxis yEasyAxis;
-	@FXML
-	private NumberAxis yMediumAxis;
-	@FXML
-	private NumberAxis yHardAxis;
-	@FXML
-	private NumberAxis yCustomAxis;
+	//Average values for all the levels
+	@FXML private Label easyAverage;
+	@FXML private Label mediumAverage;
+	@FXML private Label hardAverage;
+	@FXML private Label customAverage;
+
+	//bar charts for all the levels
+	@FXML private BarChart<String, Integer> _easyChart;
+	@FXML private BarChart<String, Integer> _mediumChart;
+	@FXML private BarChart<String, Integer> _hardChart;
+	@FXML private BarChart<String, Integer> _customChart;
+
+	//y-axis for all the levels
+	@FXML private NumberAxis yEasyAxis;
+	@FXML private NumberAxis yMediumAxis;
+	@FXML private NumberAxis yHardAxis;
+	@FXML private NumberAxis yCustomAxis;
 
 	//help components
 	@FXML private Button _helpOne;
@@ -78,23 +73,24 @@ public class StatisticsController {
 		setAxisRange(yMediumAxis);
 		setAxisRange(yHardAxis);
 		setAxisRange(yCustomAxis);
-		
+
 		//hide help
 		_tahi.setVisible(false);
 		_speech.setVisible(false);
 	}
 
+	//sends user back to the main menu
 	public void homeClick(ActionEvent event) throws IOException{
 		Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		menuScene = new Scene(menu);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
 		window.setScene(menuScene);
-		window.setTitle("Tatai");
+		window.setTitle("T\u0101tai");
 		window.show();
 	}
 
-
+	//Retrives the resultArrays for each of the levels and adds the statistics to each of the bar charts
 	public void setStats(){	
 		// Gets stats objects for each of the levels
 		Stats stats = Stats.getInstance();
@@ -114,8 +110,10 @@ public class StatisticsController {
 
 	private void addStats(Stats stats, LevelSelection level, BarChart<String, Integer> chart, Label maxLabel, Label avLabel){
 		//load all the information for the specified parameters
+
 		Integer[] scoreArray = stats.getResultArray(level);
 
+		//if the max or average have not been set yet, then rather than showing "-1", a "-" is displayed.
 		if (stats.getMax(level) >=0){
 			maxLabel.setText(stats.getMax(level) + "");
 		}
@@ -130,30 +128,31 @@ public class StatisticsController {
 		}
 
 		XYChart.Series<String,Integer> scores = new Series<String, Integer>();
+		//assigns the scores from the resultArray to the chart
 		for (int i = 0; i < 10; i++){
 			scores.getData().add(new XYChart.Data<String, Integer>(i+1 + "", scoreArray[i]));
 		}
 
 		chart.getData().add(scores);
 	}
-	
-	@FXML
-	private void helpClick(){
+
+				@FXML
+				private void helpClick(){
 		//disable all help buttons
 		_helpOne.setDisable(true);
 		_helpTwo.setDisable(true);
 		_helpThree.setDisable(true);
 		_helpFour.setDisable(true);
-		
-		_nextBtn.setText("next");
-		
+
+		_nextBtn.setText("Next");
+
 		_instructions.setText("Welcome to the stats page.");
 		_speech.setVisible(true);
 		_tahi.setVisible(true);
-		
+
 		_clicks = 0;
 	}
-	
+
 	@FXML 
 	private void nextClick() {
 		if (_clicks == 0) {
@@ -163,14 +162,14 @@ public class StatisticsController {
 			_instructions.setText("The graph shows your last ten scores.");
 			_clicks++;
 		} else if (_clicks == 2) {
-			_nextBtn.setText("done!");
+			_nextBtn.setText("Done!");
 			_instructions.setText("Your most recent score will be on the right side of the graph.");
 			_clicks++;
 		} else if (_clicks == 3) {
 			//hide help components
 			_speech.setVisible(false);
 			_tahi.setVisible(false);
-			
+
 			//reenable help buttons
 			_helpOne.setDisable(false);
 			_helpTwo.setDisable(false);

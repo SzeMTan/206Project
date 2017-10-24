@@ -202,15 +202,15 @@ public class EditListController {
 		_clicks = 0;
 		
 		if (event.getSource().equals(_helpOne)) { //user clicked help on name tab
-			_nextOne.setText("next");
+			_nextOne.setText("Next");
 			_instructionsOne.setText("The name of your list goes here.");
 			_speechOne.setVisible(true);
 		} else if (event.getSource().equals(_helpTwo)) { //user clicked help on comments tab
-			_nextTwo.setText("next");
+			_nextTwo.setText("Next");
 			_instructionsTwo.setText("Comments about the list go here.");
 			_speechTwo.setVisible(true);
 		} else if (event.getSource().equals(_helpThree)) { //user clicked help on equations tab
-			_nextThree.setText("next");
+			_nextThree.setText("Next");
 			_instructionsThree.setText("Here is where new equations are added to the list.");
 			_speechThree.setLayoutX(250);
 			_speechThree.setVisible(true);
@@ -226,7 +226,7 @@ public class EditListController {
 			_instructionsOne.setText("It cannot be the same name as another list");
 		} else if (_clicks == 2) {
 			_instructionsOne.setText("And it can only contain letters, numbers, underscores or dashes");
-			_nextOne.setText("done!");
+			_nextOne.setText("Done!");
 		} else if (_clicks == 3) {
 			_helpOne.setDisable(false);
 			_helpTwo.setDisable(false);
