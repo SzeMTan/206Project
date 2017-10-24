@@ -31,11 +31,11 @@
                   </Label>
                </children>
             </HBox>
-            <Label fx:id="_levelLbl" alignment="CENTER" minHeight="74.0" prefHeight="74.0" prefWidth="350.0" text="Level: " VBox.vgrow="ALWAYS">
-               <font>
-                  <Font name="Berlin Sans FB" size="40.0" />
-               </font>
-            </Label>
+            <ImageView fx:id="_levelTitle" fitHeight="83.0" fitWidth="242.0">
+               <image>
+                  <Image url="@../../main/resources/EASY.png" />
+               </image>
+            </ImageView>
             <Label fx:id="_equationLbl" alignment="CENTER" prefHeight="106.0" prefWidth="650.0" text="9">
                <font>
                   <Font name="Berlin Sans FB" size="96.0" />

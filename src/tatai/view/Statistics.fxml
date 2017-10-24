@@ -15,8 +15,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="500.0" stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.StatisticsController">
@@ -27,19 +25,6 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="650.0">
                      <children>
-                        <Label layoutX="125.0" text="Statistics: Easy">
-                           <font>
-                              <Font name="Berlin Sans FB" size="50.0" />
-                           </font>
-                           <textFill>
-                              <RadialGradient centerX="0.5722222222222222" centerY="0.5285714285714286" radius="0.8372093023255814">
-                                 <stops>
-                                    <Stop color="#ff6f0e" />
-                                    <Stop color="#e42929" offset="1.0" />
-                                 </stops>
-                              </RadialGradient>
-                           </textFill>
-                        </Label>
                         <HBox layoutY="70.0" prefHeight="361.0" prefWidth="600.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
@@ -89,6 +74,11 @@
                         </HBox>
                         <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
                         <Button id="small-button" fx:id="_helpOne" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                        <ImageView fitHeight="70.0" fitWidth="445.0" layoutX="115.0">
+                           <image>
+                              <Image url="@../../main/resources/StatsEasy.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
@@ -97,19 +87,6 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="650.0">
                      <children>
-                        <Label layoutX="125.0" text="Statistics: Medium">
-                           <font>
-                              <Font name="Berlin Sans FB" size="50.0" />
-                           </font>
-                           <textFill>
-                              <RadialGradient centerX="0.5722222222222222" centerY="0.5285714285714286" radius="0.8372093023255814">
-                                 <stops>
-                                    <Stop color="#ff6f0e" />
-                                    <Stop color="#e42929" offset="1.0" />
-                                 </stops>
-                              </RadialGradient>
-                           </textFill>
-                        </Label>
                         <HBox layoutY="70.0" prefHeight="361.0" prefWidth="600.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
@@ -159,6 +136,11 @@
                         </HBox>
                         <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
                         <Button id="small-button" fx:id="_helpTwo" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                        <ImageView fitHeight="68.0" fitWidth="455.0" layoutX="115.0">
+                           <image>
+                              <Image url="@../../main/resources/StatsMed.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
@@ -167,19 +149,6 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="650.0">
                      <children>
-                        <Label layoutX="125.0" text="Statistics: Hard">
-                           <font>
-                              <Font name="Berlin Sans FB" size="50.0" />
-                           </font>
-                           <textFill>
-                              <RadialGradient centerX="0.5722222222222222" centerY="0.5285714285714286" radius="0.8372093023255814">
-                                 <stops>
-                                    <Stop color="#ff6f0e" />
-                                    <Stop color="#e42929" offset="1.0" />
-                                 </stops>
-                              </RadialGradient>
-                           </textFill>
-                        </Label>
                         <HBox layoutY="70.0" prefHeight="361.0" prefWidth="600.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
@@ -229,6 +198,11 @@
                         </HBox>
                         <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
                         <Button id="small-button" fx:id="_helpThree" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                        <ImageView fitHeight="92.0" fitWidth="359.0" layoutX="125.0" layoutY="-7.0">
+                           <image>
+                              <Image url="@../../main/resources/statsHard.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
@@ -237,19 +211,6 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="650.0">
                      <children>
-                        <Label layoutX="125.0" text="Statistics: Custom">
-                           <font>
-                              <Font name="Berlin Sans FB" size="50.0" />
-                           </font>
-                           <textFill>
-                              <RadialGradient centerX="0.5722222222222222" centerY="0.5285714285714286" radius="0.8372093023255814">
-                                 <stops>
-                                    <Stop color="#ff6f0e" />
-                                    <Stop color="#e42929" offset="1.0" />
-                                 </stops>
-                              </RadialGradient>
-                           </textFill>
-                        </Label>
                         <HBox layoutY="70.0" prefHeight="361.0" prefWidth="600.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
@@ -299,6 +260,11 @@
                         </HBox>
                         <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
                         <Button id="small-button" fx:id="_helpFour" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                        <ImageView fitHeight="79.0" fitWidth="460.0" layoutX="115.0" layoutY="-3.0">
+                           <image>
+                              <Image url="@../../main/resources/statsCustom.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>

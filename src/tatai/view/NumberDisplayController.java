@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
@@ -38,7 +39,7 @@ public class NumberDisplayController {
 
 	//components of both scenes
 	@FXML private AnchorPane _backgroundPane;
-	@FXML private Label _levelLbl; //tells user what level they are on
+	@FXML private ImageView _levelTitle; //tells user what level they are on
 	@FXML private Label _equationLbl; //shows equation to user and tells user if they're correct or not
 	@FXML private Label _questionLbl; //tells user how many questions they have done
 	@FXML private Label _scoreLbl; // tells user what their score is
@@ -96,7 +97,7 @@ public class NumberDisplayController {
 			_scoreLbl.setVisible(false);
 		}
 		
-		_levelLbl.setText("Level: " + levelSelected.name());
+		_levelTitle.setImage(new Image("\\main\\resources\\" + _levelSelected.name() + ".png"));
 		_level.generateQuestion();
 		_equationLbl.setText(_level.getQuestion());
 	}
