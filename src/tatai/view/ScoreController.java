@@ -90,8 +90,7 @@ public class ScoreController{
 		window.show();
 	}
 
-	public void setScoreAndLevel(int score, LevelSelection level, int index){
-		_index = index;
+	public void setScoreAndLevel(int score, LevelSelection level){
 		_levelSelected = level;
 		if (level.equals(LevelSelection.HARD) || score < 8 || level.equals(LevelSelection.CUSTOM)) {
 			nextlevelBtn.setVisible(false);
@@ -113,9 +112,6 @@ public class ScoreController{
 		}		
 		//update stats object
 		stats.addResult(score, _levelSelected);
-		
-		
-		_tahi.setLayoutX(480);
 	}
 
 

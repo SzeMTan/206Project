@@ -1,8 +1,6 @@
 package tatai.view;
 
 import java.io.IOException;
-import java.util.concurrent.ThreadLocalRandom;
-
 import org.controlsfx.control.PopOver;
 
 import javafx.concurrent.Task;
@@ -22,10 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import tatai.model.Number;
-import tatai.model.NumberOutOfBoundsException;
 import tatai.Main;
-import tatai.model.CustomLists;
+import tatai.model.Level;
 import tatai.model.LevelSelection;
 import tatai.model.Recording;
 
@@ -69,9 +65,21 @@ public class NumberDisplayController {
 
 	private Task<Void> _recordTask;
 
-	private CustomLists _customLists = CustomLists.getInstance();//contains all custom lists
-	private int _index = -1; //-1 means it's not a custom game, otherwise it's what list to play
-	private int _equationIndex = -1;
+	private Level _level;
+	
+	/**
+	 * sets questions based on level the user has selected or if they are practicing
+	 * @param _level
+	 * @throws IOException
+	 */
+	public void setup(LevelSelection levelSelected, Level level) throws IOException{
+		_levelSelected = levelSelected; //set level user has selected
+		_level = level;
+
+		_levelLbl.setText("Level: " + levelSelected.name());
+		_level.generateQuestion();
+		_equationLbl.setText(_level.getQuestion());
+	}
 
 	@FXML
 	public void initialize() {
@@ -82,7 +90,7 @@ public class NumberDisplayController {
 		setFeedbackVisibility(false);
 		_correctAnswerLabel.setVisible(false);
 		_correctAnswer.setVisible(false);
-		
+
 		//setup recording fail popover
 		_fail = new PopOver();
 		_fail.setDetachable(false);
@@ -115,8 +123,8 @@ public class NumberDisplayController {
 				Platform.runLater(() -> {
 					_recordBtn.setText("Record");
 					if (exit == 255) {//means recording completed properly
-					_playBtn1.setDisable(false);
-					_submitBtn.setDisable(false);
+						_playBtn1.setDisable(false);
+						_submitBtn.setDisable(false);
 					} else {
 						_playBtn1.setDisable(true);
 						_submitBtn.setDisable(true);
@@ -140,14 +148,13 @@ public class NumberDisplayController {
 	//actions for when next is clicked
 	@FXML
 	private void nextClick(ActionEvent event) throws IOException{
-		_question = 11;
 		if (_question == 11) { //means user has completed 10 questions and is hence finished
 			//change to score scene
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Score.fxml"));
 			Parent number = loader.load();
 			endScene = new Scene(number);
 			ScoreController c = loader.getController();
-			c.setScoreAndLevel(5, _levelSelected, _index);//////
+			c.setScoreAndLevel(_score, _levelSelected);
 			window = (Stage)((Node)event.getSource()).getScene().getWindow();
 			window.setScene(endScene);
 		} else { //change back to recording scene
@@ -166,29 +173,11 @@ public class NumberDisplayController {
 			_submitBtn.setDisable(true);
 
 			if (_numIncorrect != 1){ //means new question has to be generated
-				if (_levelSelected.equals(LevelSelection.PRACTISE)){
-					_num.generateNumber();
-				} else if (_levelSelected.equals(LevelSelection.CUSTOM)) {
-					_equationIndex = ThreadLocalRandom.current().nextInt(0, _customLists.getEquations(_index).size());
-					_num = new Number(_customLists.getAnswer(_index).get(_equationIndex));
-				} else{
-					_num.generateEquation();
-				}
+				_level.generateQuestion();
 				_questionLbl.setText("Question number: " + _question);
 				_scoreLbl.setText("Score: " + _score);
 			}
-			if (_levelSelected.equals(LevelSelection.PRACTISE)){//means user gets another try at same question
-				_equationLbl.setText(_num.getQuiz().toString());
-			} else if (_levelSelected.equals(LevelSelection.CUSTOM)) {
-				_equationLbl.setText(_customLists.getEquations(_index).get(_equationIndex));
-			}
-
-			else if (_levelSelected.equals(LevelSelection.CUSTOM)){
-
-			}
-			else{
-				_equationLbl.setText(_num.getEquation());
-			}
+			_equationLbl.setText(_level.getQuestion());
 		}
 	}
 
@@ -221,102 +210,48 @@ public class NumberDisplayController {
 		playThread.start();
 	}
 
-
-
 	//to submit the users answer for checking
 	@FXML
 	private void submitClick() {
 		_recordBtn.setText("Record");
 		_recording.recognize();//get what user said
 
-		if (_num.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
+		if (_level.compare(_recording.getWord()) || _numIncorrect == 1) {//check if user has said correct word of if they've already gotten it wrong once
 			if (!_levelSelected.equals(LevelSelection.PRACTISE)) {
 				_question++;//indicate moving on to next question
 			}
-			_numIncorrect = 0;
+			_numIncorrect = 0;//reset number of incorrects
 			_nextBtn.setText("Next");
-			if (_num.compare(_recording.getWord())) { //user was right
+			if (_level.compare(_recording.getWord())) { //user was right
 				setCorrectScene();
 				_score++; //update score
 				_scoreLbl.setText("Score: " + _score);
 			} else { //user was wrong for second time
 				setNiceTryScene();
 			}
-			_correctAnswer.setText(_num.getMaori());
+			//show user the correct answer
+			_correctAnswer.setText(_level.getMaori());
 			_correctAnswerLabel.setVisible(true);
 			_correctAnswer.setVisible(true);
 		} 
 		//User has answered wrong once, they get second try
 		else {
 			setTryAgainScene();
+			//make sure they can't see the correct answer
 			_correctAnswerLabel.setVisible(false);
 			_correctAnswer.setVisible(false);
+
 			_nextBtn.setText("Retry");
-			_numIncorrect = 1;
+			_numIncorrect++; //increment number of incorrect attempts
 		}
 		_equationLbl.setFont(Font.font("Berlin Sans FB",35)); //make text smaller so that it's readable
-		 
+
 		//hide recording components
 		setFrontVisibility(false);
 
 		//get feedback components
 		setFeedbackVisibility(true);
 		_userAnswer.setText(_recording.getWord());
-	}
-
-	//sets index if playing a custom list
-	public void setList(int index) {
-		_index = index;
-	}
-	/**
-	 * sets questions based on level the user has selected or if they are practicing
-	 * @param _level
-	 * @throws IOException
-	 */
-	public void setLabelText(LevelSelection _level) throws IOException{
-		_levelSelected = _level; //set level user has selected
-
-		if (_level.equals(LevelSelection.EASY)){//set equations for easy
-			_levelLbl.setText("Level: Easy");
-			_num = new Number(_level);
-		}
-		else if(_level.equals(LevelSelection.MEDIUM)){//set equations for medium
-			_levelLbl.setText("Level: Medium");
-			try {
-				_num = new Number(1,99,_level);
-			} catch (NumberOutOfBoundsException e) {
-				e.printStackTrace();
-			}
-		}
-		else if(_level.equals(LevelSelection.HARD)){//set equations for hard
-			_levelLbl.setText("Level: Hard");
-			try {
-				_num = new Number(1,99,_level);
-			} catch (NumberOutOfBoundsException e) {
-				e.printStackTrace();
-			}
-		} else if (_level.equals(LevelSelection.CUSTOM)){
-			_levelLbl.setText("Level: " + _customLists.getLists().get(_index));
-			_equationIndex = ThreadLocalRandom.current().nextInt(0, _customLists.getEquations(_index).size());
-			_equationLbl.setText(_customLists.getEquations(_index).get(_equationIndex));
-			_num = new Number(_customLists.getAnswer(_index).get(_equationIndex));
-		}
-		else if(_level.equals(LevelSelection.PRACTISE)){
-			_levelLbl.setText("Practise");//set questions for practice
-			_questionLbl.setVisible(false);
-			_scoreLbl.setVisible(false);
-			try {
-				_num = new Number(1,99);
-			} catch (NumberOutOfBoundsException e) {
-				e.printStackTrace();
-			}
-		}
-		if (_level.equals(LevelSelection.PRACTISE)){
-			_equationLbl.setText(_num.getQuiz().toString()); //display question
-		} else if (!_level.equals(LevelSelection.CUSTOM)){
-			_equationLbl.setText(_num.getEquation());
-		}
-
 	}
 
 	public void setCorrectScene(){

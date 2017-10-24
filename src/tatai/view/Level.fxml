@@ -11,7 +11,7 @@
 
 <AnchorPane stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.LevelController">
    <children>
-      <ImageView fx:id="_tahi" fitHeight="200.0" fitWidth="147.0" layoutX="400.0" layoutY="280.0">
+      <ImageView fx:id="_tahi" fitHeight="200.0" fitWidth="147.0" layoutX="115.0" layoutY="110.0">
          <image>
             <Image url="@../../main/resources/IMG_0262.png" />
          </image>
@@ -31,14 +31,14 @@
             <Image url="@../../main/resources/Level.jpg" />
          </image>
       </ImageView>
-      <Group fx:id="_speech" layoutX="46.0" layoutY="193.0">
+      <Group fx:id="_speech" layoutX="75.0">
          <children>
             <ImageView fitHeight="135.0" fitWidth="207.0">
                <image>
                   <Image url="@../../main/resources/speechbubble.png" />
                </image>
             </ImageView>
-            <TextArea id="speech" fx:id="_instructions" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="62.0" prefWidth="165.0" text="Custom has questions that have been specially written." wrapText="true">
+            <TextArea id="speech" fx:id="_instructions" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="62.0" prefWidth="165.0" text="Easy is for addition and subtraction where the answer is between 1 and 9." wrapText="true">
                <font>
                   <Font name="Berlin Sans FB" size="15.0" />
                </font>

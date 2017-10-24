@@ -93,7 +93,6 @@ public class MainMenuController {
 		_window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		_window.setScene(_scene);
 		_window.setTitle("Practise");
-		_window.show();
 	}
 	
 	@FXML
