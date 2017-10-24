@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,11 +36,22 @@ public class SelectListController {
 	@FXML private TextArea _comments;
 	@FXML private Button _startBtn;
 
+	//help components
+	@FXML private Button _helpBtn;
+	@FXML private Group _speech;
+	@FXML private Button _nextBtn;
+	@FXML private TextArea _instructions;
+	private int _clicks = 0;
+
 	private CustomLists _customList = CustomLists.getInstance();//contains all the lists
 	private ListProperty<String> _listProperty = new SimpleListProperty<>();
 
 	@FXML
 	private void initialize() {
+		
+		//hide help stuff
+		_speech.setVisible(false);
+		
 		_listProperty.set(FXCollections.observableArrayList(_customList.getLists()));
 		_lists.itemsProperty().bind(_listProperty);
 
@@ -79,7 +91,28 @@ public class SelectListController {
 
 	@FXML
 	private void helpClick() {
+		_helpBtn.setDisable(true);
 
+		_clicks = 0;
+
+		_nextBtn.setText("next");
+		_instructions.setText("This is where you select the list you want to play.");
+
+		_speech.setVisible(true);
+	}
+
+	@FXML
+	private void nextClick() {
+		if (_clicks == 0) {
+			_instructions.setText("When you click on a list, its comments will appear on the right");
+		} else if (_clicks == 1) {
+			_instructions.setText("When you have selected the list you want to play, just click start");
+			_nextBtn.setText("done!");
+		} else if (_clicks == 2) {
+			_helpBtn.setDisable(false);
+			_speech.setVisible(false);
+		}
+		_clicks++;
 	}
 
 	@FXML
@@ -92,7 +125,7 @@ public class SelectListController {
 			loader.setLocation(Main.class.getResource("/tatai/view/Start.fxml"));
 			Parent customStart = loader.load();
 			loader.<StartController>getController().setLevel(LevelSelection.CUSTOM, index);
-			
+
 			Scene scene = new Scene(customStart);
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 			window.setScene(scene);
