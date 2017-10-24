@@ -15,6 +15,14 @@ import javafx.stage.Stage;
 import tatai.model.LevelSelection;
 import tatai.model.Stats;
 
+
+/**
+ * This controller belongs to the score fxml. It has a "Try Again" button, "Next Level" Button.
+ * This scene gets loaded when the user has complete the 10 games . It shows their score for that particular game,
+ * the score then gets saved into the ResultsArrayList and used for further calculations for statistics.
+ * @author se206
+ *
+ */
 public class ScoreController{
 	
 	//new high score components
@@ -51,6 +59,7 @@ public class ScoreController{
 		_scoreLbl.setText("You scored");
 	}
 
+	//If this button is clicked, the scene will load back to the start screen of that particular level.
 	public void tryAgainBtn(ActionEvent event) throws IOException{
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
@@ -64,22 +73,25 @@ public class ScoreController{
 		window.show();
 	}
 
+	//This button only appears if the user has scored 8 or more in the current level. It loads the next level up
+	//if clicked.
 	public void nextLevelBtn(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
 		Parent number = loader.load();
 		scene = new Scene(number);
 		StartController c = loader.getController();
 		if (_levelSelected == LevelSelection.EASY){
-			c.setLevel(LevelSelection.MEDIUM, -1);
+			c.setLevel(LevelSelection.MEDIUM);
 		}
 		else if (_levelSelected == LevelSelection.MEDIUM){
-			c.setLevel(LevelSelection.HARD, -1);
+			c.setLevel(LevelSelection.HARD);
 		}
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();
 	}
 
+	//Sends the user back to the main menu page
 	public void menuBtn(ActionEvent event) throws IOException{
 		Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		scene = new Scene(menu);
@@ -90,6 +102,12 @@ public class ScoreController{
 		window.show();
 	}
 
+	/**
+	 * The score is passed in through the NumberDisplayController and is set for the specified resultArray for that level
+	 * If the user achieves a high score then the "Amazing" label will appear
+	 * @param score
+	 * @param level
+	 */
 	public void setScoreAndLevel(int score, LevelSelection level){
 		_levelSelected = level;
 		if (level.equals(LevelSelection.HARD) || score < 8 || level.equals(LevelSelection.CUSTOM)) {

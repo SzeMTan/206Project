@@ -13,10 +13,8 @@ import tatai.model.Stats;
  */
 public class QuitWindowController {
 	
-	@FXML
-	private Button _noBtn;
-	@FXML
-	private Button _yesBtn;
+	@FXML private Button _noBtn;
+	@FXML private Button _yesBtn;
 
 	public Button getYesBtn(){
 		return _yesBtn;
