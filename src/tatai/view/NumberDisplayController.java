@@ -413,5 +413,4 @@ public class NumberDisplayController {
 			killProcesses();//make sure to stop anything that is playing
 		}
 	}
-
 }
