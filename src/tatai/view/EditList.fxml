@@ -26,7 +26,7 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
-								<Label id="customlist-label" layoutX="290.0" layoutY="82.0" text="Name of list">
+								<Label id="customlist-label" layoutX="250.0" layoutY="81.0" text="Name of list">
 									<font>
 										<Font name="Batang" size="12.0" />
 									</font>
@@ -97,7 +97,7 @@
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
 								<ListView fx:id="_equationList" layoutX="225.0" layoutY="75.0" prefHeight="210.0" prefWidth="200.0" />
-								<Label id="customlist-label" layoutX="283.0" layoutY="43.0" text="Equations in list" />
+								<Label id="customlist-label" layoutX="229.0" layoutY="38.0" text="Equations in list" />
 								<Button id="small-button" fx:id="_doneBtn" layoutX="526.0" layoutY="417.0" mnemonicParsing="false" onAction="#doneClick" text="Done!" />
 								<Button id="small-button" fx:id="_helpThree" layoutX="14.0" layoutY="417.0" mnemonicParsing="false" onAction="#helpClick" text="Help" />
 								<HBox layoutX="145.0" layoutY="307.0" prefHeight="37.0" prefWidth="360.0">

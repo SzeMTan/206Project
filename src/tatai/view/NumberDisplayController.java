@@ -92,7 +92,7 @@ public class NumberDisplayController {
 		_level = level;
 
 		if(levelSelected.equals(LevelSelection.PRACTISE)) {
-			_equationLbl.setVisible(false);
+			_questionLbl.setVisible(false);
 			_scoreLbl.setVisible(false);
 		}
 		
