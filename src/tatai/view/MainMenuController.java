@@ -1,7 +1,6 @@
 package tatai.view;
 
 import java.io.IOException;
-
 import tatai.Main;
 import tatai.model.LevelSelection;
 import javafx.event.ActionEvent;
@@ -70,6 +69,11 @@ public class MainMenuController {
 		}
 	}
 	
+	/**
+	 * When the play button has been clicked, changed to the level screen
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void playClick(ActionEvent event) throws IOException {
 		Parent menu;
@@ -82,6 +86,11 @@ public class MainMenuController {
 		_window.show();
 	}
 	
+	/**
+	 * When the practise button has been clicked, changed to the start page for practice
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void practiseClick(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -95,6 +104,12 @@ public class MainMenuController {
 		_window.setTitle("Practise");
 	}
 	
+	/**
+	 * When the statistics button has been clicked, changes to the scene with the barchart and results from 
+	 * current and previous scores.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void statisticsClick(ActionEvent event) throws IOException {
 	FXMLLoader loader = new FXMLLoader();
@@ -109,6 +124,9 @@ public class MainMenuController {
 	_window.show();
 	}
 	
+	/**
+	 * Activates Tahi for help
+	 */
 	@FXML 
 	private void helpClick() {
 		//make sure text in speech is initial one
@@ -121,6 +139,9 @@ public class MainMenuController {
 		_speech.setVisible(true);
 	}
 	
+	/**
+	 * Moves Tahi around the screen for instructions 
+	 */
 	@FXML
 	private void nextClick() {
 		if (_clicks == 0) {

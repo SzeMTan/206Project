@@ -43,6 +43,12 @@ public class StartController {
 		_label.setText("Level: " + _levelSelection.toString());		
 	}
 	
+	public void setLevel(LevelSelection level){
+		_levelSelection = level;
+		
+		_label.setText("Level: " + _levelSelection.toString());		
+	}
+	
 	public void startBtn(ActionEvent event) throws IOException{
 		//set the level
 		if (_levelSelection.equals(LevelSelection.EASY)){

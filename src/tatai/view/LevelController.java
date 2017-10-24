@@ -19,7 +19,7 @@ import tatai.model.LevelSelection;
  * This is the controller for the level fxml. It allows the user to select which level they would like to play
  * depending on the level they select. It also has the option of returning back to the main menu and the help option
  * with Tahi. On button clicks, Tahi directs the user and appears on different areas of the screen for instructions.
- * @author se206
+ * @author stan557
  *
  */
 public class LevelController {
@@ -50,7 +50,7 @@ public class LevelController {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("view/Start.fxml"));
 		Parent easyStart = loader.load();
-		loader.<StartController>getController().setLevel(LevelSelection.EASY, -1);
+		loader.<StartController>getController().setLevel(LevelSelection.EASY);
 
 
 		_scene = new Scene(easyStart);
@@ -65,7 +65,7 @@ public class LevelController {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("view/Start.fxml"));
 		Parent mediumStart = loader.load();
-		loader.<StartController>getController().setLevel(LevelSelection.MEDIUM, -1);
+		loader.<StartController>getController().setLevel(LevelSelection.MEDIUM);
 
 		_scene = new Scene(mediumStart);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -79,7 +79,7 @@ public class LevelController {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("view/Start.fxml"));
 		Parent hardStart = loader.load();
-		loader.<StartController>getController().setLevel(LevelSelection.HARD, -1);
+		loader.<StartController>getController().setLevel(LevelSelection.HARD);
 
 		_scene = new Scene(hardStart);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -111,7 +111,7 @@ public class LevelController {
 		_scene = new Scene(menu);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(_scene);
-		window.setTitle("Tatai");
+		window.setTitle("T\u0101tai");
 		window.show();
 	}
 
