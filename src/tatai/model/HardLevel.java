@@ -21,6 +21,7 @@ public class HardLevel extends Level {
 	@Override
 	public void generateQuestion() {
 		int operand = ThreadLocalRandom.current().nextInt(1, 5); //choose operand
+		operand = 4;
 		if (operand <= 2 ) {
 			_answer = ThreadLocalRandom.current().nextInt(MIN, MAXADDSUB + 1); //make sure answer is from 1 to 99
 			if(operand == 1) { // means it's addition
@@ -42,7 +43,7 @@ public class HardLevel extends Level {
 				_answer = ThreadLocalRandom.current().nextInt(MIN, MAXMULTDIV + 1);
 				_numberTwo = ThreadLocalRandom.current().nextInt(MIN, MAXMULTDIV + 1);
 				_numberOne = _answer * _numberTwo;
-				_equation = _numberOne + "\u00F7" + _numberTwo;
+				_equation = _numberOne + " \u00F7 " + _numberTwo;
 			}
 		}
 		convertToMaori(_answer); //get Maori translation of answer
