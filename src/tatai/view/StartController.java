@@ -16,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import tatai.Main;
 import tatai.model.CustomLevel;
-import tatai.model.CustomLists;
 import tatai.model.EasyLevel;
 import tatai.model.HardLevel;
 import tatai.model.Level;

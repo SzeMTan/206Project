@@ -2,7 +2,6 @@ package tatai.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import tatai.model.Stats;
 
 /**
  * This controller belongs to the fxml pop-up for when the user wants to exit the Main window. It asks
