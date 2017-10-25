@@ -21,14 +21,16 @@
 	-fx-pref-height:  70;
 	-fx-font-family: "Berlin Sans FB";
 	-fx-background-color: 
-		#008000,
-        linear-gradient(#008000, #006400),
-        radial-gradient(center 50% 0%, radius 100%, #008000, #006400);
+		#008000;
     -fx-text-fill: white;
 }
 
 .button:hover{
 	-fx-effect:dropshadow(three-pass-box, rgba(7,33,0,1), 10, 0, 0, 1 );
+}
+
+.button:pressed{
+	-fx-background-color:linear-gradient(#020b02, #3a3a3a);
 }
 
 .list-view{
