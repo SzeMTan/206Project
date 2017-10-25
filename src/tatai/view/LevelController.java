@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tatai.Main;
 import tatai.model.LevelSelection;
@@ -27,7 +26,6 @@ public class LevelController {
 	@FXML private Button _helpBtn;
 
 	//components of help
-	@FXML private ImageView _tahi;
 	@FXML private Group _speech;
 	@FXML private TextArea _instructions;
 	@FXML private Button _nextBtn;
@@ -40,7 +38,6 @@ public class LevelController {
 	@FXML 
 	private void initialize() {
 		//hide help components
-		_tahi.setVisible(false);
 		_speech.setVisible(false);
 	}
 
@@ -122,13 +119,10 @@ public class LevelController {
 		//show and initialize all help components
 		_clicks = 0;
 		_helpBtn.setDisable(true);//disable help button so that user can't click it again
-		_tahi.setLayoutX(115);
-		_tahi.setLayoutY(110);
-		_speech.setLayoutX(75);
+		_speech.setLayoutX(50);
 		_speech.setLayoutY(0);
 		_instructions.setText("Easy is for addition and subtraction where the answer is between 1 and 9.");
 		_nextBtn.setText("Next");
-		_tahi.setVisible(true);
 		_speech.setVisible(true);
 	}
 
@@ -137,30 +131,23 @@ public class LevelController {
 	private void nextClick() {
 		//run through all the instructions of the help button
 		if (_clicks == 0) {
-			//position tahi
-			_tahi.setLayoutY(190);
 			//set speech
 			_instructions.setText("Medium is for addition and subtraction where the answer is between 1 and 99.");
-			_speech.setLayoutY(70);
+			_speech.setLayoutY(60);
 			_clicks++;
 		} else if (_clicks == 1) {
-			//position tahi
-			_tahi.setLayoutY(280);
 			//set speech
 			_instructions.setText("Hard is like medium but it also has multiplication and division.");
-			_speech.setLayoutY(150);
+			_speech.setLayoutY(140);
 			_clicks++;
 		} else if (_clicks == 2) {
-			//show and position tahi
-			_tahi.setLayoutX(400);
 			//set speech
 			_instructions.setText("Custom has questions that have been specially written.");
-			_speech.setLayoutX(400);
+			_speech.setLayoutX(330);
 			_nextBtn.setText("done!");
 			_clicks++;
 		} else if (_clicks == 3) {
 			//hide help components
-			_tahi.setVisible(false);
 			_speech.setVisible(false);
 			_helpBtn.setDisable(false);//reenable help button
 			_clicks = 0;//reset instructions

@@ -9,7 +9,7 @@
 
 <AnchorPane stylesheets="@popupDesign.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.QuitWindowController">
    <children>
-      <ImageView fitHeight="86.0" fitWidth="106.0" layoutX="238.0" layoutY="118.0">
+      <ImageView fitHeight="86.0" fitWidth="114.0" layoutX="230.0" layoutY="118.0">
          <image>
             <Image url="@../../main/resources/tahiquit.png" />
          </image>

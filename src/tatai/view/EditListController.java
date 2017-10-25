@@ -212,7 +212,7 @@ public class EditListController {
 		} else if (event.getSource().equals(_helpThree)) { //user clicked help on equations tab
 			_nextThree.setText("Next");
 			_instructionsThree.setText("Here is where new equations are added to the list.");
-			_speechThree.setLayoutX(250);
+			_speechThree.setLayoutX(260);
 			_speechThree.setVisible(true);
 		}
 	}

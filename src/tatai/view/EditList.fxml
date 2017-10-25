@@ -153,20 +153,20 @@
 								<Button id="small-button" fx:id="_addBtn" layoutX="205.0" layoutY="360.0" mnemonicParsing="false" onAction="#addClick" text="Add" />
 								<Button id="small-button" fx:id="_removeBtn" layoutX="336.0" layoutY="360.0" mnemonicParsing="false" onAction="#removeClick" text="Remove" />
 								<Button id="small-button" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backClick" text="Back" />
-                        <Group fx:id="_speechThree" layoutX="380.0" layoutY="220.0">
+                        <Group fx:id="_speechThree" layoutX="260.0" layoutY="180.0">
                            <children>
-                              <ImageView fitHeight="135.0" fitWidth="207.0">
+                              <ImageView fitHeight="174.0" fitWidth="241.0">
                                  <image>
                                     <Image url="@../../main/resources/speechbubble.png" />
                                  </image>
                               </ImageView>
-                              <TextArea id="speech" fx:id="_instructionsThree" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="62.0" prefWidth="165.0" wrapText="true">
+                              <TextArea id="speech" fx:id="_instructionsThree" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="91.0" prefWidth="197.0" wrapText="true">
                                  <font>
                                     <Font name="Berlin Sans FB" size="15.0" />
                                  </font>
                               </TextArea>
-                              <Button id="really-small-button" fx:id="_nextThree" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#helpThreeNextClick" text="Next" />
-                              <ImageView fitHeight="132.0" fitWidth="127.0" layoutX="55.0" layoutY="120.0">
+                              <Button id="really-small-button" fx:id="_nextThree" layoutX="142.0" layoutY="111.0" mnemonicParsing="false" onAction="#helpThreeNextClick" text="Next" />
+                              <ImageView fitHeight="132.0" fitWidth="127.0" layoutX="55.0" layoutY="150.0">
                                  <image>
                                     <Image url="@../../main/resources/leftTahi.png" />
                                  </image>

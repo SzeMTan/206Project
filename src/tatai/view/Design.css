@@ -20,7 +20,12 @@
 	-fx-font-size:  20px;
 	-fx-pref-height:  70;
 	-fx-font-family: "Berlin Sans FB";
-	/*-fx-effect:  dropshadow(three-pass-box,#8b0000,5,0,0,1);*/
+	-fx-background-color: 
+		#008000,
+        linear-gradient(#008000, #006400),
+        radial-gradient(center 50% 0%, radius 100%, #008000, #006400);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 .list-view{

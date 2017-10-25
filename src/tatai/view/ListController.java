@@ -168,7 +168,7 @@ public class ListController {
 			_instructions.setText("Here you can create, view or delete your custom lists.");
 			_clicks++;
 		} else if (_clicks == 1) {
-			_instructions.setText("In these lists will be the equations displayed when the user selects to play custom level.");
+			_instructions.setText("The equations in these lists will be used when playing a custom level.");
 			_clicks++;
 		} else if (_clicks == 2) {
 			_instructions.setText("Select a list then click here to view and edit it.");

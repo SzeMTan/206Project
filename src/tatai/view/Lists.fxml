@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.ListController">
    <children>
-      <ImageView fitHeight="135.0" fitWidth="426.0" layoutX="124.0" layoutY="-5.0">
+      <ImageView fitHeight="104.0" fitWidth="378.0" layoutX="155.0" layoutY="26.0">
          <image>
             <Image url="@../../main/resources/customLists.png" />
          </image>

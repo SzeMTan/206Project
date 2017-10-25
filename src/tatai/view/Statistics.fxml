@@ -74,7 +74,7 @@
                         </HBox>
                         <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
                         <Button id="small-button" fx:id="_helpOne" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-                        <ImageView fitHeight="70.0" fitWidth="445.0" layoutX="115.0">
+                        <ImageView fitHeight="70.0" fitWidth="445.0" layoutX="140.0" layoutY="10.0">
                            <image>
                               <Image url="@../../main/resources/StatsEasy.png" />
                            </image>
@@ -136,7 +136,7 @@
                         </HBox>
                         <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
                         <Button id="small-button" fx:id="_helpTwo" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-                        <ImageView fitHeight="68.0" fitWidth="455.0" layoutX="115.0">
+                        <ImageView fitHeight="79.0" fitWidth="412.0" layoutX="148.0">
                            <image>
                               <Image url="@../../main/resources/StatsMed.png" />
                            </image>
@@ -198,7 +198,7 @@
                         </HBox>
                         <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
                         <Button id="small-button" fx:id="_helpThree" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-                        <ImageView fitHeight="92.0" fitWidth="359.0" layoutX="125.0" layoutY="-7.0">
+                        <ImageView fitHeight="92.0" fitWidth="374.0" layoutX="138.0" layoutY="-1.0">
                            <image>
                               <Image url="@../../main/resources/statsHard.png" />
                            </image>
@@ -260,7 +260,7 @@
                         </HBox>
                         <Button id="small-button" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#homeClick" text="Home" />
                         <Button id="small-button" fx:id="_helpFour" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-                        <ImageView fitHeight="79.0" fitWidth="460.0" layoutX="115.0" layoutY="-3.0">
+                        <ImageView fitHeight="70.0" fitWidth="438.0" layoutX="138.0" layoutY="10.0">
                            <image>
                               <Image url="@../../main/resources/statsCustom.png" />
                            </image>
