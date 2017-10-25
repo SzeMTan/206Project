@@ -25,7 +25,10 @@
         linear-gradient(#008000, #006400),
         radial-gradient(center 50% 0%, radius 100%, #008000, #006400);
     -fx-text-fill: white;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.button:hover{
+	-fx-effect:dropshadow(three-pass-box, rgba(7,33,0,1), 10, 0, 0, 1 );
 }
 
 .list-view{
