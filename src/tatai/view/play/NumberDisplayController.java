@@ -134,8 +134,6 @@ public class NumberDisplayController {
 	//actions for when record is pressed. While the record button is held down, audio should be recorded
 	@FXML
 	private void recordPressed() {	
-		_recordBtn.setText("Recording...");
-
 		_recordTask = new Task<Void>() {
 			int exit = -1;
 			@Override
@@ -147,7 +145,6 @@ public class NumberDisplayController {
 			@Override
 			public void done() {
 				Platform.runLater(() -> {
-					_recordBtn.setText("Record");
 					if (exit == 255) {//means recording completed properly
 						_playBtn1.setDisable(false);
 						_submitBtn.setDisable(false);

@@ -76,7 +76,7 @@ public class ScoreController{
 	//If this button is clicked, the scene will load back to the start screen of that particular level.
 	public void tryAgainBtn(ActionEvent event) throws IOException{
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/tatai/view/play/Start.fxml"));
 		Parent number = loader.load();
 		scene = new Scene(number);
 		StartController c = loader.getController();
@@ -90,7 +90,7 @@ public class ScoreController{
 	//This button only appears if the user has scored 8 or more in the current level. It loads the next level up
 	//if clicked.
 	public void nextLevelBtn(ActionEvent event) throws IOException{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/tatai/view/play/Start.fxml"));
 		Parent number = loader.load();
 		scene = new Scene(number);
 		StartController c = loader.getController();
@@ -107,7 +107,7 @@ public class ScoreController{
 
 	//Sends the user back to the main menu page
 	public void menuBtn(ActionEvent event) throws IOException{
-		Parent menu = FXMLLoader.load(getClass().getResource("../MainMenu.fxml"));
+		Parent menu = FXMLLoader.load(getClass().getResource("/tatai/view/MainMenu.fxml"));
 		scene = new Scene(menu);
 
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -81,7 +81,7 @@ public class StatisticsController {
 
 	//sends user back to the main menu
 	public void homeClick(ActionEvent event) throws IOException{
-		Parent menu = FXMLLoader.load(getClass().getResource("../MainMenu.fxml"));
+		Parent menu = FXMLLoader.load(getClass().getResource("/tatai/view/MainMenu.fxml"));
 		menuScene = new Scene(menu);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 

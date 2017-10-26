@@ -45,7 +45,7 @@ public class LevelController {
 	@FXML
 	private void easyButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/play/Start.fxml"));
+		loader.setLocation(Main.class.getResource("/tatai/view/play/Start.fxml"));
 		Parent easyStart = loader.load();
 		loader.<StartController>getController().setLevel(LevelSelection.EASY);
 
@@ -60,7 +60,7 @@ public class LevelController {
 	@FXML
 	private void mediumButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/play/Start.fxml"));
+		loader.setLocation(Main.class.getResource("/tatai/view/play/Start.fxml"));
 		Parent mediumStart = loader.load();
 		loader.<StartController>getController().setLevel(LevelSelection.MEDIUM);
 
@@ -74,7 +74,7 @@ public class LevelController {
 	@FXML
 	private void hardButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/play/Start.fxml"));
+		loader.setLocation(Main.class.getResource("tatai/view/play/Start.fxml"));
 		Parent hardStart = loader.load();
 		loader.<StartController>getController().setLevel(LevelSelection.HARD);
 
@@ -88,7 +88,7 @@ public class LevelController {
 	@FXML
 	private void customClick(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/play/SelectList.fxml"));
+		loader.setLocation(Main.class.getResource("/tatai/view/play/SelectList.fxml"));
 		Parent menu = loader.load();
 
 		_scene = new Scene(menu);
@@ -102,7 +102,7 @@ public class LevelController {
 	@FXML
 	private void menuButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/MainMenu.fxml"));
+		loader.setLocation(Main.class.getResource("tatai/view/MainMenu.fxml"));
 		Parent menu = loader.load();
 
 		_scene = new Scene(menu);

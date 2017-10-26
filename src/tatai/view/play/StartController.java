@@ -82,7 +82,7 @@ public class StartController {
 		
 		//loads the numberdisplay
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/play/NumberDisplay.fxml"));
+		loader.setLocation(Main.class.getResource("/tatai/view/play/NumberDisplay.fxml"));
 		Parent numDisplay = loader.load();
 		loader.<NumberDisplayController>getController().setup(_levelSelection,_level);
 		
@@ -93,7 +93,7 @@ public class StartController {
 	
 	//Sends the user back to the main menu
 	public void menuButtonClicked(ActionEvent event) throws IOException{
-		Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+		Parent menu = FXMLLoader.load(getClass().getResource("/tatai/view/MainMenu.fxml"));
 		menuScene = new Scene(menu);
 		
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
