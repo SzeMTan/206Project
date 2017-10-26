@@ -17,6 +17,7 @@ import tatai.model.levels.customLevel.CustomLists;
 import tatai.view.popup.ConfirmPopupController;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 /**
  * Tatai is a program designed to be a math learning aid for children ages between 7-10
  * and are native Maori speakers.
@@ -25,6 +26,10 @@ import javafx.scene.Scene;
  */
 
 public class Main extends Application {
+	
+	static {
+		Font.loadFont(Main.class.getResource("/main/resources/Berlin-Sans-FB_6747.ttf").toExternalForm(),10);
+	}
 
 	/**
 	 * This class sets up the primary window stage and loads the main menu scene. 
