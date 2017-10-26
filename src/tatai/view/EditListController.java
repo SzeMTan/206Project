@@ -418,7 +418,7 @@ public class EditListController {
 			_answers.remove(index);
 		} else {
 			_message.setText("oops, looks like you haven't selected any equation");
-			_popOver.show(_addBtn);
+			_popOver.show(_removeBtn);
 		}
 	}
 

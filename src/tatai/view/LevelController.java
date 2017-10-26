@@ -144,7 +144,7 @@ public class LevelController {
 			//set speech
 			_instructions.setText("Custom has questions that have been specially written.");
 			_speech.setLayoutX(330);
-			_nextBtn.setText("done!");
+			_nextBtn.setText("Done!");
 			_clicks++;
 		} else if (_clicks == 3) {
 			//hide help components

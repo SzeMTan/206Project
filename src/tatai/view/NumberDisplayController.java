@@ -345,7 +345,7 @@ public class NumberDisplayController {
 	private void helpClick() {
 		_helpBtn.setDisable(true);
 		_instructions.setText("Welcome! When you are ready to answer just hold down the record button and say your answer.");
-		_nextBtn.setText("Next");
+		_helpNextBtn.setText("Next");
 		_tahi.setVisible(true);
 		_speech.setVisible(true);
 		
@@ -378,7 +378,7 @@ public class NumberDisplayController {
 			_clicks++;
 		} else if (_clicks == 7) {
 			_instructions.setText("The important thing is to learn and have fun!");
-			_nextBtn.setText("Done!");
+			_helpNextBtn.setText("Done!");
 			_clicks++;
 		} else if (_clicks == 8) {
 			_clicks = 0;
