@@ -17,7 +17,12 @@ import tatai.model.Stats;
 import tatai.view.QuitWindowController;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
+/**
+ * Tatai is a program designed to be a math learning aid for children ages between 7-10
+ * and are native Maori speakers.
+ * @authors stan557 ljia374
+ *
+ */
 
 public class Main extends Application {
 	

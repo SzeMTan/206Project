@@ -133,7 +133,7 @@ public class NumberDisplayController {
 	//actions for when record is pressed. While the record button is held down, audio should be recorded
 	@FXML
 	private void recordPressed() {	
-		_recordBtn.setText("recording");
+		_recordBtn.setText("Recording...");
 
 		_recordTask = new Task<Void>() {
 			int exit = -1;
