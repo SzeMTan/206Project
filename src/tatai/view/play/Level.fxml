@@ -20,6 +20,12 @@
          </children>
       </VBox>
       <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" minWidth="110.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0" />
+      <Button id="small-button" fx:id="_helpBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="446.0" minWidth="110.0" mnemonicParsing="false" onAction="#helpClick" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+      <ImageView fitHeight="72.0" fitWidth="333.0" layoutX="159.0" layoutY="35.0">
+         <image>
+            <Image url="@../../../main/resources/Level.jpg" />
+         </image>
+      </ImageView>
       <Group fx:id="_speech" layoutX="50.0" layoutY="190.0">
          <children>
             <ImageView fitHeight="166.0" fitWidth="138.0" layoutX="70.0" layoutY="140.0">
@@ -34,17 +40,11 @@
             </ImageView>
             <TextArea id="speech" fx:id="_instructions" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="85.0" prefWidth="198.0" text="Easy is for addition and subtraction where the answer is between 1 and 9." wrapText="true">
                <font>
-                  <Font name="Berlin Sans FB" size="15.0" />
+                  <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextArea>
             <Button id="really-small-button" fx:id="_nextBtn" layoutX="146.0" layoutY="105.0" mnemonicParsing="false" onAction="#nextClick" text="Next" />
          </children>
       </Group>
-      <Button id="small-button" fx:id="_helpBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="446.0" minWidth="110.0" mnemonicParsing="false" onAction="#helpClick" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-      <ImageView fitHeight="72.0" fitWidth="333.0" layoutX="159.0" layoutY="35.0">
-         <image>
-            <Image url="@../../../main/resources/Level.jpg" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

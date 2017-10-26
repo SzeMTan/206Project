@@ -64,7 +64,7 @@
                         <Font name="Berlin Sans FB" size="25.0" />
                      </font>
                   </Button>
-                  <Button id="start-button" fx:id="_playBtn2" mnemonicParsing="false" onAction="#playClick" prefHeight="43.0" prefWidth="109.0" text="Play">
+                  <Button fx:id="_playBtn2" mnemonicParsing="false" onAction="#playClick" prefHeight="43.0" prefWidth="109.0" text="Play">
                      <font>
                         <Font name="Berlin Sans FB" size="25.0" />
                      </font>
@@ -99,7 +99,7 @@
             </ImageView>
             <TextArea id="speech" fx:id="_instructions" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="93.0" prefWidth="187.0" text="Welcome! To answer, just hold down the record button and say your answer nice and clearly." wrapText="true">
                <font>
-                  <Font name="Berlin Sans FB" size="15.0" />
+                  <Font name="Berlin Sans FB" size="13.5" />
                </font>
             </TextArea>
             <Button id="really-small-button" fx:id="_helpNextBtn" layoutX="128.0" layoutY="107.0" mnemonicParsing="false" onAction="#helpNextClick" text="Next" />

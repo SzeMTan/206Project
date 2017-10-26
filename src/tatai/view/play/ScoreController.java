@@ -107,7 +107,7 @@ public class ScoreController{
 
 	//Sends the user back to the main menu page
 	public void menuBtn(ActionEvent event) throws IOException{
-		Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+		Parent menu = FXMLLoader.load(getClass().getResource("../MainMenu.fxml"));
 		scene = new Scene(menu);
 
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();

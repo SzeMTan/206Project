@@ -102,7 +102,7 @@ public class LevelController {
 	@FXML
 	private void menuButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/play/MainMenu.fxml"));
+		loader.setLocation(Main.class.getResource("view/MainMenu.fxml"));
 		Parent menu = loader.load();
 
 		_scene = new Scene(menu);

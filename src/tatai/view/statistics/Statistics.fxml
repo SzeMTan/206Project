@@ -280,7 +280,7 @@
             </ImageView>
             <TextArea id="speech" fx:id="_instructions" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="79.0" prefWidth="165.0" wrapText="true">
                <font>
-                  <Font name="Berlin Sans FB" size="15.0" />
+                  <Font name="Berlin Sans FB" size="13.0" />
                </font>
             </TextArea>
             <Button id="really-small-button" fx:id="_nextBtn" layoutX="105.0" layoutY="97.0" mnemonicParsing="false" onAction="#nextClick" text="Next" />

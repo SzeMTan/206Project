@@ -44,7 +44,7 @@
                               </ImageView>
                               <TextArea id="speech" fx:id="_instructionsOne" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="62.0" prefWidth="165.0" wrapText="true">
                                  <font>
-                                    <Font name="Berlin Sans FB" size="15.0" />
+                                    <Font name="Berlin Sans FB" size="12.5" />
                                  </font>
                               </TextArea>
                               <Button id="really-small-button" fx:id="_nextOne" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#helpOneNextClick" text="Next" />
@@ -77,7 +77,7 @@
                               </ImageView>
                               <TextArea id="speech" fx:id="_instructionsTwo" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="62.0" prefWidth="165.0" wrapText="true">
                                  <font>
-                                    <Font name="Berlin Sans FB" size="15.0" />
+                                    <Font name="Berlin Sans FB" size="12.0" />
                                  </font>
                               </TextArea>
                               <Button id="really-small-button" fx:id="_nextTwo" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#helpTwoNextClick" text="next" />
@@ -162,7 +162,7 @@
                               </ImageView>
                               <TextArea id="speech" fx:id="_instructionsThree" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="91.0" prefWidth="197.0" wrapText="true">
                                  <font>
-                                    <Font name="Berlin Sans FB" size="15.0" />
+                                    <Font name="Berlin Sans FB" size="13.5" />
                                  </font>
                               </TextArea>
                               <Button id="really-small-button" fx:id="_nextThree" layoutX="142.0" layoutY="111.0" mnemonicParsing="false" onAction="#helpThreeNextClick" text="Next" />

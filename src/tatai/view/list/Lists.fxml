@@ -49,7 +49,7 @@
             </ImageView>
             <TextArea id="speech" fx:id="_instructions" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="62.0" prefWidth="165.0" wrapText="true">
                <font>
-                  <Font name="Berlin Sans FB" size="15.0" />
+                  <Font name="Berlin Sans FB" size="12.5" />
                </font>
             </TextArea>
             <Button id="really-small-button" fx:id="_nextBtn" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#nextClick" text="Next" />
