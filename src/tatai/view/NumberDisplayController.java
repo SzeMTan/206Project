@@ -394,15 +394,19 @@ public class NumberDisplayController {
 		if (!_levelSelected.equals(LevelSelection.PRACTISE)) {
 			//load pop up asking for user confirmation that they want to leave
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("/tatai/view/QuitPlayConfirm.fxml"));
+			loader.setLocation(Main.class.getResource("/tatai/view/ConfirmPopup.fxml"));
 			Parent parent = loader.load();
 			Scene confirmScene = new Scene(parent);
 
 			Stage confirmWindow = new Stage();
 			confirmWindow.setScene(confirmScene);
 			confirmWindow.initModality(Modality.APPLICATION_MODAL);//makes it so that user can't click on main window
+			confirmWindow.setResizable(false);
 
-			loader.<QuitPlayConfirmController>getController().getYesBtn().setOnAction(e -> { //user wishes to quit
+			loader.<ConfirmPopupController>getController().setPopup("Are you sure you want to leave?", 
+					"(Your progress and score will be deleted)");
+			
+			loader.<ConfirmPopupController>getController().getYesBtn().setOnAction(e -> { //user wishes to quit
 				try {
 					//change to main menu scene
 					FXMLLoader loaderMenu = new FXMLLoader();
@@ -421,12 +425,12 @@ public class NumberDisplayController {
 				}			
 			});
 
-			loader.<QuitPlayConfirmController>getController().getNoBtn().setOnAction(e -> { //user doesn't wish to quit
+			loader.<ConfirmPopupController>getController().getNoBtn().setOnAction(e -> { //user doesn't wish to quit
 				confirmWindow.close();
 			});
 
 			confirmWindow.show();
-		} else { //user is practicing and there's no need to ask them for leave confirmation
+		} else { //user is practising and there's no need to ask them for leave confirmation
 			//change to main menu scene
 			FXMLLoader loaderMenu = new FXMLLoader();
 			loaderMenu.setLocation(Main.class.getResource("/tatai/view/MainMenu.fxml"));

@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tatai.Main;
 import tatai.model.CustomLists;
@@ -142,8 +143,42 @@ public class ListController {
 	private void deleteClick(ActionEvent event) {
 		int index = _list.getSelectionModel().getSelectedIndex();
 		if (index != -1) {//means user has selected something
-			_customLists.deleteList(index);
-			_list.getItems().remove(index);
+			try {
+				//open popup asking user to confirm deletion
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(Main.class.getResource("/tatai/view/ConfirmPopup.fxml"));
+				Parent parent = loader.load();
+				Scene confirmScene = new Scene(parent);
+				loader.<ConfirmPopupController>getController().setPopup("Are you sure you wish to delete: " 
+						+ _list.getSelectionModel().getSelectedItem(), "(All of its information will be deleted)");
+				
+				Stage confirmStage = new Stage();
+				confirmStage.setScene(confirmScene);
+				confirmStage.setTitle("Delete");
+				confirmStage.initModality(Modality.APPLICATION_MODAL);
+				confirmStage.setResizable(false);
+				
+				//When user clicks yes
+				loader.<ConfirmPopupController>getController().getYesBtn().setOnAction(e -> {
+					//delete list
+					_customLists.deleteList(index);
+					_list.getItems().remove(index);
+					event.consume();
+					
+					confirmStage.close();
+				});	
+				
+				//When user clicks no
+				loader.<ConfirmPopupController>getController().getNoBtn().setOnAction(e -> {
+					event.consume();
+					
+					confirmStage.close();
+				});		
+				
+				confirmStage.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
 		} else { //user hasn't selected anything
 			_popOver.show(_deleteBtn);
 		}

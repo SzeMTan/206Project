@@ -294,16 +294,20 @@ public class EditListController {
 		if (_madeChanges) {
 			//open up a popup window asking for confirmation that they want to leave
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("/tatai/view/BackConfirmation.fxml"));
+			loader.setLocation(Main.class.getResource("/tatai/view/ConfirmPopup.fxml"));
 			Parent parent = loader.load();
 			Scene confirmationScene = new Scene(parent);
 
 			Stage popupWindow = new Stage();
 			popupWindow.initModality(Modality.APPLICATION_MODAL);//stops user from pressing main window
 			popupWindow.setScene(confirmationScene);
-
+			popupWindow.setResizable(false);
+			
+			loader.<ConfirmPopupController>getController().setPopup("Are you sure you want to go back?", 
+					"All changes will be deleted");
+			
 			//if yes button is clicked, close the popup window and go back to list main page scene
-			loader.<BackConfirmationController>getController().getYesButton().setOnAction(e -> {
+			loader.<ConfirmPopupController>getController().getYesBtn().setOnAction(e -> {
 				try {
 					Scene listScene = loadManage("/tatai/view/Lists.fxml");
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -316,7 +320,7 @@ public class EditListController {
 			});
 
 			//if no button is clicked, just close the popup window
-			loader.<BackConfirmationController>getController().getNoButton().setOnAction(e -> {
+			loader.<ConfirmPopupController>getController().getNoBtn().setOnAction(e -> {
 				popupWindow.close();		
 			});
 			popupWindow.show();

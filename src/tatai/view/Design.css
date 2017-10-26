@@ -1,7 +1,15 @@
+/**
+ * Sets size and background colour of the window
+ */
 .root{
 	-fx-pref-width: 650;
 	-fx-pref-height: 500;
 	-fx-background-color: #afeeee;
+}
+
+#popup-root{
+	-fx-pref-width: 300;
+	-fx-pref-height: 200;
 }
 
 #score-label{
