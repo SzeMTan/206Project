@@ -83,7 +83,7 @@ public class Main extends Application {
 						} catch (IOException exception) {
 							exception.printStackTrace();
 						}
-						
+
 						primaryStage.close();
 						event.consume();
 
@@ -106,6 +106,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
+		//launch application
 		launch(args);
 	}
 }

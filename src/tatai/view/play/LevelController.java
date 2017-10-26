@@ -74,7 +74,7 @@ public class LevelController {
 	@FXML
 	private void hardButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("tatai/view/play/Start.fxml"));
+		loader.setLocation(Main.class.getResource("/tatai/view/play/Start.fxml"));
 		Parent hardStart = loader.load();
 		loader.<StartController>getController().setLevel(LevelSelection.HARD);
 
@@ -102,7 +102,7 @@ public class LevelController {
 	@FXML
 	private void menuButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("tatai/view/MainMenu.fxml"));
+		loader.setLocation(Main.class.getResource("/tatai/view/MainMenu.fxml"));
 		Parent menu = loader.load();
 
 		_scene = new Scene(menu);
