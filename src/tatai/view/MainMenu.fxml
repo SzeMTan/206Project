@@ -13,21 +13,6 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="400.0" stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.MainMenuController">
    <children>
-      <ImageView fx:id="_leftTahi" fitHeight="200.0" fitWidth="147.0" layoutX="47.0" layoutY="147.0">
-         <image>
-            <Image url="@../../main/resources/IMG_0262.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="_firstTahi" fitHeight="161.0" fitWidth="125.0" layoutX="36.0" layoutY="276.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="36.0">
-         <image>
-            <Image url="@../../main/resources/IMG_0261.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="_rightTahi" fitHeight="200.0" fitWidth="135.0" layoutX="464.0" layoutY="147.0">
-         <image>
-            <Image url="@../../main/resources/IMG_0263.png" />
-         </image>
-      </ImageView>
       <VBox alignment="TOP_CENTER" layoutX="250.0" layoutY="158.0" prefHeight="260.0" prefWidth="450.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="95.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
@@ -53,21 +38,26 @@
             </ImageView>
          </children>
       </StackPane>
-      <Button id="small-button" fx:id="_helpBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="446.0" mnemonicParsing="false" onAction="#helpClick" prefHeight="39.0" prefWidth="100.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-      <Group fx:id="_speech" layoutX="36.0" layoutY="183.0">
+      <Group fx:id="_speech" layoutY="160.0">
          <children>
-            <ImageView fitHeight="135.0" fitWidth="207.0">
+            <ImageView fx:id="_tahi" fitHeight="140.0" fitWidth="120.0" layoutX="45.0" layoutY="135.0">
+               <image>
+                  <Image url="@../../main/resources/IMG_0261.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="155.0" fitWidth="234.0">
                <image>
                   <Image url="@../../main/resources/speechbubble.png" />
                </image>
             </ImageView>
-            <TextArea id="speech" fx:id="_instructions" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="62.0" prefWidth="165.0" wrapText="true">
+            <TextArea id="speech" fx:id="_instructions" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="80.0" prefWidth="188.0" wrapText="true">
                <font>
                   <Font name="Berlin Sans FB" size="15.0" />
                </font>
             </TextArea>
-            <Button id="really-small-button" fx:id="_nextBtn" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#nextClick" text="Next" />
+            <Button id="really-small-button" fx:id="_nextBtn" layoutX="130.0" layoutY="95.0" mnemonicParsing="false" onAction="#nextClick" text="Next" />
          </children>
       </Group>
+      <Button id="small-button" fx:id="_helpBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="446.0" mnemonicParsing="false" onAction="#helpClick" prefHeight="39.0" prefWidth="100.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
    </children>
 </AnchorPane>

@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -19,11 +20,8 @@ public class MainMenuController {
 	
 	//help components
 	@FXML private Button _helpBtn;
-	@FXML private ImageView _firstTahi; //Tahi that appears first
-	@FXML private ImageView _leftTahi; //Tahi that appears on the left
-	@FXML private ImageView _rightTahi; //Tahi that appears on the right
-	//speech stuff
-	@FXML private Group _speech; //contains speech bubble and text
+	@FXML private ImageView _tahi; //Tahi that appears first
+	@FXML private Group _speech; //contains speech bubble, tahi and text
 	@FXML private TextArea _instructions; //contains instructions
 	@FXML private Button _nextBtn;
 	private int _clicks = 0; //checks how many times next has been clicked
@@ -33,10 +31,7 @@ public class MainMenuController {
 	
 	@FXML
 	private void initialize() {
-		//hide all help components
-		_firstTahi.setVisible(false);
-		_leftTahi.setVisible(false);
-		_rightTahi.setVisible(false);
+		//hide all help component
 		_speech.setVisible(false);
 	}
 	
@@ -130,12 +125,12 @@ public class MainMenuController {
 	@FXML 
 	private void helpClick() {
 		//make sure text in speech is initial one
+		_tahi.setImage(new Image("/main/resources/happytahi.png"));
 		_instructions.setText("Hi, my name is Tahi and I'll be helping you along your T\u0101tai! journey.");
 		_speech.setLayoutX(36);
 		_speech.setLayoutY(200);
 		_helpBtn.setDisable(true);
 		_nextBtn.setText("Next");
-		_firstTahi.setVisible(true);
 		_speech.setVisible(true);
 	}
 	
@@ -145,47 +140,32 @@ public class MainMenuController {
 	@FXML
 	private void nextClick() {
 		if (_clicks == 0) {
-			//hide first tahi
-			_firstTahi.setVisible(false);
-			//show and position left tahi
-			_leftTahi.setLayoutX(47);
-			_leftTahi.setLayoutY(250);
-			_leftTahi.setVisible(true);
 			//show and set speech
+			_tahi.setImage(new Image("/main/resources/IMG_0262.png"));
 			_instructions.setText("Click here to practise saying 1-99 in Maori.");
-			_speech.setLayoutX(58);
+			_speech.setLayoutX(20);
 			_speech.setLayoutY(115);
 			_clicks++;
 		} else if (_clicks == 1) {
-			//position left tahi
-			_leftTahi.setLayoutY(147);
 			//show and set speech
 			_instructions.setText("Click here to start working on your math skills.");
 			_speech.setLayoutY(14);
 			_clicks++;
 		} else if (_clicks == 2) {
-			//hide left tahi
-			_leftTahi.setVisible(false);
-			//show and position right tahi
-			_rightTahi.setLayoutX(464);
-			_rightTahi.setLayoutY(250);
-			_rightTahi.setVisible(true);
 			//set speech
+			_tahi.setImage(new Image("/main/resources/IMG_0263.png"));
 			_instructions.setText("Click here to create your own math questions.");
 			_speech.setLayoutX(428);
 			_speech.setLayoutY(121);
 			_clicks++;
 		} else if (_clicks == 3) {
 			_nextBtn.setText("Done!");
-			//position right tahi
-			_rightTahi.setLayoutY(147);
 			//set speech
 			_instructions.setText("Lastly, click here to see your past scores.");
 			_speech.setLayoutY(23);
 			_clicks++;
 		} else if (_clicks == 4) {
 			//hide help components
-			_rightTahi.setVisible(false);
 			_speech.setVisible(false);
 			_helpBtn.setDisable(false);//reenable help button
 			_clicks = 0;
