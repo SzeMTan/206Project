@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="_backgroundPane" stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.NumberDisplayController">
+<AnchorPane fx:id="_backgroundPane" stylesheets="@../Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.play.NumberDisplayController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="53.0" prefHeight="437.0" prefWidth="650.0" spacing="5.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="15.0">
          <children>
@@ -33,7 +33,7 @@
             </HBox>
             <ImageView fx:id="_levelTitle" fitHeight="83.0" fitWidth="242.0">
                <image>
-                  <Image url="@../../main/resources/EASY.png" />
+                  <Image url="@../../../main/resources/EASY.png" />
                </image>
             </ImageView>
             <Label fx:id="_equationLbl" alignment="CENTER" prefHeight="106.0" prefWidth="650.0" text="9">
@@ -64,7 +64,7 @@
                         <Font name="Berlin Sans FB" size="25.0" />
                      </font>
                   </Button>
-                  <Button id="start-butto" fx:id="_playBtn2" mnemonicParsing="false" onAction="#playClick" prefHeight="43.0" prefWidth="109.0" text="Play">
+                  <Button id="start-button" fx:id="_playBtn2" mnemonicParsing="false" onAction="#playClick" prefHeight="43.0" prefWidth="109.0" text="Play">
                      <font>
                         <Font name="Berlin Sans FB" size="25.0" />
                      </font>
@@ -74,7 +74,7 @@
          </children>
       </VBox>
       <Button id="small-button" fx:id="_helpBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" onAction="#helpClick" prefHeight="39.0" prefWidth="104.0" text="Help" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-      <Button id="small-button" fx:id="_backBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="455.0" mnemonicParsing="false" onAction="#homeClick" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+      <Button id="small-button" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="455.0" mnemonicParsing="false" onAction="#homeClick" prefHeight="39.0" prefWidth="104.0" text="Home" textAlignment="CENTER" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
       <Button fx:id="_recordBtn" alignment="CENTER" layoutX="125.0" layoutY="268.0" mnemonicParsing="false" onMousePressed="#recordPressed" onMouseReleased="#recordReleased" prefHeight="63.0" prefWidth="150.0" text="Record">
          <font>
             <Font name="Berlin Sans FB" size="30.0" />
@@ -94,7 +94,7 @@
          <children>
             <ImageView fitHeight="169.0" fitWidth="238.0">
                <image>
-                  <Image url="@../../main/resources/speechbubble.png" />
+                  <Image url="@../../../main/resources/speechbubble.png" />
                </image>
             </ImageView>
             <TextArea id="speech" fx:id="_instructions" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="93.0" prefWidth="187.0" text="Welcome! To answer, just hold down the record button and say your answer nice and clearly." wrapText="true">
@@ -107,7 +107,7 @@
       </Group>
       <ImageView fx:id="_tahi" fitHeight="155.0" fitWidth="125.0" layoutY="250.0">
          <image>
-            <Image url="@../../main/resources/IMG_0261.png" />
+            <Image url="@../../../main/resources/IMG_0261.png" />
          </image>
       </ImageView>
    </children>

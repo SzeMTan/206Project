@@ -1,4 +1,4 @@
-package tatai.model;
+package tatai.model.levels;
 
 import java.util.HashMap;
 import java.util.Map;

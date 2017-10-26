@@ -1,7 +1,9 @@
-package tatai.model;
+package tatai.model.levels.customLevel;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+
+import tatai.model.levels.Level;
 
 public class CustomLevel extends Level {
 	

@@ -1,4 +1,4 @@
-package tatai.view;
+package tatai.view.play;
 
 import java.io.IOException;
 
@@ -15,13 +15,13 @@ import javafx.scene.control.Label;
 
 import javafx.stage.Stage;
 import tatai.Main;
-import tatai.model.CustomLevel;
-import tatai.model.EasyLevel;
-import tatai.model.HardLevel;
-import tatai.model.Level;
-import tatai.model.LevelSelection;
-import tatai.model.MediumLevel;
-import tatai.model.Practise;
+import tatai.model.levels.EasyLevel;
+import tatai.model.levels.HardLevel;
+import tatai.model.levels.Level;
+import tatai.model.levels.LevelSelection;
+import tatai.model.levels.MediumLevel;
+import tatai.model.levels.Practise;
+import tatai.model.levels.customLevel.CustomLevel;
 
 /**
  * This controller is associated with the Start fxml. This gets loaded when the user first chooses a level
@@ -82,7 +82,7 @@ public class StartController {
 		
 		//loads the numberdisplay
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/NumberDisplay.fxml"));
+		loader.setLocation(Main.class.getResource("view/play/NumberDisplay.fxml"));
 		Parent numDisplay = loader.load();
 		loader.<NumberDisplayController>getController().setup(_levelSelection,_level);
 		

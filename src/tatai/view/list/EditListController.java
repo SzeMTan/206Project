@@ -1,4 +1,4 @@
-package tatai.view;
+package tatai.view.list;
 
 import java.io.IOException;
 import java.math.RoundingMode;
@@ -30,7 +30,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tatai.Main;
-import tatai.model.CustomLists;
+import tatai.model.levels.customLevel.CustomLists;
+import tatai.view.popup.ConfirmPopupController;
 
 /**
  * Controller for the scene where the user wants to edit or create a new list of equations
@@ -294,7 +295,7 @@ public class EditListController {
 		if (_madeChanges) {
 			//open up a popup window asking for confirmation that they want to leave
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("/tatai/view/ConfirmPopup.fxml"));
+			loader.setLocation(Main.class.getResource("/tatai/view/popup/ConfirmPopup.fxml"));
 			Parent parent = loader.load();
 			Scene confirmationScene = new Scene(parent);
 
@@ -309,7 +310,7 @@ public class EditListController {
 			//if yes button is clicked, close the popup window and go back to list main page scene
 			loader.<ConfirmPopupController>getController().getYesBtn().setOnAction(e -> {
 				try {
-					Scene listScene = loadManage("/tatai/view/Lists.fxml");
+					Scene listScene = loadManage("/tatai/view/list/Lists.fxml");
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 					window.setTitle("View Lists");
 					window.setScene(listScene);
@@ -326,7 +327,7 @@ public class EditListController {
 			popupWindow.show();
 		} else {
 			//user hasn't made any changes and therefore there's no point to a pop up
-			Scene listScene = loadManage("/tatai/view/Lists.fxml");
+			Scene listScene = loadManage("/tatai/view/list/Lists.fxml");
 			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 			window.setTitle("View Lists");
 			window.setScene(listScene);
@@ -439,7 +440,7 @@ public class EditListController {
 				_customList.updateList(_index, name, _comments.getText(), _equations, _answers);
 				try {
 					//go back to list main page scene
-					Scene listScene = loadManage("/tatai/view/Lists.fxml");
+					Scene listScene = loadManage("/tatai/view/list/Lists.fxml");
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 					window.setTitle("View Lists");
 					window.setScene(listScene);

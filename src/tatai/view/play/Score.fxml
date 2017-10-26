@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.ScoreController">
+<AnchorPane stylesheets="@../Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.play.ScoreController">
    <children>
       <ImageView fx:id="_amazing" fitHeight="155.0" fitWidth="650.0" layoutY="11.0">
          <image>
-            <Image url="@../../main/resources/amazing.png" />
+            <Image url="@../../../main/resources/amazing.png" />
          </image>
       </ImageView>
       <Button id="small-button" fx:id="_helpBtn" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#helpClick" prefHeight="39.0" prefWidth="100" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
@@ -24,7 +24,7 @@
       </Button>
       <ImageView fx:id="_tahi" fitHeight="200.0" fitWidth="149.0" layoutX="480.0" layoutY="250.0">
          <image>
-            <Image url="@../../main/resources/IMG_0264.png" />
+            <Image url="@../../../main/resources/IMG_0264.png" />
          </image>
       </ImageView>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="30.0">
@@ -36,7 +36,7 @@
             <Button fx:id="nextlevelBtn" mnemonicParsing="false" onAction="#nextLevelBtn" style="-fx-font-size: 18;" text="Next Level" />
          </children>
       </VBox>
-      <Button id="small-button" fx:id="menu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#menuBtn" prefHeight="39.0" prefWidth="100" text="Home">
+      <Button id="small-button" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#menuBtn" prefHeight="39.0" prefWidth="100" text="Home">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />
          </font>
@@ -45,7 +45,7 @@
          <children>
             <ImageView fitHeight="135.0" fitWidth="207.0">
                <image>
-                  <Image url="@../../main/resources/speechbubble.png" />
+                  <Image url="@../../../main/resources/speechbubble.png" />
                </image>
             </ImageView>
             <TextArea id="speech" fx:id="_instructions" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="62.0" prefWidth="165.0" wrapText="true">
@@ -58,7 +58,7 @@
       </Group>
       <ImageView fx:id="_helpTahi" fitHeight="150.0" fitWidth="125.0" layoutX="130.0" layoutY="250.0">
          <image>
-            <Image url="@../../main/resources/IMG_0262.png" />
+            <Image url="@../../../main/resources/IMG_0262.png" />
          </image>
       </ImageView>
    </children>

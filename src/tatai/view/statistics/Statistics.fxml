@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.StatisticsController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" stylesheets="@../Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.statistics.StatisticsController">
    <children>
       <TabPane accessibleRole="IMAGE_VIEW" prefHeight="403.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
@@ -76,7 +76,7 @@
                         <Button id="small-button" fx:id="_helpOne" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
                         <ImageView fitHeight="70.0" fitWidth="445.0" layoutX="140.0" layoutY="10.0">
                            <image>
-                              <Image url="@../../main/resources/StatsEasy.png" />
+                              <Image url="@../../../main/resources/StatsEasy.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -138,7 +138,7 @@
                         <Button id="small-button" fx:id="_helpTwo" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
                         <ImageView fitHeight="79.0" fitWidth="412.0" layoutX="148.0">
                            <image>
-                              <Image url="@../../main/resources/StatsMed.png" />
+                              <Image url="@../../../main/resources/StatsMed.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -200,7 +200,7 @@
                         <Button id="small-button" fx:id="_helpThree" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
                         <ImageView fitHeight="92.0" fitWidth="374.0" layoutX="138.0" layoutY="-1.0">
                            <image>
-                              <Image url="@../../main/resources/statsHard.png" />
+                              <Image url="@../../../main/resources/statsHard.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -262,7 +262,7 @@
                         <Button id="small-button" fx:id="_helpFour" layoutX="5.0" layoutY="426.0" mnemonicParsing="false" onAction="#helpClick" text="Help" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
                         <ImageView fitHeight="70.0" fitWidth="438.0" layoutX="138.0" layoutY="10.0">
                            <image>
-                              <Image url="@../../main/resources/statsCustom.png" />
+                              <Image url="@../../../main/resources/statsCustom.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -275,7 +275,7 @@
          <children>
             <ImageView fitHeight="156.0" fitWidth="210.0">
                <image>
-                  <Image url="@../../main/resources/speechbubble.png" />
+                  <Image url="@../../../main/resources/speechbubble.png" />
                </image>
             </ImageView>
             <TextArea id="speech" fx:id="_instructions" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="79.0" prefWidth="165.0" wrapText="true">
@@ -288,7 +288,7 @@
       </Group>
       <ImageView fx:id="_tahi" fitHeight="180.0" fitWidth="141.0" layoutX="130.0" layoutY="300.0">
          <image>
-            <Image url="@../../main/resources/happytahi.png" />
+            <Image url="@../../../main/resources/happytahi.png" />
          </image>
       </ImageView>
    </children>

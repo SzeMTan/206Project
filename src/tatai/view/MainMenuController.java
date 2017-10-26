@@ -2,7 +2,9 @@ package tatai.view;
 
 import java.io.IOException;
 import tatai.Main;
-import tatai.model.LevelSelection;
+import tatai.model.levels.LevelSelection;
+import tatai.view.play.StartController;
+import tatai.view.statistics.StatisticsController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,8 +58,9 @@ public class MainMenuController {
 	@FXML
 	private void listsClick(ActionEvent event) {
 		try {
-			Scene listScene = loadManage("/tatai/view/Lists.fxml");
+			Scene listScene = loadManage("/tatai/view/list/Lists.fxml");
 			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			window.setTitle("View Lists");
 			window.setScene(listScene);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -72,7 +75,7 @@ public class MainMenuController {
 	@FXML
 	private void playClick(ActionEvent event) throws IOException {
 		Parent menu;
-		menu = FXMLLoader.load(getClass().getResource("Level.fxml"));
+		menu = FXMLLoader.load(getClass().getResource("play/Level.fxml"));
 		_scene = new Scene(menu);
 		_window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
@@ -89,7 +92,7 @@ public class MainMenuController {
 	@FXML
 	private void practiseClick(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/Start.fxml"));
+        loader.setLocation(Main.class.getResource("view/play/Start.fxml"));
         Parent start = loader.load();
         loader.<StartController>getController().setLevel(LevelSelection.PRACTISE, -1);
         
@@ -108,7 +111,7 @@ public class MainMenuController {
 	@FXML
 	private void statisticsClick(ActionEvent event) throws IOException {
 	FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(Main.class.getResource("view/Statistics.fxml"));
+    loader.setLocation(Main.class.getResource("view/statistics/Statistics.fxml"));
     Parent stats = loader.load();
     loader.<StatisticsController>getController().setStats();
     

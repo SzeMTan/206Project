@@ -1,4 +1,4 @@
-package tatai.model;
+package tatai.model.levels.customLevel;
 
 import java.io.File;
 import java.io.FileNotFoundException;

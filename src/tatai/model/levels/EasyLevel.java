@@ -1,14 +1,15 @@
-package tatai.model;
+package tatai.model.levels;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * This class extends the parent Level and generates questions which have an answer that is between 1 and 99 with addition and subtraction
+ * This class extends the parent Level and generates questions which have an answer that is between 1 and 9 with addition and subtraction
  * @author se206
  *
  */
-public class MediumLevel extends Level {
 
+public class EasyLevel extends Level {
+	
 	private int _answer;
 	private int _numberTwo;
 	private int _numberOne;
@@ -16,7 +17,7 @@ public class MediumLevel extends Level {
 	private String _equation;
 	
 	private final int MIN = 1;
-	private final int MAX = 99;
+	private final int MAX = 9;
 
 	//Returns the string that represents the question that was randomly generated.
 	@Override
@@ -29,7 +30,7 @@ public class MediumLevel extends Level {
 	@Override
 	public void generateQuestion() {
 		int operand = ThreadLocalRandom.current().nextInt(1, 3); //choose operand
-		_answer = ThreadLocalRandom.current().nextInt(MIN, MAX + 1); //make sure answer is from 1 to 99
+		_answer = ThreadLocalRandom.current().nextInt(MIN, MAX + 1); //make sure answer is from 1 to 9
 		if(operand == 1) { // means it's addition
 			_numberTwo = ThreadLocalRandom.current().nextInt(MIN, _answer + 1);
 			_numberOne = _answer - _numberTwo;
@@ -41,5 +42,4 @@ public class MediumLevel extends Level {
 		}
 		convertToMaori(_answer); //get Maori translation of answer
 	}
-
 }

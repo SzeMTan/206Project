@@ -12,9 +12,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import tatai.model.CustomLists;
 import tatai.model.Stats;
-import tatai.view.ConfirmPopupController;
+import tatai.model.levels.customLevel.CustomLists;
+import tatai.view.popup.ConfirmPopupController;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 /**
@@ -50,7 +50,7 @@ public class Main extends Application {
 			public void handle(WindowEvent event) {
 				//open quit confirmation window
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(Main.class.getResource("/tatai/view/ConfirmPopup.fxml"));
+				loader.setLocation(Main.class.getResource("/tatai/view/popup/ConfirmPopup.fxml"));
 				try {
 					//open are you sure you wish to quit window
 					Parent parent = loader.load();

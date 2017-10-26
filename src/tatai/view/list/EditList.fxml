@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.EditListController">
+<AnchorPane stylesheets="@../Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.list.EditListController">
 	<children>
 		<TabPane fx:id="_tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<tabs>
@@ -39,7 +39,7 @@
                            <children>
                               <ImageView fitHeight="135.0" fitWidth="207.0">
                                  <image>
-                                    <Image url="@../../main/resources/speechbubble.png" />
+                                    <Image url="@../../../main/resources/speechbubble.png" />
                                  </image>
                               </ImageView>
                               <TextArea id="speech" fx:id="_instructionsOne" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="62.0" prefWidth="165.0" wrapText="true">
@@ -50,7 +50,7 @@
                               <Button id="really-small-button" fx:id="_nextOne" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#helpOneNextClick" text="Next" />
                               <ImageView fitHeight="172.0" fitWidth="141.0" layoutX="55.0" layoutY="120.0">
                                  <image>
-                                    <Image url="@../../main/resources/leftTahi.png" />
+                                    <Image url="@../../../main/resources/leftTahi.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -72,7 +72,7 @@
                            <children>
                               <ImageView fitHeight="135.0" fitWidth="207.0">
                                  <image>
-                                    <Image url="@../../main/resources/speechbubble.png" />
+                                    <Image url="@../../../main/resources/speechbubble.png" />
                                  </image>
                               </ImageView>
                               <TextArea id="speech" fx:id="_instructionsTwo" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="62.0" prefWidth="165.0" wrapText="true">
@@ -83,7 +83,7 @@
                               <Button id="really-small-button" fx:id="_nextTwo" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#helpTwoNextClick" text="next" />
                               <ImageView fitHeight="172.0" fitWidth="141.0" layoutX="55.0" layoutY="120.0">
                                  <image>
-                                    <Image url="@../../main/resources/leftTahi.png" />
+                                    <Image url="@../../../main/resources/leftTahi.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -157,7 +157,7 @@
                            <children>
                               <ImageView fitHeight="174.0" fitWidth="241.0">
                                  <image>
-                                    <Image url="@../../main/resources/speechbubble.png" />
+                                    <Image url="@../../../main/resources/speechbubble.png" />
                                  </image>
                               </ImageView>
                               <TextArea id="speech" fx:id="_instructionsThree" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="91.0" prefWidth="197.0" wrapText="true">
@@ -168,7 +168,7 @@
                               <Button id="really-small-button" fx:id="_nextThree" layoutX="142.0" layoutY="111.0" mnemonicParsing="false" onAction="#helpThreeNextClick" text="Next" />
                               <ImageView fitHeight="132.0" fitWidth="127.0" layoutX="55.0" layoutY="150.0">
                                  <image>
-                                    <Image url="@../../main/resources/leftTahi.png" />
+                                    <Image url="@../../../main/resources/leftTahi.png" />
                                  </image>
                               </ImageView>
                            </children>

@@ -10,6 +10,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
+import tatai.model.levels.LevelSelection;
+
 /**
  * Singleton stats object
  * @author lucy

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.SelectListController">
+<AnchorPane stylesheets="@../Design.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tatai.view.play.SelectListController">
    <children>
       <Label layoutX="183.0" layoutY="14.0" text="Pick your list">
          <font>
@@ -30,7 +30,7 @@
          <children>
             <ImageView fitHeight="135.0" fitWidth="207.0">
                <image>
-                  <Image url="@../../main/resources/speechbubble.png" />
+                  <Image url="@../../../main/resources/speechbubble.png" />
                </image>
             </ImageView>
             <TextArea id="speech" fx:id="_instructions" editable="false" layoutX="21.0" layoutY="14.0" prefHeight="62.0" prefWidth="165.0" wrapText="true">
@@ -41,7 +41,7 @@
             <Button id="really-small-button" fx:id="_nextBtn" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#nextClick" text="next" />
             <ImageView fitHeight="150.0" fitWidth="124.0" layoutX="40.0" layoutY="110.0">
                <image>
-                  <Image url="@../../main/resources/happytahi.png" />
+                  <Image url="@../../../main/resources/happytahi.png" />
                </image>
             </ImageView>
          </children>

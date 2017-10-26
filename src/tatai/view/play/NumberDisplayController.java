@@ -1,4 +1,4 @@
-package tatai.view;
+package tatai.view.play;
 
 import java.io.IOException;
 import org.controlsfx.control.PopOver;
@@ -24,9 +24,10 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tatai.Main;
-import tatai.model.Level;
-import tatai.model.LevelSelection;
 import tatai.model.Recording;
+import tatai.model.levels.Level;
+import tatai.model.levels.LevelSelection;
+import tatai.view.popup.ConfirmPopupController;
 
 
 /**
@@ -394,7 +395,7 @@ public class NumberDisplayController {
 		if (!_levelSelected.equals(LevelSelection.PRACTISE)) {
 			//load pop up asking for user confirmation that they want to leave
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("/tatai/view/ConfirmPopup.fxml"));
+			loader.setLocation(Main.class.getResource("/tatai/view/popup/ConfirmPopup.fxml"));
 			Parent parent = loader.load();
 			Scene confirmScene = new Scene(parent);
 

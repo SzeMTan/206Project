@@ -1,4 +1,4 @@
-package tatai.view;
+package tatai.view.play;
 
 import java.io.IOException;
 
@@ -23,8 +23,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import tatai.Main;
-import tatai.model.CustomLists;
-import tatai.model.LevelSelection;
+import tatai.model.levels.LevelSelection;
+import tatai.model.levels.customLevel.CustomLists;
 
 /**
  * Controller for page where user selects which custom list they want to play
@@ -122,7 +122,7 @@ public class SelectListController {
 		if (index != -1) {
 			//load start scene
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("/tatai/view/Start.fxml"));
+			loader.setLocation(Main.class.getResource("/tatai/view/play/Start.fxml"));
 			Parent customStart = loader.load();
 			loader.<StartController>getController().setLevel(LevelSelection.CUSTOM, index);
 

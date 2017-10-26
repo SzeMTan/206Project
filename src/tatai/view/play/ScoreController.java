@@ -1,4 +1,4 @@
-package tatai.view;
+package tatai.view.play;
 
 import java.io.IOException;
 
@@ -14,8 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import tatai.model.LevelSelection;
 import tatai.model.Stats;
+import tatai.model.levels.LevelSelection;
 
 
 /**

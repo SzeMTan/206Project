@@ -1,4 +1,4 @@
-package tatai.view;
+package tatai.view.popup;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

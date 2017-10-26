@@ -1,4 +1,4 @@
-package tatai.view;
+package tatai.view.list;
 
 import java.io.IOException;
 
@@ -22,7 +22,8 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tatai.Main;
-import tatai.model.CustomLists;
+import tatai.model.levels.customLevel.CustomLists;
+import tatai.view.popup.ConfirmPopupController;
 
 /**
  * Controller for list main page
@@ -104,7 +105,7 @@ public class ListController {
 			try {
 				//load scene showing the list
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(Main.class.getResource("/tatai/view/EditList.fxml"));
+				loader.setLocation(Main.class.getResource("/tatai/view/list/EditList.fxml"));
 				loader.setControllerFactory(c -> {
 					return new EditListController(index);
 				});
@@ -125,7 +126,7 @@ public class ListController {
 	private void newClick(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("/tatai/view/EditList.fxml"));
+			loader.setLocation(Main.class.getResource("/tatai/view/list/EditList.fxml"));
 			loader.setControllerFactory(c -> {
 				return new EditListController(-1); //indicate it's a new list
 			});
@@ -146,7 +147,7 @@ public class ListController {
 			try {
 				//open popup asking user to confirm deletion
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(Main.class.getResource("/tatai/view/ConfirmPopup.fxml"));
+				loader.setLocation(Main.class.getResource("/tatai/view/popup/ConfirmPopup.fxml"));
 				Parent parent = loader.load();
 				Scene confirmScene = new Scene(parent);
 				loader.<ConfirmPopupController>getController().setPopup("Are you sure you wish to delete: " 

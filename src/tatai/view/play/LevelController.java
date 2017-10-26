@@ -1,4 +1,4 @@
-package tatai.view;
+package tatai.view.play;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import tatai.Main;
-import tatai.model.LevelSelection;
+import tatai.model.levels.LevelSelection;
 
 /**
  * This is the controller for the level fxml. It allows the user to select which level they would like to play
@@ -45,7 +45,7 @@ public class LevelController {
 	@FXML
 	private void easyButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/Start.fxml"));
+		loader.setLocation(Main.class.getResource("view/play/Start.fxml"));
 		Parent easyStart = loader.load();
 		loader.<StartController>getController().setLevel(LevelSelection.EASY);
 
@@ -60,7 +60,7 @@ public class LevelController {
 	@FXML
 	private void mediumButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/Start.fxml"));
+		loader.setLocation(Main.class.getResource("view/play/Start.fxml"));
 		Parent mediumStart = loader.load();
 		loader.<StartController>getController().setLevel(LevelSelection.MEDIUM);
 
@@ -74,7 +74,7 @@ public class LevelController {
 	@FXML
 	private void hardButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/Start.fxml"));
+		loader.setLocation(Main.class.getResource("view/play/Start.fxml"));
 		Parent hardStart = loader.load();
 		loader.<StartController>getController().setLevel(LevelSelection.HARD);
 
@@ -88,7 +88,7 @@ public class LevelController {
 	@FXML
 	private void customClick(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/SelectList.fxml"));
+		loader.setLocation(Main.class.getResource("view/play/SelectList.fxml"));
 		Parent menu = loader.load();
 
 		_scene = new Scene(menu);
@@ -102,7 +102,7 @@ public class LevelController {
 	@FXML
 	private void menuButtonClicked(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/MainMenu.fxml"));
+		loader.setLocation(Main.class.getResource("view/play/MainMenu.fxml"));
 		Parent menu = loader.load();
 
 		_scene = new Scene(menu);

@@ -1,4 +1,4 @@
-package tatai.view;
+package tatai.view.statistics;
 
 import java.io.IOException;
 
@@ -18,8 +18,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import tatai.model.LevelSelection;
 import tatai.model.Stats;
+import tatai.model.levels.LevelSelection;
 
 /**
  * This controller is associated with the Statistics fxml. It contains and loads a bar chart for the last 10 games played.
@@ -81,7 +81,7 @@ public class StatisticsController {
 
 	//sends user back to the main menu
 	public void homeClick(ActionEvent event) throws IOException{
-		Parent menu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+		Parent menu = FXMLLoader.load(getClass().getResource("../MainMenu.fxml"));
 		menuScene = new Scene(menu);
 		window = (Stage)((Node)event.getSource()).getScene().getWindow();
 

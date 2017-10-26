@@ -1,4 +1,4 @@
-package tatai.model;
+package tatai.model.levels;
 
 public abstract class Level {
 
